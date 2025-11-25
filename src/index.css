@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* The Figure Container */
+  .science-figure {
+    @apply my-8 border-2 border-black bg-white p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-black dark:border-crt-green dark:shadow-[0_0_5px_rgba(0,255,0,0.5)];
+  }
+  /* The Image itself */
+  .science-figure img {
+    @apply w-full h-auto border border-gray-200 grayscale hover:grayscale-0 transition-all duration-300 dark:border-crt-green dark:opacity-80 dark:hover:opacity-100; 
+    /* Optional: Grayscale by default, color on hover for that 'old archive' feel */
+  }
+  /* The Caption */
+  .science-figure figcaption {
+    @apply mt-2 font-mono text-xs text-gray-600 border-t border-black pt-2 flex justify-between dark:text-crt-green dark:border-crt-green;
+  }
+  
+  /* Label prefix for captions */
+  .science-figure figcaption::before {
+    content: 'FIG.'; 
+    @apply font-bold mr-2 text-black dark:text-crt-green;
+  }
+}
+
+/* Custom Scrollbar for that raw feel */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #e4e4e0;
+  border-left: 1px solid #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #e4e4e0;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #001100;
+  border-left: 1px solid #00ff00;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #00ff00;
+  border: 2px solid #001100;
+}
