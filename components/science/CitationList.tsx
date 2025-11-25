@@ -1,6 +1,5 @@
-
-import React from 'react';
-import { Citation } from '../../types';
+import React from "react";
+import { Citation } from "../../types";
 
 interface CitationListProps {
   citations: Citation[];
@@ -15,11 +14,12 @@ export const CitationList: React.FC<CitationListProps> = ({ citations }) => {
         // REFERENCES
       </h3>
       <ul className="space-y-4 font-mono text-xs">
-        {citations.map((cite, index) => (
-          <li key={cite.id} className="flex gap-4 items-start text-gray-800 dark:text-crt-green/80">
-            <span className="shrink-0 font-bold select-none">
-              [{cite.id}]
-            </span>
+        {citations.map((cite) => (
+          <li
+            key={cite.id}
+            className="flex gap-4 items-start text-gray-800 dark:text-crt-green/80"
+          >
+            <span className="shrink-0 font-bold select-none">[{cite.id}]</span>
             <div>
               <span className="font-bold">{cite.text}</span>
               {cite.source && (
