@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Article } from "../types";
+import { Article } from "../src/lib/types";
 import { FileText, Database } from "lucide-react";
-import { SORT_OPTIONS } from "../constants";
+import { SORT_OPTIONS } from "../src/lib/constants";
 
 interface ArticleListProps {
   articles: Article[];

@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Article } from '../../types';
+import { Article } from '../../src/lib/types';
 import { ChevronRight } from 'lucide-react';
 
 interface ArticleRowProps {

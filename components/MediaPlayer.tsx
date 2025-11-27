@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { VideoMedia } from '../types';
+import { VideoMedia } from '../src/lib/types';
 import { Play } from 'lucide-react';
 
 interface MediaPlayerProps {

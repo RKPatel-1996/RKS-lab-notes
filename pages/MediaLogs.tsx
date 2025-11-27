@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { MediaPlayer } from '../components/MediaPlayer';
-import { VIDEOS } from '../constants';
+import { VIDEOS } from '../src/lib/constants';
 
 export const MediaLogs: React.FC = () => {
   return (

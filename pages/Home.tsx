@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ARTICLES } from '../constants';
+import { ARTICLES } from '../src/content/index';
 import { ArticleRow } from '../components/ui/ArticleRow';
 import { Search } from 'lucide-react';
 

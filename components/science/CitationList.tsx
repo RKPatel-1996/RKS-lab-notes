@@ -1,5 +1,5 @@
 import React from "react";
-import { Citation } from "../../types";
+import { Citation } from "../../src/lib/types";
 
 interface CitationListProps {
   citations: Citation[];
