@@ -10127,7 +10127,7 @@ Traditional microarrays also make it difficult to study <strong>alternative RNA 
 <p>Phylogenetics is the study of evolutionary relationships among biological entities. A phylogenetic tree is a branching diagram that visually represents these relationships, where branches indicate the genetic distance and evolutionary lineage from common ancestors. For bacterial identification and evolutionary studies, the 16S ribosomal RNA (rRNA) gene is widely used as a "molecular clock" because it is highly conserved across species but contains hypervariable regions that can distinguish between different taxa. MEGA (Molecular Evolutionary Genetics Analysis) is a robust software platform used for sequence alignment, evolutionary analysis, and the construction of phylogenetic trees.</p>
 
 <h2>2. Objectives</h2>
-<ul>
+<ol>
 
 
 <li>To retrieve the 16S rRNA gene sequence of <i>Pseudomonas aeruginosa</i> and 9 other Gram-negative bacteria from the NCBI GenBank database.</li>
@@ -10135,7 +10135,7 @@ Traditional microarrays also make it difficult to study <strong>alternative RNA 
 <li>To perform a Multiple Sequence Alignment (MSA) of the retrieved sequences.</li>
 <li>To construct a phylogenetic tree using MEGA software.</li>
 <li>To analyze the resulting tree to determine the closest evolutionary relative to <i>P. aeruginosa</i> within the selected dataset.</li>
-</ul>
+</ol>
 
 <h2>3. Requirements</h2>
 <ul>
@@ -10146,59 +10146,43 @@ Traditional microarrays also make it difficult to study <strong>alternative RNA 
 </ul>
 
 <h2>4. Methods or Steps</h2>
+
+<h3>Step 1: Sequence Retrieval</h3>
 <ol>
-<li><b>Sequence Retrieval:</b>
-    <ul>
-    
-      <li>Navigate to ALIGN  =>  Query Databanks options and connect to NCBI database.</li>
+  <li>Navigate to ALIGN  =>  Query Databanks options and connect to NCBI database.</li>
+  <li>Search for "Pseudomonas aeruginosa 16s rRNA" and click search.</li>
+  <li>If necessary, filter the results to find a complete or near-complete sequence (usually <b>around 1,500 base pairs</b>).</li>
+  <li>Click on "FASTA" link to open sequence </li>
+  <li>Click on "GenBank" to open the full summary page</li>
+  <li>Once on "GenBank" page click "Add To Alignment" at the top of page</li>
+  <li>Add "first word" "second word" "third word" and "fourth word" from drop down panels click "OK" and sequence will be added in the </li>
+  <li>Repeat this process for other organisms. Add all FASTA sequences into alignment explorer.</li>
+</ol>
 
-     
+<h3>Step 2: Sequence Alignment in MEGA</h3>
+<ol>
+  <li>Once all sequences are added in Alignment Explorer, Select all sequences (Ctrl+A) and click on <b>Alignment</b> => <b>Align by MUSCLE</b>. Use the default parameters and execute the alignment via clicking "OK". </li>
+  <li>Once aligned, examine the data to ensure the sequences match up well. Save the alignment session in aln session (.mas).</li>
+</ol>
 
-<li>Search for "Pseudomonas aeruginosa 16s rRNA" and click search.</li>
-
-      <li>If necessary, filter the results to find a complete or near-complete sequence (usually <b>around 1,500 base pairs</b>).</li>
-
-
-      <li>Click on "FASTA" link to open sequence </li>
-
-
-
-      <li>Click on "GenBank" to open the full summary page</li>
-      <li>Once on "GenBank" page click "Add To Alignment" at the top of page</li>
-      <li>Add "first word" "second word" "third word" and "fourth word" from drop down panels click "OK" and sequence will be added in the </li>
-      <li>Repeat this process for other organisms. Add all FASTA sequences into alignment explorer.</li>
-    </ul>
-</li>
-
-<li><b>Sequence Alignment in MEGA:</b>
-  <ul>
-    <li>Once all sequences are added in Alignment Explorer, Select all sequences (Ctrl+A) and click on <b>Alignment</b> => <b>Align by MUSCLE</b>. Use the default parameters and execute the alignment via clicking "OK". </li>
-    <li>Once aligned, examine the data to ensure the sequences match up well. Save the alignment session in aln session (.mas).</li>
-      </ul>
-</li>
-
-<li><b>Model selection:</b>
-<ul>
+<h3>Step 3: Model selection</h3>
+<ol>
   <li>Return to the main MEGA window and click on <b>MODELS</b>.</li>
   <li>Select <b>Find Best DNA/Protein Models(ML)</b>.</li>
   <li>Open your saved .mas alignment file.</li>
   <li>if prompted "Protein-coding nucleotide Data" click "NO"</li>
   <li>In the Analysis Preferences window, keep defaults in place and click "OK". </li>
   <li>In Results panel look at the first row identify the model for your data.</li>
-</ul>
-</li>
+</ol>
 
-
-<li><b>Phylogenetic Tree Construction:</b>
-<ul>
+<h3>Step 4: Phylogenetic Tree Construction</h3>
+<ol>
   <li>Return to the main MEGA window and click on <b>Phylogeny</b>.</li>
   <li>Select Maximum Likelihood Tree option.</li>
   <li>Open your saved .mas alignment file.</li>
   <li>In the Analysis Preferences window,select the model previously suggested by Models result panel. </li>
   <li>Click <b>Compute</b> to generate the tree.</li>
   <li>Read the tree and draw your conclusions.</li>
-</ul>
-</li>
 </ol>
 
 <h2>5. Observations</h2>
@@ -10310,7 +10294,7 @@ Traditional microarrays also make it difficult to study <strong>alternative RNA 
 </figure>
 
 
-  `},Fv=Object.freeze(Object.defineProperty({__proto__:null,default:_v},Symbol.toStringTag,{value:"Module"})),Vu="/RKS-lab-notes/assets/f032_001-D4KYjTRj.png",$u="/RKS-lab-notes/assets/f032_002-BwUmVaLI.png",jv={id:"RK-2026-032",title:"Practical 5: Mutation and correct frame prediction ",date:"2026-03-15",tags:["#","#","#"],type:"report",template:"standard",readTime:"30 min",author:{name:"RK Patel",role:"Microbiologist",avatar:"https://github.com/RKPatel-1996.png",affiliation:"Gujarat University"},excerpt:`
+  `},Fv=Object.freeze(Object.defineProperty({__proto__:null,default:_v},Symbol.toStringTag,{value:"Module"})),Vu="/RKS-lab-notes/assets/f032_001-D4KYjTRj.png",$u="/RKS-lab-notes/assets/f032_002-BwUmVaLI.png",jv={id:"RK-2026-032",title:"Practical 5: Mutation and correct frame prediction ",date:"2026-03-15",tags:["#Mutation","#FramePrediction","#Expasy"],type:"report",template:"standard",readTime:"30 min",author:{name:"RK Patel",role:"Microbiologist",avatar:"https://github.com/RKPatel-1996.png",affiliation:"Gujarat University"},excerpt:`
     
 `,content:`
 <article>
