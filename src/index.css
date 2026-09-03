@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,22 +6,22 @@
 @layer components {
   /* The Figure Container */
   .science-figure {
-    @apply my-8 border-2 border-black bg-white p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-black dark:border-crt-green dark:shadow-[0_0_5px_rgba(0,255,0,0.5)];
+    @apply my-8 border-2 border-black bg-white p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-black dark:border-white dark:shadow-[4px_4px_0px_0px_#ffffff];
   }
   /* The Image itself */
   .science-figure img {
-    @apply w-full h-auto border border-gray-200 grayscale hover:grayscale-0 transition-all duration-300 dark:border-crt-green dark:opacity-80 dark:hover:opacity-100; 
+    @apply w-full h-auto border border-gray-200 grayscale hover:grayscale-0 transition-all duration-300 dark:border-white dark:opacity-80 dark:hover:opacity-100;
     /* Optional: Grayscale by default, color on hover for that 'old archive' feel */
   }
   /* The Caption */
   .science-figure figcaption {
-    @apply mt-2 font-mono text-xs text-gray-600 border-t border-black pt-2 flex justify-between dark:text-crt-green dark:border-crt-green;
+    @apply mt-2 font-mono text-xs text-gray-600 border-t border-black pt-2 flex justify-between dark:text-white dark:border-white;
   }
-  
+
   /* Label prefix for captions */
   .science-figure figcaption::before {
-    content: 'FIG.'; 
-    @apply font-bold mr-2 text-black dark:text-crt-green;
+    content: 'FIG.';
+    @apply font-bold mr-2 text-black dark:text-white;
   }
 }
 
@@ -38,10 +39,217 @@
   border: 2px solid #e4e4e0;
 }
 .dark ::-webkit-scrollbar-track {
-  background: #001100;
-  border-left: 1px solid #00ff00;
+  background: #111111;
+  border-left: 1px solid #ffffff;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #00ff00;
-  border: 2px solid #001100;
+  background: #ffffff;
+  border: 2px solid #111111;
+}
+
+/* =========================================
+   PRINT STYLESHEET
+   ========================================= */
+@media print {
+  /* Page Setup: Standard A4 or Auto */
+  @page {
+    margin: 1.5cm;
+    size: auto;
+  }
+
+  /* 1. Shell Reset */
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+
+  /* Reset layout containers to flow normally and remove fixed positioning */
+  #root,
+  #root > div /* AppShell */ {
+    display: block !important;
+    height: auto !important;
+    width: 100% !important;
+    overflow: visible !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  main {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* The primary scroll container inside AppShell/Main */
+  main > div {
+    overflow: visible !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+
+  /* 2. Hide Interface Elements */
+  /* Hide generic interface elements by default */
+  nav,
+  header,
+  button,
+  .fixed, /* Floating buttons, overlays */
+  aside,
+  [class*="sidebar"],
+  [class*="backdrop"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* 2b. EXCEPTION: Restore Article Header and Table of Contents */
+  article header {
+    display: block !important;
+    border-bottom: 2px solid #000 !important;
+    margin-bottom: 2em !important;
+    padding-bottom: 1em !important;
+  }
+
+  article nav {
+    display: block !important;
+    border: 1px solid #ccc !important;
+    padding: 1em !important;
+    margin: 1em 0 2em 0 !important;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    background-color: transparent !important;
+  }
+
+  /* 3. Content Styling */
+  article {
+    /* Remove the "paper" look for printing */
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    background-color: transparent !important;
+  }
+
+  /* Styling Article Header Data for Print */
+  article header h1 {
+    font-size: 24pt !important;
+    line-height: 1.2 !important;
+    color: black !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  article header .text-pencil {
+    color: #444 !important;
+  }
+
+  /* Convert Tags to printable styling (border instead of bg color) */
+  article header span[class*="bg-"] {
+    background-color: transparent !important;
+    border: 1px solid #666 !important;
+    color: #000 !important;
+    padding: 2px 8px !important;
+    border-radius: 12px !important;
+    font-size: 9pt !important;
+    font-weight: bold;
+  }
+
+  /* Typography overrides for readability */
+  .prose {
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    color: black !important;
+    max-width: 100% !important; /* Use full page width */
+  }
+
+  /* Prevent headings from detaching */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+    color: black !important;
+    margin-top: 1em !important;
+  }
+
+  /* 4. Figures & Images */
+  /* Target specific print classes and elements */
+  .print-scientific-figure,
+  .print-scientific-table,
+  .science-figure,
+  figure {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    margin: 1.5em 0 !important;
+    background: transparent !important;
+    display: block !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure images fit and don't look weird */
+  img {
+    max-width: 100% !important;
+    height: auto !important; /* Maintain aspect ratio */
+    max-height: 90vh !important; /* Don't be taller than a page */
+    page-break-inside: avoid;
+    break-inside: avoid;
+    filter: none !important; /* Remove grayscale/invert effects */
+    opacity: 1 !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  figcaption {
+    color: #444 !important;
+    border-top: 1px solid #ccc !important;
+    padding-top: 4px !important;
+    font-size: 9pt !important;
+  }
+
+  /* 5. Tables */
+  table {
+    width: 100% !important;
+    page-break-inside: auto;
+    border: 1px solid #ccc;
+  }
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  th, td {
+    border: 1px solid #ddd !important;
+    color: black !important;
+  }
+
+  /* 6. Cleanup Specific UI inside components */
+  /* Hide toolbars inside figures/tables */
+  .print-scientific-figure > div:first-child, /* Toolbar */
+  .print-scientific-table > div:first-child {
+    display: none !important;
+  }
+
+  /* Remove scroll constraints from tables */
+  .print-scientific-table > div {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Hide Author Badge background/border clutter */
+  div[class*="border-dashed"] {
+    border-style: solid !important;
+    border-width: 0 0 1px 0 !important;
+    border-color: #ccc !important;
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline;
+    color: black !important;
+  }
 }

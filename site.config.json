@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "site": {
+    "id": "pharmacology",
+    "title": "RKS Lab Notes",
+    "courseLabel": "Pharmacology",
+    "description": "RKS Lab Notes for Pharmacology"
+  },
+  "github": {
+    "owner": "RKPatel-1996",
+    "repository": "RKS-lab-notes"
+  },
+  "gitSafety": {
+    "sshAlias": "github.com-rkpatel",
+    "authorName": "RKPatel-1996",
+    "authorEmail": "rrohit3rock@gmail.com"
+  }
+}

@@ -1,24 +1,54 @@
-import { Article } from "../lib/types";
+import { Article, ArticleMeta } from "../lib/types";
+import { ARTICLE_MANIFEST } from "./manifest";
 
 // ============================================================================
-// AUTOMATED ARTICLE LOADER
-// ============================================================================
-// This uses Vite's `import.meta.glob` feature to automatically import every 
-// .ts file located in the ./articles directory.
-//
-// HOW TO ADD A NEW ARTICLE:
-// 1. Create a new file in `src/content/articles/` (e.g., `my-new-post.ts`)
-// 2. Export the article object as `default`.
-//    Example: `export default { ... } satisfies Article;`
-// 3. That's it! It will automatically appear in the app.
+// AUTOMATED ARTICLE METADATA REGISTRY
 // ============================================================================
 
-// @ts-ignore - Vite replaces this at build time, but TS might not know about 'glob' on import.meta without specific config
-const modules = import.meta.glob('./articles/*.ts', { eager: true });
+export const ARTICLES: ArticleMeta[] = ARTICLE_MANIFEST as ArticleMeta[];
 
-export const ARTICLES: Article[] = Object.values(modules)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  .map((mod: any) => mod.default)
-  // Ensure we only include valid article objects
-  .filter((article): article is Article => !!article && !!article.id)
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+// Create lazy loaders for all Article TS files
+// @ts-ignore - Vite specific
+const articleModules = import.meta.glob('./articles/*.ts');
+
+// Create lazy loaders for all BibTeX files as raw strings
+// @ts-ignore - Vite specific
+const bibModules = import.meta.glob('./articles/*.bib', {
+  query: '?raw',
+  import: 'default'
+});
+
+export async function loadArticle(id: string): Promise<Article | null> {
+  const meta = ARTICLES.find(a => a.id === id);
+  if (!meta) return null;
+
+  try {
+    const modulePath = meta.modulePath;
+    if (!modulePath) return null;
+
+    const loader = articleModules[modulePath];
+    if (!loader) return null;
+
+
+    const mod: any = await loader();
+    const article: Article = mod.default;
+
+    if (article) {
+      const bibPath = modulePath.replace(/\.ts$/, '.bib');
+      const bibLoader = bibModules[bibPath];
+
+      if (bibLoader) {
+        try {
+          const bibContent = await bibLoader();
+          article.bibTexContent = bibContent as string;
+        } catch (e) {
+          console.warn(`Failed to load bibliography for ${id}:`, e);
+        }
+      }
+      return article;
+    }
+  } catch (error) {
+    console.error(`Failed to load article module for ${id}:`, error);
+  }
+  return null;
+}

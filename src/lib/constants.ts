@@ -1,10 +1,4 @@
-import { SortOption, VideoMedia } from "./types";
-
-export const SORT_OPTIONS: SortOption[] = [
-  { id: "chronological", label: "Chronological" },
-  { id: "impact", label: "Impact" },
-  { id: "subject", label: "Subject" },
-];
+import { VideoMedia } from "./types";
 
 export const VIDEOS: VideoMedia[] = [
   {
@@ -25,4 +19,12 @@ export const VIDEOS: VideoMedia[] = [
     duration: "22:45",
     date: "2025-09-01",
   },
+];
+
+export const FONT_SIZES = [
+  "prose-sm",
+  "prose-base",
+  "prose-lg",
+  "prose-xl",
+  "prose-2xl",
 ];
