@@ -1,6 +1,25 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 export const ARTICLE_MANIFEST = [
   {
+    "id": "RK-2026-003",
+    "title": "Computer Hardware: CPU, RAM, and Storage",
+    "date": "2026-07-06",
+    "tags": [
+      "#Hardware, #CPU, #RAM, #Storage"
+    ],
+    "excerpt": "\n\n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-003.ts"
+  },
+  {
     "id": "RK-2025-002",
     "title": "Syllabus",
     "date": "2026-07-05",
