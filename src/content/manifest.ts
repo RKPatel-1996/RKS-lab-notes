@@ -1,6 +1,27 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 export const ARTICLE_MANIFEST = [
   {
+    "id": "RK-2026-004",
+    "title": "Operating systems: Windows, vs Linux",
+    "date": "2026-07-07",
+    "tags": [
+      "#OperatingSystems",
+      "#Windows",
+      "#Linux"
+    ],
+    "excerpt": "\n\n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-004.ts"
+  },
+  {
     "id": "RK-2026-003",
     "title": "Computer Hardware: CPU, RAM, and Storage",
     "date": "2026-07-06",
