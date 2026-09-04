@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SidebarDesktop } from './SidebarDesktop';
 import { SidebarMobile } from './SidebarMobile';
+import { useReaderPreferences } from '../../hooks/useReaderPreferences';
 
 interface SidebarProps {
   isDarkMode: boolean;
@@ -12,40 +13,39 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = (props) => {
   const location = useLocation();
-  const [isDesktopCollapsed, setIsDesktopCollapsed] = useState(false);
+  const { isLeftRailExpanded, toggleLeftRail, setIsLeftRailExpanded } = useReaderPreferences();
   const [isMobileDockOpen, setIsMobileDockOpen] = useState(false);
 
   const isArticlePage = location.pathname.startsWith('/articles/');
 
   // Auto-collapse logic based on route
   useEffect(() => {
-    // If we are in an article route, collapse by default for better reading experience
+    // If we are in an article route, collapse left rail by default for focused reading
     if (isArticlePage) {
-      setIsDesktopCollapsed(true);
+      setIsLeftRailExpanded(false);
     } else {
-      setIsDesktopCollapsed(false);
+      setIsLeftRailExpanded(true);
     }
     // Always close mobile dock on navigation
     setIsMobileDockOpen(false);
-  }, [location.pathname, isArticlePage]);
+  }, [location.pathname, isArticlePage, setIsLeftRailExpanded]);
 
-  const toggleDesktopCollapse = () => setIsDesktopCollapsed(prev => !prev);
   const toggleMobileDock = () => setIsMobileDockOpen(prev => !prev);
 
   return (
     <>
-      <SidebarDesktop
+      <SidebarDesktop 
         {...props}
-        isCollapsed={isDesktopCollapsed}
-        toggleCollapse={toggleDesktopCollapse}
-        isArticlePage={isArticlePage}
+        isCollapsed={!isLeftRailExpanded} 
+        toggleCollapse={toggleLeftRail} 
+        isArticlePage={isArticlePage} 
       />
-      <SidebarMobile
+      <SidebarMobile 
         {...props}
-        isOpen={isMobileDockOpen}
-        toggleOpen={toggleMobileDock}
-        setIsOpen={setIsMobileDockOpen}
-        isArticlePage={isArticlePage}
+        isOpen={isMobileDockOpen} 
+        toggleOpen={toggleMobileDock} 
+        setIsOpen={setIsMobileDockOpen} 
+        isArticlePage={isArticlePage} 
       />
     </>
   );

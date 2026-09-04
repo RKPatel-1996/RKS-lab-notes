@@ -14,7 +14,7 @@ export const ScientificTable: React.FC<ScientificTableProps> = ({ id, initialHea
       <div className="w-full overflow-x-auto border-y-2 border-ink dark:border-white">
         <table className="w-full text-left border-collapse text-sm font-mono text-ink dark:text-white">
           {caption && (
-            <caption className="caption-top text-left pb-4 font-serif text-sm text-pencil dark:text-gray-300">
+            <caption className="caption-top text-left pb-4 font-serif text-sm text-pencil dark:text-gray-200">
               <strong className="font-mono text-ink dark:text-white mr-2 uppercase">Table {id}:</strong>
               <span dangerouslySetInnerHTML={{ __html: caption }} />
             </caption>
@@ -22,8 +22,8 @@ export const ScientificTable: React.FC<ScientificTableProps> = ({ id, initialHea
           <thead className="border-b-2 border-ink dark:border-white bg-paper dark:bg-black">
             <tr>
               {initialHeaders.map((header, i) => (
-                <th
-                  key={i}
+                <th 
+                  key={i} 
                   className="p-3 font-bold align-bottom whitespace-normal"
                 >
                   {header}
@@ -35,8 +35,8 @@ export const ScientificTable: React.FC<ScientificTableProps> = ({ id, initialHea
             {initialData.map((row, rIdx) => (
               <tr key={rIdx} className="border-b border-gray-200 dark:border-gray-800 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
                 {row.map((cell, cIdx) => (
-                  <td
-                    key={cIdx}
+                  <td 
+                    key={cIdx} 
                     className="p-3 align-top border-r border-gray-100 dark:border-gray-800 last:border-r-0 whitespace-normal"
                     dangerouslySetInnerHTML={{ __html: cell }}
                   />

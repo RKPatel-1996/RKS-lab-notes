@@ -10,7 +10,7 @@
   }
   /* The Image itself */
   .science-figure img {
-    @apply w-full h-auto border border-gray-200 grayscale hover:grayscale-0 transition-all duration-300 dark:border-white dark:opacity-80 dark:hover:opacity-100;
+    @apply w-full h-auto border border-gray-200 grayscale hover:grayscale-0 transition-all duration-300 dark:border-white dark:opacity-80 dark:hover:opacity-100; 
     /* Optional: Grayscale by default, color on hover for that 'old archive' feel */
   }
   /* The Caption */
@@ -18,10 +18,341 @@
     @apply mt-2 font-mono text-xs text-gray-600 border-t border-black pt-2 flex justify-between dark:text-white dark:border-white;
   }
 
-  /* Label prefix for captions */
-  .science-figure figcaption::before {
-    content: 'FIG.';
-    @apply font-bold mr-2 text-black dark:text-white;
+  /* =========================================
+     GLOBAL CODE BLOCK & USABILITY (RKS LAB MONOCHROME)
+     ========================================= */
+  .code-block-wrapper {
+    position: relative;
+    margin: 1.75rem 0;
+  }
+
+  /* Code block pre treatment */
+  .code-block-wrapper pre,
+  .prose pre {
+    background-color: #0d0d0d;
+    color: #f3f4f6;
+    border: 2px solid #000000;
+    box-shadow: 4px 4px 0px 0px #000000;
+    border-radius: 0px;
+    padding: 1.25rem 4.5rem 1.25rem 1.25rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+
+  .dark .code-block-wrapper pre,
+  .dark .prose pre {
+    background-color: #0c0c0c !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 4px 4px 0px 0px #ffffff !important;
+  }
+
+  /* Code block inner code */
+  .code-block-wrapper pre code,
+  .prose pre code,
+  .dark .code-block-wrapper pre code,
+  .dark .prose pre code {
+    background-color: transparent !important;
+    color: inherit !important;
+    border: none !important;
+    padding: 0 !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    border-radius: 0 !important;
+  }
+
+  /* Copy button: upper-right, monochrome, accessible */
+  .code-copy-btn {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.625rem;
+    font-family: "Space Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0px;
+    cursor: pointer;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: all 0.15s ease-in-out;
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #777777;
+  }
+
+  .code-copy-btn:hover {
+    background-color: #222222;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  .code-copy-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+
+  .code-copy-btn.copied {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  .dark .code-copy-btn {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #888888;
+  }
+
+  .dark .code-copy-btn:hover {
+    background-color: #2e2e2e;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  .dark .code-copy-btn.copied {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  /* Inline Code */
+  .prose :not(pre) > code {
+    background-color: #e5e7eb;
+    color: #111111;
+    font-family: "Space Mono", monospace;
+    font-size: 0.875em;
+    padding: 0.15em 0.4em;
+    border-radius: 2px;
+    border: 1px solid #d1d5db;
+  }
+
+  .dark .prose :not(pre) > code {
+    background-color: #1f1f1f !important;
+    color: #ffffff !important;
+    border: 1px solid #383838 !important;
+  }
+
+  /* =========================================
+     TABLES & CAPTIONS (DARK MODE & LAB STYLE)
+     ========================================= */
+  .science-table,
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.75rem 0;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+  }
+
+  .dark .science-table,
+  .dark .prose table {
+    border-top: 2px solid #ffffff !important;
+    border-bottom: 2px solid #ffffff !important;
+  }
+
+  .science-table caption,
+  .prose caption,
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: "Lora", serif;
+    font-size: 0.9rem;
+    color: #4b5563;
+    padding-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .science-table caption strong,
+  .prose caption strong,
+  caption strong {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    color: #111111;
+    margin-right: 0.5rem;
+  }
+
+  /* Dark mode table caption contrast fix */
+  .dark .science-table caption,
+  .dark .prose caption,
+  .dark caption {
+    color: #d1d5db !important;
+  }
+
+  .dark .science-table caption strong,
+  .dark .prose caption strong,
+  .dark caption strong {
+    color: #ffffff !important;
+  }
+
+  .science-table thead th,
+  .prose thead th {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #000000;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid #000000;
+    background-color: #f4f4f0;
+  }
+
+  .dark .science-table thead th,
+  .dark .prose thead th {
+    color: #ffffff !important;
+    border-bottom: 2px solid #ffffff !important;
+    background-color: #111111 !important;
+  }
+
+  .science-table tbody td,
+  .prose tbody td {
+    font-size: 0.9rem;
+    color: #111111;
+    padding: 0.75rem;
+    vertical-align: top;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .dark .science-table tbody td,
+  .dark .prose tbody td {
+    color: #d1d5db !important;
+    border-bottom: 1px solid #262626 !important;
+    background-color: transparent !important;
+  }
+
+  .dark .science-table tbody tr:hover td,
+  .dark .prose tbody tr:hover td {
+    background-color: #141414 !important;
+  }
+
+  .dark .science-table tbody td strong,
+  .dark .science-table tbody td b,
+  .dark .prose tbody td strong,
+  .dark .prose tbody td b {
+    color: #ffffff !important;
+  }
+
+  .dark .science-table tbody td code,
+  .dark .prose tbody td code {
+    background-color: #1f2937 !important;
+    color: #ffffff !important;
+    border: 1px solid #374151 !important;
+  }
+
+  /* =========================================
+     BLOCKQUOTES & CALLOUT PROSE (DARK CONTRAST)
+     ========================================= */
+  .prose blockquote,
+  blockquote {
+    font-style: normal;
+    border-left: 4px solid #000000;
+    padding: 1rem 1.25rem;
+    margin: 1.75rem 0;
+    background-color: #f8f8f5;
+    color: #222222;
+    quotes: none;
+  }
+
+  .dark .prose blockquote,
+  .dark blockquote {
+    border-left: 4px solid #ffffff !important;
+    background-color: #121212 !important;
+    color: #e5e7eb !important;
+    padding: 1rem 1.25rem !important;
+    margin: 1.75rem 0 !important;
+  }
+
+  .dark .prose blockquote p,
+  .dark blockquote p {
+    color: #e5e7eb !important;
+    margin: 0 !important;
+  }
+
+  .dark .prose blockquote strong,
+  .dark .prose blockquote b,
+  .dark blockquote strong,
+  .dark blockquote b {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  .dark .prose blockquote em,
+  .dark .prose blockquote i,
+  .dark blockquote em,
+  .dark blockquote i {
+    color: #f3f4f6 !important;
+  }
+
+  /* =========================================
+     OTHER SEMANTIC ARTICLE ELEMENTS IN DARK MODE
+     ========================================= */
+  .dark .prose strong,
+  .dark .prose b {
+    color: #ffffff !important;
+    font-weight: 700;
+  }
+
+  .dark .prose em,
+  .dark .prose i {
+    color: #f3f4f6;
+  }
+
+  .dark .prose ul > li::marker {
+    color: #ffffff !important;
+  }
+
+  .dark .prose ol > li::marker {
+    color: #ffffff !important;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+  }
+
+  .dark .prose li {
+    color: #d1d5db !important;
+  }
+
+  .dark .prose a {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+  }
+
+  .dark .prose a:hover {
+    color: #d1d5db !important;
+  }
+
+  .dark .prose sup a {
+    color: #ffffff !important;
+    font-family: "Space Mono", monospace;
+    font-weight: bold;
+  }
+
+  .dark dt {
+    color: #ffffff !important;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    margin-top: 1rem;
+  }
+
+  .dark dd {
+    color: #d1d5db !important;
+    border-left: 2px solid #444444 !important;
+    padding-left: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .dark .prose hr {
+    border: none !important;
+    border-top: 2px solid #ffffff !important;
+    margin: 2.5em 0 !important;
   }
 }
 
@@ -48,27 +379,338 @@
 }
 
 /* =========================================
-   PRINT STYLESHEET
+   READER PREFERENCES / TYPOGRAPHY ARCHITECTURE (PASS 7D & 7D.1)
    ========================================= */
+:root {
+  --reader-font-family: "Lora", Georgia, serif;
+  --reader-font-size: 18px;
+  --reader-font-weight: 400;
+  --reader-line-height: 1.65;
+  --reader-letter-spacing: 0em;
+  --reader-word-spacing: 0.015em;
+  --reader-content-width: 56rem;
+  --reader-paragraph-spacing: 1.0em;
+
+  /* Heading sizes (PASS 7D.3) */
+  --reader-h2-size-mobile: 22px;
+  --reader-h3-size-mobile: 19px;
+  --reader-h4-size-mobile: 18px;
+  --reader-h5-size-mobile: 17px;
+  --reader-h6-size-mobile: 17px;
+
+  --reader-h2-size-desktop: 26px;
+  --reader-h3-size-desktop: 22px;
+  --reader-h4-size-desktop: 19px;
+  --reader-h5-size-desktop: 19px;
+  --reader-h6-size-desktop: 18px;
+
+  --reader-h2-size: 26px;
+  --reader-h3-size: 22px;
+  --reader-h4-size: 19px;
+  --reader-h5-size: 19px;
+  --reader-h6-size: 18px;
+}
+
+/* Article Reading Measure & Section Heading Breakpoint Scaling (PASS 7D.3) */
+.article-reader-scope {
+  --reader-h2-size: var(--reader-h2-size-mobile, 22px);
+  --reader-h3-size: var(--reader-h3-size-mobile, 19px);
+  --reader-h4-size: var(--reader-h4-size-mobile, 18px);
+  --reader-h5-size: var(--reader-h5-size-mobile, 17px);
+  --reader-h6-size: var(--reader-h6-size-mobile, 17px);
+}
+
+@media (min-width: 768px) {
+  .article-reader-scope {
+    --reader-h2-size: var(--reader-h2-size-desktop, 26px);
+    --reader-h3-size: var(--reader-h3-size-desktop, 22px);
+    --reader-h4-size: var(--reader-h4-size-desktop, 19px);
+    --reader-h5-size: var(--reader-h5-size-desktop, 19px);
+    --reader-h6-size: var(--reader-h6-size-desktop, 18px);
+  }
+}
+
+.article-reader-card {
+  width: 100%;
+  max-width: min(100%, var(--reader-content-width, 56rem));
+  transition: max-width 0.2s ease-in-out;
+}
+
+/* Scoped Prose Reading Typography (Left aligned to avoid mobile justification gaps) */
+.article-reader-scope .article-reader-content p,
+.article-reader-scope .article-reader-content li,
+.article-reader-scope .article-reader-content dd,
+.article-reader-scope .article-reader-content blockquote p,
+.article-reader-scope .article-reader-content figcaption,
+.article-reader-scope .article-reader-content td {
+  font-family: var(--reader-font-family, "Lora", Georgia, serif) !important;
+  font-size: var(--reader-font-size, 18px) !important;
+  font-weight: var(--reader-font-weight, 400) !important;
+  line-height: var(--reader-line-height, 1.65) !important;
+  letter-spacing: var(--reader-letter-spacing, 0em) !important;
+  word-spacing: var(--reader-word-spacing, 0.015em) !important;
+  text-align: left !important;
+}
+
+/* Paragraph spacing control */
+.article-reader-scope .article-reader-content p {
+  margin-top: var(--reader-paragraph-spacing, 1.0em) !important;
+  margin-bottom: var(--reader-paragraph-spacing, 1.0em) !important;
+  text-align: left !important;
+}
+
+/* Blockquote container spacing & responsive containment */
+.article-reader-scope .article-reader-content blockquote {
+  margin-top: var(--reader-paragraph-spacing, 1.0em) !important;
+  margin-bottom: var(--reader-paragraph-spacing, 1.0em) !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* List indentation & containment */
+.article-reader-scope .article-reader-content ul,
+.article-reader-scope .article-reader-content ol {
+  max-width: 100% !important;
+  padding-left: 1.25rem !important;
+}
+
+/* Table containment: maintain native display: table semantics; overflow belongs to .table-scroll-wrapper (PASS 7F Invariant 10) */
+.article-reader-scope .table-scroll-wrapper {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.article-reader-scope table {
+  display: table !important;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* Figure & Image containment */
+.article-reader-scope figure,
+.article-reader-scope img {
+  max-width: 100% !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* =========================================
+   STRICT EXCLUSIONS (PRESERVE MONOCHROME LAB IDENTITY)
+   ========================================= */
+/* 1. Article Headings MUST retain Space Mono and scale with bounded reader variables (PASS 7D.3) */
+.article-reader-scope .article-reader-content h1 {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.article-reader-scope .article-reader-content h2 {
+  font-family: "Space Mono", monospace !important;
+  font-size: var(--reader-h2-size, 22px) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.article-reader-scope .article-reader-content h3 {
+  font-family: "Space Mono", monospace !important;
+  font-size: var(--reader-h3-size, 19px) !important;
+  font-weight: 700 !important;
+  line-height: 1.30 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.article-reader-scope .article-reader-content h4 {
+  font-family: "Space Mono", monospace !important;
+  font-size: var(--reader-h4-size, 18px) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.article-reader-scope .article-reader-content h5 {
+  font-family: "Space Mono", monospace !important;
+  font-size: var(--reader-h5-size, 17px) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.article-reader-scope .article-reader-content h6 {
+  font-family: "Space Mono", monospace !important;
+  font-size: var(--reader-h6-size, 17px) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+/* 2. Code Blocks and Inline Code MUST retain monospace */
+.article-reader-scope pre,
+.article-reader-scope code,
+.article-reader-scope pre code,
+.article-reader-scope .code-block-wrapper pre,
+.article-reader-scope .code-block-wrapper pre code,
+.article-reader-scope .article-reader-content pre,
+.article-reader-scope .article-reader-content code,
+.article-reader-scope .article-reader-content pre code {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  font-weight: 400 !important;
+}
+
+.article-reader-scope .article-reader-content pre,
+.article-reader-scope .code-block-wrapper pre {
+  font-size: 0.875rem !important;
+  line-height: 1.6 !important;
+}
+
+.article-reader-scope .article-reader-content :not(pre) > code {
+  font-size: 0.875em !important;
+}
+
+/* 3. Copy Button, Metadata, and Lab Controls */
+.article-reader-scope .code-copy-btn,
+.article-reader-scope .code-copy-btn * {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: normal !important;
+}
+
+/* 4. Table Headers, Captions prefixes, and Citations */
+.article-reader-scope table th,
+.article-reader-scope .science-table thead th {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+.article-reader-scope caption strong {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: normal !important;
+}
+
+.article-reader-scope sup,
+.article-reader-scope sup a {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: normal !important;
+  white-space: nowrap !important;
+  font-size: 0.75em !important;
+  line-height: 0 !important;
+  position: relative !important;
+  vertical-align: baseline !important;
+  top: -0.45em !important;
+}
+
+/* 5. Table of Contents */
+.article-reader-scope #toc,
+.article-reader-scope .table-of-contents,
+.article-reader-scope .table-of-contents * {
+  font-family: "Space Mono", monospace !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+/* =========================================
+   READER CONTROLS & ERGONOMICS (PASS 7D.2)
+   ========================================= */
+
+/* 1. Primary Persistent Reader Toggle (Aa READING) */
+.reader-utility-toggle {
+  position: fixed;
+  z-index: 40;
+  right: calc(1rem + env(safe-area-inset-right, 0px));
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .reader-utility-toggle {
+    bottom: auto;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* 2. Conditional Back-to-Top Button */
+.reader-utility-top {
+  position: fixed;
+  z-index: 40;
+  right: calc(1rem + env(safe-area-inset-right, 0px));
+  bottom: calc(1rem + 44px + 10px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .reader-utility-top {
+    bottom: 1.5rem;
+    right: 5.5rem;
+  }
+}
+
+/* 3. Reader Preferences Panel Anchoring & Boundaries */
+.reader-utility-panel {
+  position: fixed;
+  z-index: 50;
+  right: calc(1rem + env(safe-area-inset-right, 0px));
+  bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+  width: calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  max-width: 360px;
+  max-height: calc(100vh - 5.5rem - env(safe-area-inset-bottom, 0px) - env(safe-area-inset-top, 0px));
+}
+
+@media (min-width: 768px) {
+  .reader-utility-panel {
+    bottom: auto;
+    top: 4.25rem;
+    right: 1.5rem;
+    width: 24rem;
+    max-width: 24rem;
+    max-height: calc(100vh - 5.5rem);
+  }
+}
+
+/* ==========================================================================
+   PASS 7E — CANONICAL A4 PRINT EDITION
+   Standardized scholarly A4 reading/printing output regardless of screen state,
+   theme, device mode, or reader preferences.
+   ========================================================================== */
 @media print {
-  /* Page Setup: Standard A4 or Auto */
+  /* 1. Page Standard: Physical A4 Portrait with 18mm margins */
   @page {
-    margin: 1.5cm;
-    size: auto;
+    size: A4 portrait;
+    margin: 18mm 18mm 20mm 18mm;
   }
 
-  /* 1. Shell Reset */
-  html, body {
+  /* 2. Shell & Canvas Reset (Force White Paper + Dark Text) */
+  html,
+  body {
     height: auto !important;
     overflow: visible !important;
-    background: white !important;
-    color: black !important;
-    font-size: 11pt;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 11pt !important;
   }
 
-  /* Reset layout containers to flow normally and remove fixed positioning */
   #root,
-  #root > div /* AppShell */ {
+  #root > div {
     display: block !important;
     height: auto !important;
     width: 100% !important;
@@ -76,180 +718,752 @@
     position: static !important;
     margin: 0 !important;
     padding: 0 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #111111 !important;
   }
 
   main {
     display: block !important;
     height: auto !important;
     overflow: visible !important;
+    width: 100% !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
   }
 
-  /* The primary scroll container inside AppShell/Main */
-  main > div {
+  main > div,
+  main > div > div,
+  main > div > div > div {
     overflow: visible !important;
     height: auto !important;
     padding: 0 !important;
-  }
-
-  /* 2. Hide Interface Elements */
-  /* Hide generic interface elements by default */
-  nav,
-  header,
-  button,
-  .fixed, /* Floating buttons, overlays */
-  aside,
-  [class*="sidebar"],
-  [class*="backdrop"],
-  .no-print {
-    display: none !important;
-  }
-
-  /* 2b. EXCEPTION: Restore Article Header and Table of Contents */
-  article header {
-    display: block !important;
-    border-bottom: 2px solid #000 !important;
-    margin-bottom: 2em !important;
-    padding-bottom: 1em !important;
-  }
-
-  article nav {
-    display: block !important;
-    border: 1px solid #ccc !important;
-    padding: 1em !important;
-    margin: 1em 0 2em 0 !important;
-    page-break-inside: avoid;
-    box-shadow: none !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
     background-color: transparent !important;
   }
 
-  /* 3. Content Styling */
-  article {
-    /* Remove the "paper" look for printing */
+  /* 3. Dark Theme & Decorative Screen Reset */
+  .dark,
+  .dark body,
+  .dark #root,
+  .dark main,
+  .dark article,
+  .dark .article-reader-card,
+  .dark .article-reader-content,
+  .dark [class*="bg-black"],
+  .dark [class*="bg-gray-"],
+  .dark [class*="bg-paper"] {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    border-color: #888888 !important;
     box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  [style*="radial-gradient"],
+  .bg-dot-grid {
+    background-image: none !important;
+    background: transparent !important;
+    display: none !important;
+  }
+
+  /* 4. Strict Screen UI Removal */
+  #sidebar,
+  #desktop-navigation-rail,
+  #desktop-reader-rail,
+  aside#sidebar,
+  aside#desktop-navigation-rail,
+  aside#desktop-reader-rail,
+  aside[data-sidebar],
+  aside.desktop-reader-rail,
+  aside[aria-label="Navigation sidebar"],
+  aside[aria-label="Article navigation"],
+  aside[aria-label="Reader preferences"],
+  [data-sidebar],
+  .desktop-reader-rail,
+  .mobile-reader-sheet,
+  .reader-utility-toggle,
+  .reader-utility-top,
+  .reader-utility-panel,
+  [data-rail="left-toggle"],
+  [data-rail="right-toggle"],
+  .back-to-top,
+  .focus-mode-toggle,
+  nav[aria-label="Breadcrumb navigation"],
+  nav[aria-label="Article navigation"],
+  nav[aria-label="Sidebar navigation"],
+  .code-copy-btn,
+  .reader-bottom-sheet-root,
+  [class*="backdrop"],
+  .no-print,
+  header.md\:hidden {
+    display: none !important;
+  }
+
+  /* 5. One Canonical Print Profile: Neutralize Reader Preferences Variables */
+  :root,
+  html,
+  body,
+  #root,
+  main,
+  article,
+  .article-reader-scope,
+  .article-reader-card,
+  .article-reader-content {
+    --reader-font-family: "Lora", Georgia, serif !important;
+    --reader-font-size: 11pt !important;
+    --reader-font-weight: 400 !important;
+    --reader-line-height: 1.48 !important;
+    --reader-letter-spacing: normal !important;
+    --reader-word-spacing: normal !important;
+    --reader-content-width: 100% !important;
+    --reader-paragraph-spacing: 0.8em !important;
+    --reader-h2-size: 16pt !important;
+    --reader-h3-size: 13pt !important;
+    --reader-h4-size: 11pt !important;
+    --reader-h5-size: 10.5pt !important;
+    --reader-h6-size: 10.5pt !important;
+  }
+
+  /* 6. Document Width: Fill Printable A4 Width without screen constraints */
+  article,
+  .article-reader-card,
+  .article-reader-scope,
+  .article-reader-content,
+  .prose {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
     border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    transition: none !important;
+  }
+
+  /* 7. Canonical Body Prose Typography */
+  .article-reader-scope .article-reader-content p,
+  .article-reader-scope .article-reader-content li,
+  .article-reader-scope .article-reader-content dd,
+  .article-reader-scope .article-reader-content blockquote p,
+  .article-reader-scope .article-reader-content figcaption,
+  .prose p,
+  .prose li,
+  .prose dd,
+  p,
+  li,
+  dd {
+    font-family: "Lora", Georgia, serif !important;
+    font-size: 11pt !important;
+    font-weight: 400 !important;
+    line-height: 1.48 !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    text-align: left !important;
+    color: #111111 !important;
+  }
+
+  .article-reader-scope .article-reader-content p,
+  .prose p,
+  p {
+    margin-top: 0 !important;
+    margin-bottom: 0.8em !important;
+    text-align: left !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* 8. Article Title & Scholarly Header */
+  article header,
+  .article-reader-scope header {
+    display: block !important;
+    border-bottom: 1.5pt solid #000000 !important;
+    margin-bottom: 14pt !important;
+    padding-bottom: 10pt !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  article header h1,
+  .article-reader-scope header h1 {
+    font-family: "Lora", Georgia, serif !important;
+    font-size: 23pt !important;
+    font-weight: 700 !important;
+    line-height: 1.18 !important;
+    color: #000000 !important;
+    margin: 6pt 0 10pt 0 !important;
+    padding: 0 !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  article header > div:first-child,
+  .article-reader-scope header > div:first-child {
+    font-family: "Space Mono", monospace !important;
+    font-size: 8.5pt !important;
+    color: #444444 !important;
+    margin-bottom: 4pt !important;
+  }
+
+  article header span[class*="bg-"] {
+    background: transparent !important;
+    border: 0.75pt solid #555555 !important;
+    color: #111111 !important;
+    padding: 1pt 5pt !important;
+    border-radius: 2px !important;
+    font-size: 8pt !important;
+    font-family: "Space Mono", monospace !important;
+  }
+
+  article header div[class*="border-dashed"] {
+    border-style: solid !important;
+    border-width: 0 0 0.5pt 0 !important;
+    border-color: #aaaaaa !important;
+    padding: 4pt 0 !important;
+    margin-bottom: 0 !important;
+    gap: 8pt !important;
+  }
+
+  article header div[class*="border-dashed"] img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* 9. Section Headings (Space Mono Scientific Hierarchy) */
+  .article-reader-scope .article-reader-content h1,
+  .prose h1 {
+    font-family: "Space Mono", monospace !important;
+    font-size: 18pt !important;
+    font-weight: 700 !important;
+    line-height: 1.20 !important;
+    color: #000000 !important;
+    margin-top: 14pt !important;
+    margin-bottom: 6pt !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .article-reader-scope .article-reader-content h2,
+  .prose h2 {
+    font-family: "Space Mono", monospace !important;
+    font-size: 16pt !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    color: #000000 !important;
+    margin-top: 14pt !important;
+    margin-bottom: 5pt !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .article-reader-scope .article-reader-content h3,
+  .prose h3 {
+    font-family: "Space Mono", monospace !important;
+    font-size: 13pt !important;
+    font-weight: 700 !important;
+    line-height: 1.30 !important;
+    color: #000000 !important;
+    margin-top: 12pt !important;
+    margin-bottom: 4pt !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .article-reader-scope .article-reader-content h4,
+  .prose h4 {
+    font-family: "Space Mono", monospace !important;
+    font-size: 11pt !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    color: #000000 !important;
+    margin-top: 10pt !important;
+    margin-bottom: 3pt !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .article-reader-scope .article-reader-content h5,
+  .article-reader-scope .article-reader-content h6,
+  .prose h5,
+  .prose h6 {
+    font-family: "Space Mono", monospace !important;
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    color: #000000 !important;
+    margin-top: 8pt !important;
+    margin-bottom: 2.5pt !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* 10. Table of Contents (Clean Textbook Specimen) */
+  nav#table-of-contents,
+  .article-reader-scope #table-of-contents {
+    display: block !important;
+    border: 1pt solid #777777 !important;
+    box-shadow: none !important;
+    background: #fafafa !important;
+    padding: 8pt 10pt !important;
+    margin: 10pt 0 14pt 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  nav#table-of-contents > div:first-child {
+    border-bottom: 0.75pt solid #777777 !important;
+    padding-bottom: 3pt !important;
+    margin-bottom: 5pt !important;
+    gap: 4pt !important;
+  }
+
+  nav#table-of-contents h3 {
+    font-size: 10.5pt !important;
+    font-family: "Space Mono", monospace !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+    margin: 0 !important;
+  }
+
+  nav#table-of-contents svg {
+    display: none !important;
+  }
+
+  nav#table-of-contents ul {
     margin: 0 !important;
     padding: 0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    background-color: transparent !important;
+    list-style: none !important;
   }
 
-  /* Styling Article Header Data for Print */
-  article header h1 {
-    font-size: 24pt !important;
-    line-height: 1.2 !important;
-    color: black !important;
-    margin-bottom: 0.5em !important;
+  nav#table-of-contents li {
+    margin: 2pt 0 !important;
+    font-size: 8.5pt !important;
+    font-family: "Space Mono", monospace !important;
+    color: #000000 !important;
   }
 
-  article header .text-pencil {
-    color: #444 !important;
+  nav#table-of-contents a {
+    color: #000000 !important;
+    text-decoration: none !important;
   }
 
-  /* Convert Tags to printable styling (border instead of bg color) */
-  article header span[class*="bg-"] {
-    background-color: transparent !important;
-    border: 1px solid #666 !important;
-    color: #000 !important;
-    padding: 2px 8px !important;
-    border-radius: 12px !important;
-    font-size: 9pt !important;
-    font-weight: bold;
-  }
-
-  /* Typography overrides for readability */
-  .prose {
-    font-size: 11pt !important;
-    line-height: 1.5 !important;
-    color: black !important;
-    max-width: 100% !important; /* Use full page width */
-  }
-
-  /* Prevent headings from detaching */
-  h1, h2, h3, h4, h5, h6 {
-    page-break-after: avoid;
-    break-after: avoid;
-    color: black !important;
-    margin-top: 1em !important;
-  }
-
-  /* 4. Figures & Images */
-  /* Target specific print classes and elements */
-  .print-scientific-figure,
-  .print-scientific-table,
-  .science-figure,
-  figure {
-    page-break-inside: avoid;
-    break-inside: avoid;
-    border: 1px solid #ddd !important;
-    box-shadow: none !important;
-    margin: 1.5em 0 !important;
-    background: transparent !important;
-    display: block !important;
-    padding: 0 !important;
-  }
-
-  /* Ensure images fit and don't look weird */
-  img {
-    max-width: 100% !important;
-    height: auto !important; /* Maintain aspect ratio */
-    max-height: 90vh !important; /* Don't be taller than a page */
-    page-break-inside: avoid;
-    break-inside: avoid;
-    filter: none !important; /* Remove grayscale/invert effects */
-    opacity: 1 !important;
-    margin: 0 auto;
-    display: block;
-  }
-
-  figcaption {
-    color: #444 !important;
-    border-top: 1px solid #ccc !important;
-    padding-top: 4px !important;
-    font-size: 9pt !important;
-  }
-
-  /* 5. Tables */
-  table {
-    width: 100% !important;
-    page-break-inside: auto;
-    border: 1px solid #ccc;
-  }
-  tr {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-  thead {
-    display: table-header-group;
-  }
-  th, td {
-    border: 1px solid #ddd !important;
-    color: black !important;
-  }
-
-  /* 6. Cleanup Specific UI inside components */
-  /* Hide toolbars inside figures/tables */
-  .print-scientific-figure > div:first-child, /* Toolbar */
-  .print-scientific-table > div:first-child {
+  nav#table-of-contents div:last-child {
     display: none !important;
   }
 
-  /* Remove scroll constraints from tables */
-  .print-scientific-table > div {
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  /* Hide Author Badge background/border clutter */
-  div[class*="border-dashed"] {
-    border-style: solid !important;
-    border-width: 0 0 1px 0 !important;
-    border-color: #ccc !important;
-  }
-
-  /* Links */
+  /* 11. Links & Scholarly Citations */
   a {
-    text-decoration: underline;
-    color: black !important;
+    color: #000000 !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 0.5pt !important;
+  }
+
+  a[href]::after {
+    content: none !important;
+  }
+
+  .citation-mount-point,
+  .article-reader-scope .citation-mount-point {
+    display: inline !important;
+  }
+
+  .citation-mount-point button,
+  .article-reader-scope .citation-mount-point button {
+    display: inline !important;
+    color: #000000 !important;
+    font-size: 8.5pt !important;
+    font-family: "Space Mono", monospace !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: default !important;
+  }
+
+  .citation-mount-point div,
+  .citation-mount-point svg,
+  a svg {
+    display: none !important;
+  }
+
+  /* 12. Teaching Callouts / Blockquotes */
+  blockquote,
+  .prose blockquote,
+  .article-reader-scope .article-reader-content blockquote {
+    background: #fbfbfb !important;
+    border: none !important;
+    border-left: 3.5pt solid #000000 !important;
+    color: #111111 !important;
+    box-shadow: none !important;
+    margin: 10pt 0 !important;
+    padding: 5pt 8pt !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  blockquote p,
+  .prose blockquote p,
+  .article-reader-scope .article-reader-content blockquote p {
+    color: #111111 !important;
+    margin: 0 !important;
+    font-family: "Lora", Georgia, serif !important;
+    font-size: 10.5pt !important;
+    line-height: 1.45 !important;
+  }
+
+  /* 13. Tables Optimized for A4 Portrait */
+  .table-scroll-wrapper,
+  .print-scientific-table,
+  .print-scientific-table > div {
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    display: block !important;
+  }
+
+  table,
+  .science-table,
+  .article-reader-scope table,
+  .article-reader-scope .science-table,
+  .print-scientific-table table {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: table !important;
+    border-collapse: collapse !important;
+    border: 1pt solid #000000 !important;
+    margin: 8pt 0 14pt 0 !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  th,
+  td,
+  .article-reader-scope table th,
+  .article-reader-scope table td,
+  .print-scientific-table th,
+  .print-scientific-table td {
+    border: 0.75pt solid #555555 !important;
+    color: #000000 !important;
+    padding: 3.5pt 5.5pt !important;
+    font-size: 9pt !important;
+    line-height: 1.35 !important;
+    text-align: left !important;
+    background-color: transparent !important;
+  }
+
+  th,
+  .article-reader-scope table th,
+  .print-scientific-table th {
+    font-family: "Space Mono", monospace !important;
+    font-weight: 700 !important;
+    background-color: #f0f0f0 !important;
+    border-bottom: 1.5pt solid #000000 !important;
+  }
+
+  caption,
+  .print-scientific-table caption {
+    caption-side: top !important;
+    text-align: left !important;
+    color: #000000 !important;
+    font-family: "Lora", Georgia, serif !important;
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    padding-bottom: 3pt !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* 14. Scientific Figures (Original Colors Preserved, Chrome Removed) */
+  .print-scientific-figure,
+  .science-figure,
+  figure {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: 1pt solid #aaaaaa !important;
+    box-shadow: none !important;
+    margin: 12pt 0 !important;
+    background: #ffffff !important;
+    display: block !important;
+    padding: 3pt !important;
+  }
+
+  .print-scientific-figure button,
+  .print-scientific-figure a[download],
+  .print-scientific-figure [title*="RAW"],
+  .print-scientific-figure [title*="Layers"] {
+    display: none !important;
+  }
+
+  .print-scientific-figure > div:first-child {
+    background: transparent !important;
+    border-bottom: 0.75pt solid #cccccc !important;
+    padding: 3pt 5pt !important;
+    margin-bottom: 3pt !important;
+  }
+
+  .print-scientific-figure > div:first-child .font-mono {
+    color: #000000 !important;
+    font-size: 8pt !important;
+    font-weight: 700 !important;
+  }
+
+  .print-scientific-figure > div:nth-child(2),
+  figure > div {
+    min-height: 0 !important;
+    background: #ffffff !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 80vh !important;
+    margin: 0 auto !important;
+    display: block !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    opacity: 1 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  figcaption,
+  .print-scientific-figure figcaption {
+    font-family: "Lora", Georgia, serif !important;
+    color: #222222 !important;
+    border-top: 0.75pt solid #cccccc !important;
+    padding: 4pt 3pt 1pt 3pt !important;
+    font-size: 9pt !important;
+    line-height: 1.38 !important;
+    background: transparent !important;
+  }
+
+  /* 15. Code Blocks & Technical Specimens */
+  .code-block-wrapper {
+    margin: 8pt 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  pre,
+  .article-reader-scope pre,
+  .article-reader-scope .code-block-wrapper pre,
+  .article-reader-scope .article-reader-content pre {
+    font-family: "Space Mono", monospace !important;
+    font-size: 8.5pt !important;
+    line-height: 1.38 !important;
+    color: #111111 !important;
+    background: #f8f8f8 !important;
+    border: 1pt solid #888888 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 5pt 7pt !important;
+    margin: 6pt 0 !important;
+    white-space: pre-wrap !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  pre code,
+  .article-reader-scope pre code,
+  .article-reader-scope .code-block-wrapper pre code,
+  .article-reader-scope .article-reader-content pre code {
+    font-family: "Space Mono", monospace !important;
+    font-size: 8.5pt !important;
+    line-height: 1.38 !important;
+    color: #111111 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    white-space: pre-wrap !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  :not(pre) > code,
+  .article-reader-scope :not(pre) > code,
+  .article-reader-scope .article-reader-content :not(pre) > code {
+    font-family: "Space Mono", monospace !important;
+    font-size: 8.5pt !important;
+    color: #111111 !important;
+    background: #f0f0f0 !important;
+    border: 0.5pt solid #cccccc !important;
+    padding: 1px 3px !important;
+    border-radius: 2px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+
+  /* 16. Lists & Hierarchy */
+  ul,
+  ol,
+  dl,
+  .article-reader-scope .article-reader-content ul,
+  .article-reader-scope .article-reader-content ol {
+    margin-top: 0 !important;
+    margin-bottom: 0.8em !important;
+    padding-left: 1.5rem !important;
+    max-width: 100% !important;
+  }
+
+  li,
+  .article-reader-scope .article-reader-content li {
+    margin-bottom: 0.3em !important;
+    font-family: "Lora", Georgia, serif !important;
+    font-size: 11pt !important;
+    line-height: 1.48 !important;
+    color: #111111 !important;
+  }
+
+  /* 17. References & Scholarly Citations List */
+  .mt-16.pt-8.border-t-2 {
+    margin-top: 16pt !important;
+    padding-top: 10pt !important;
+    border-top: 1.5pt solid #000000 !important;
+  }
+
+  [id^="ref-"],
+  .reference-list li {
+    font-family: "Lora", Georgia, serif !important;
+    font-size: 9pt !important;
+    line-height: 1.4 !important;
+    color: #111111 !important;
+    padding: 2pt 0 !important;
+    margin-bottom: 4pt !important;
+    background: transparent !important;
+  }
+
+  [id^="ref-"] a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  [id^="ref-"] svg {
+    display: none !important;
+  }
+
+  /* 18. Mathematical Formulas */
+  .science-math-marker,
+  .science-math-marker *,
+  .katex,
+  .katex * {
+    color: #000000 !important;
+    background: transparent !important;
+  }
+
+  .katex-display {
+    overflow: visible !important;
+    margin: 8pt 0 !important;
+  }
+
+  /* Dividers & End of Document Marker */
+  .article-reader-card > hr {
+    display: none !important;
+  }
+
+  .article-reader-card > div:last-child {
+    font-family: "Space Mono", monospace !important;
+    font-size: 8pt !important;
+    color: #666666 !important;
+    padding: 12pt 0 4pt 0 !important;
+  }
+
+  /* Parent Container Neutralization */
+  div:has(> .article-reader-card) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* 19. Final Print Text Canonicalization */
+  .article-reader-scope .article-reader-content,
+  .article-reader-scope .article-reader-content * {
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+
+  .article-reader-scope .article-reader-content li::marker {
+    color: #111111 !important;
+  }
+
+  .article-reader-scope .article-reader-content table thead th,
+  .article-reader-scope .article-reader-content .science-table thead th {
+    background: #f0f0f0 !important;
+    background-color: #f0f0f0 !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+  }
+
+  .article-reader-scope .article-reader-content table tbody td,
+  .article-reader-scope .article-reader-content .science-table tbody td {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #111111 !important;
+  }
+
+  /* 20. Page Break Rules */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  caption {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  figure,
+  .print-scientific-figure,
+  blockquote,
+  tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 }
+
+

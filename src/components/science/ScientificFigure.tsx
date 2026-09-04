@@ -9,32 +9,32 @@ interface ScientificFigureProps {
   cleanSrc?: string; // Optional URL for "unannotated" version
 }
 
-export const ScientificFigure: React.FC<ScientificFigureProps> = ({
-  src,
-  alt,
-  caption,
+export const ScientificFigure: React.FC<ScientificFigureProps> = ({ 
+  src, 
+  alt, 
+  caption, 
   id,
-  cleanSrc
+  cleanSrc 
 }) => {
   const [showAnnotations, setShowAnnotations] = useState(true);
-
+  
   const activeSrc = (!showAnnotations && cleanSrc) ? cleanSrc : src;
 
   return (
     <div className="print-scientific-figure my-8 border-2 border-ink dark:border-white bg-white dark:bg-black p-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_#ffffff]">
-
+      
       {/* Toolbar */}
       <div className="flex flex-wrap items-center justify-between mb-2 p-2 bg-gray-100 dark:bg-gray-800/20 border-b border-gray-200 dark:border-gray-700">
-
+        
         {/* Figure ID */}
         <div className="font-mono text-xs font-bold text-ink dark:text-white uppercase">
-          {id ? `FIG. ${id}` : 'FIGURE'}
+          {id || 'FIGURE'}
         </div>
 
         {/* Data/Layer Controls */}
         <div className="flex items-center gap-2">
             {cleanSrc && (
-                <button
+                <button 
                     onClick={() => setShowAnnotations(!showAnnotations)}
                     className="flex items-center gap-1 px-2 py-1 text-[10px] font-mono border border-gray-300 dark:border-gray-600 rounded hover:bg-white dark:hover:bg-gray-700 text-ink dark:text-white"
                     title="Toggle Annotations"
@@ -43,9 +43,9 @@ export const ScientificFigure: React.FC<ScientificFigureProps> = ({
                     <span className="hidden sm:inline">Layers</span>
                 </button>
             )}
-            <a
-                href={src}
-                download
+            <a 
+                href={src} 
+                download 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 px-2 py-1 text-[10px] font-mono border border-gray-300 dark:border-gray-600 rounded hover:bg-white dark:hover:bg-gray-700 text-ink dark:text-white"
@@ -59,8 +59,8 @@ export const ScientificFigure: React.FC<ScientificFigureProps> = ({
 
       {/* Image Container */}
       <div className="relative overflow-hidden bg-white dark:bg-black flex justify-center items-center min-h-[200px]">
-        <img
-            src={activeSrc}
+        <img 
+            src={activeSrc} 
             alt={alt || (caption ? caption.replace(/<[^>]*>?/gm, '') : "Scientific Figure")}
             className="max-w-full h-auto object-contain transition-all duration-200"
         />

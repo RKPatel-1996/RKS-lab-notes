@@ -130,16 +130,16 @@ export default {
             },
             // Code Blocks (pre)
             pre: {
-              backgroundColor: "#000000",
-              color: "#4af626", // Terminal Green
-              border: "1px solid #333",
+              backgroundColor: "#0d0d0d",
+              color: "#f3f4f6", // Monochrome crisp code text
+              border: "2px solid #000000",
               boxShadow: "4px 4px 0px 0px #000000", // Hard shadow
               fontFamily: theme("fontFamily.code"),
               borderRadius: "0px",
               overflowX: "auto", // Fix: Allow code to scroll horizontally
               marginTop: "1.5em",
               marginBottom: "1.5em",
-              padding: "1em",
+              padding: "1.25em",
             },
             // Inline Code
             code: {
@@ -179,6 +179,48 @@ export default {
               marginTop: "2.5em",
               marginBottom: "2.5em",
             }
+          },
+        },
+        invert: {
+          css: {
+            color: "#d1d5db",
+            h1: { color: "#ffffff" },
+            h2: { color: "#ffffff", borderBottomColor: "#ffffff" },
+            h3: { color: "#ffffff" },
+            h4: { color: "#ffffff" },
+            blockquote: {
+              color: "#e5e7eb",
+              borderLeftColor: "#ffffff",
+            },
+            "blockquote strong": { color: "#ffffff" },
+            "blockquote b": { color: "#ffffff" },
+            "blockquote em": { color: "#f3f4f6" },
+            a: {
+              color: "#ffffff",
+              "&:hover": { color: "#d1d5db" },
+            },
+            strong: { color: "#ffffff" },
+            b: { color: "#ffffff" },
+            em: { color: "#f3f4f6" },
+            th: { color: "#ffffff" },
+            td: { color: "#d1d5db" },
+            caption: { color: "#d1d5db" },
+            hr: { borderColor: "#ffffff" },
+            "figure figcaption": { color: "#d1d5db" },
+            code: {
+              color: "#ffffff",
+              backgroundColor: "#1f1f1f",
+            },
+            pre: {
+              backgroundColor: "#0e0e0e",
+              color: "#ffffff",
+              border: "2px solid #ffffff",
+              boxShadow: "4px 4px 0px 0px #ffffff",
+            },
+            "pre code": {
+              backgroundColor: "transparent",
+              color: "inherit",
+            },
           },
         },
       }),

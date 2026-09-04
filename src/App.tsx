@@ -5,11 +5,12 @@ import { Home } from "./pages/Home";
 import { AboutMe } from "./components/AboutMe";
 import { MediaLogs } from "./pages/MediaLogs";
 import { ArticleDetail } from "./pages/ArticleDetail";
+import { ReaderPreferencesProvider } from "./contexts/ReaderPreferencesContext";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Toggle Dark Mode (Fluorescence Mode)
+  // Toggle Dark Mode
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -22,23 +23,25 @@ function App() {
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <Routes>
-        <Route
-          element={
-            <AppShell isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-          }
-        >
-          {/* Default Route / Library */}
-          <Route path="/" element={<Home />} />
+      <ReaderPreferencesProvider isDarkMode={isDarkMode} setTheme={setIsDarkMode}>
+        <Routes>
+          <Route
+            element={
+              <AppShell isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+            }
+          >
+            {/* Default Route / Library */}
+            <Route path="/" element={<Home />} />
 
-          {/* Dynamic Article Route */}
-          <Route path="/articles/:id" element={<ArticleDetail />} />
+            {/* Dynamic Article Route */}
+            <Route path="/articles/:id" element={<ArticleDetail />} />
 
-          {/* Other Views */}
-          <Route path="/media" element={<MediaLogs />} />
-          <Route path="/about" element={<AboutMe />} />
-        </Route>
-      </Routes>
+            {/* Other Views */}
+            <Route path="/media" element={<MediaLogs />} />
+            <Route path="/about" element={<AboutMe />} />
+          </Route>
+        </Routes>
+      </ReaderPreferencesProvider>
     </BrowserRouter>
   );
 }
