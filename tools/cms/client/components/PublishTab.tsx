@@ -126,19 +126,6 @@ export default function PublishTab() {
     }
   };
 
-  const handleDeploy = async () => {
-    if (statusMap.validate !== 'PASS' || statusMap.build !== 'PASS' || statusMap.lint !== 'PASS') {
-      alert('CHECKS NOT PASSED OR STALE.\n\nAll checks must PASS before deployment. Please re-run Validate, Build, and Lint.');
-      return;
-    }
-    const confirmMessage = `DEPLOY PUBLIC WEBSITE?\n\nThis will run:\nnpm run deploy\n\nThe public GitHub Pages site may change.`;
-    if (!window.confirm(confirmMessage)) return;
-
-    setActionLog('Deploying...');
-    const res = await fetch('/api/command/deploy', { method: 'POST' });
-    const data = await res.json();
-    setActionLog(`DEPLOY FINISHED\nExit code: ${data.exitCode}\n\n${data.output}`);
-  };
 
   if (loading) return <div className="p-8">Loading Git status...</div>;
 
@@ -181,7 +168,7 @@ export default function PublishTab() {
       <div className="flex justify-between items-start mb-8">
         <div className="flex gap-16">
           <div>
-            <h2 className="text-3xl font-bold mb-4 font-serif">PUBLISH</h2>
+            <h2 className="text-3xl font-bold mb-4 font-serif">DEVELOPMENT GIT</h2>
             <div className="text-sm space-y-2 font-mono">
               <p className="font-bold border-b border-ink/20 pb-1 mb-2 flex items-center">
                 PROJECT SAFETY: <span className={`ml-2 ${preflight.safeToPublish ? 'text-green-500' : 'text-orange-500'}`}>{preflight.safeToPublish ? 'PASS' : 'FAIL'}</span>
@@ -322,14 +309,15 @@ export default function PublishTab() {
         >
           PUSH
         </button>
-        <button
-          onClick={handleDeploy}
-          disabled={!preflight?.safeToPublish || statusMap.validate !== "PASS" || statusMap.build !== "PASS" || statusMap.lint !== "PASS"}
-          className="px-6 py-2 border border-ink dark:border-white hover:bg-ink hover:text-paper font-bold ml-4 disabled:opacity-50"
-        >
-          DEPLOY
-        </button>
+        <div className="mt-5 border-t border-ink/20 dark:border-white/20 pt-4 text-sm">
+          <p className="font-bold">FINAL DEPLOYMENT</p>
+          <p className="opacity-70 mt-1">
+            GitHub Pages deployment is intentionally unavailable from the development CMS.
+            Push development work here, then use the RKS Lab Notes Site Manager publication workflow.
+          </p>
+        </div>
       </div>
     </div>
   );
 }
+

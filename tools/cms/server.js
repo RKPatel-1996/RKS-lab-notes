@@ -586,41 +586,14 @@ app.post('/api/git/push', async (req, res) => {
 });
 
 app.post('/api/command/deploy', async (req, res) => {
-    const safety = await verifyProjectSafety();
-    if (!safety.safeToPublish) return res.status(403).json({ output: safety.abnormalReason || "Publishing blocked due to project safety failure.", exitCode: -1 });
-    if (!(cmsState.lastValidated > cmsState.lastModified &&
-          cmsState.lastBuilt > cmsState.lastModified &&
-          cmsState.lastLinted > cmsState.lastModified)) {
-        return res.status(403).json({ output: "Validate, Build, and Lint must all PASS after the most recent content change.", exitCode: -1 });
-    }
-
-    let child;
-    try {
-        child = spawnNpm(['run', 'deploy']);
-    } catch (err) {
-        return res.json({ output: `Failed to launch deploy: ${err.message}`, exitCode: -1 });
-    }
-
-    let output = '';
-    let responseSent = false;
-
-    child.on('error', err => {
-        console.error('Failed to launch deploy:', err);
-        if (!responseSent) {
-            responseSent = true;
-            res.json({ output: `Failed to launch deploy: ${err.message}`, exitCode: -1 });
-        }
-    });
-
-    child.stdout.on('data', data => output += data.toString());
-    child.stderr.on('data', data => output += data.toString());
-    child.on('close', code => {
-        if (responseSent) return;
-        responseSent = true;
-        res.json({ output, exitCode: code });
+    return res.status(403).json({
+        output:
+            "DIRECT CMS DEPLOYMENT BLOCKED.\n\n" +
+            "This CMS is bound to the development clone and must not deploy GitHub Pages directly.\n" +
+            "Push development work normally, then use the RKS Lab Notes Site Manager publication workflow.",
+        exitCode: -1
     });
 });
-
 function checkPortInUse(port, host) {
     return new Promise((resolve) => {
         const server = net.createServer();
@@ -671,3 +644,4 @@ async function startServer() {
 }
 
 startServer();
+
