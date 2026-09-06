@@ -24,7 +24,7 @@ export default function PublishTab() {
   const handleRefresh = async () => {
     setLoading(true);
     await fetchPreflight();
-    await handleRefresh();
+    await fetchStatus();
   };
 
   const fetchStatus = async () => {
