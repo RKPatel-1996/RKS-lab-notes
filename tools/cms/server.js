@@ -190,6 +190,15 @@ app.post('/api/upload/bib', upload.single('bib'), (req, res) => {
     res.json({ success: true, filename: req.file.originalname });
 });
 
+app.post('/api/command/deploy', async (req, res) => {
+    return res.status(403).json({
+        output:
+            "DIRECT CMS DEPLOYMENT BLOCKED.\n\n" +
+            "This CMS is bound to the development clone and must not deploy GitHub Pages directly.\n" +
+            "Push development work normally, then use the RKS Lab Notes Site Manager publication workflow.",
+        exitCode: -1
+    });
+});
 app.post('/api/command/:cmd', (req, res) => {
     const { cmd } = req.params;
     let child;
@@ -585,15 +594,6 @@ app.post('/api/git/push', async (req, res) => {
     res.json({ success: true, output: result.output });
 });
 
-app.post('/api/command/deploy', async (req, res) => {
-    return res.status(403).json({
-        output:
-            "DIRECT CMS DEPLOYMENT BLOCKED.\n\n" +
-            "This CMS is bound to the development clone and must not deploy GitHub Pages directly.\n" +
-            "Push development work normally, then use the RKS Lab Notes Site Manager publication workflow.",
-        exitCode: -1
-    });
-});
 function checkPortInUse(port, host) {
     return new Promise((resolve) => {
         const server = net.createServer();
