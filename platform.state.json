@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "authority": "RKS_PLATFORM_INSTALLATION_STATE",
+  "siteId": "pharmacology",
+  "installed": {
+    "version": "v3",
+    "surfaceProfile": "RKS_PLATFORM_SYNC_SURFACE_V1",
+    "surfaceAuthorityVersion": "v1",
+    "surfaceAuthorityFile": "platform-sync.surface.v1.json",
+    "surfaceAuthoritySha256": "A4378E786C975559501E01BBFB1B01E9D1C073A025C3AF7F6B570E4F78FF757F",
+    "surfaceFileCount": 65,
+    "fingerprintAlgorithm": "GIT_BLOB_LF_CANONICAL_V1",
+    "fingerprint": "7054D65773DCE4D5F1091B13195C8034A68FE242C4165BA7E081FA092409A7C0",
+    "seedManifestSha256": "A674EFFC19A49B727A7FA7A5D6F783B419E85A584B0C0EA8014E5408F839A6FA"
+  },
+  "provenance": {
+    "mode": "BACKFILLED_FROM_VALIDATED_CONTENT_EQUIVALENCE"
+  }
+}
