@@ -1,10 +1,10 @@
 import { Article } from "../../lib/types";
-
 const article: Article = {
   id: "RK-2026-011",
-  title: "Package and environment management in WSL",
-  date: "2026-07-17",
-  tags: ["#Basics", "#PackageManagement", "#Programming"],
+  title:
+    "Tailwind CSS integration, Folder Structure, Path Aliases and GitHub Deployment workflows",
+  date: "2025-01-11",
+  tags: ["#react", "#typescript", "#vite", "#tailwindcss"],
   type: "report",
   template: "standard",
   readTime: "30 min",
@@ -15,100 +15,251 @@ const article: Article = {
     affiliation: "Gujarat University",
   },
   excerpt: `
-
+    
 `,
   content: `
 
+
 <article>
 
-    <h2>1. The Shared Bench Dilemma: Why Environments Matter</h2>
-    <p>As you transition into bioinformatics and pharmacoinformatics, you will start using dozens of different computational tools. You might use one software to simulate how a drug binds to a protein, and another software to analyze RNA sequencing data. Here is the hidden trap: these tools are built by different scientists, at different times, using different underlying building blocks.</p>
+<article>
+    <h2>0. Installing Tailwind CSS (v4 vs v3)</h2>
+    <p><strong>Crucial Update:</strong> Tailwind CSS released <strong>Version 4</strong> in 2024/2025. It is a major rewrite that removes the need for configuration files (\`init\`) and PostCSS. 
+    <br><em>Since you are starting fresh, we will use the modern <strong>v4</strong> approach.</em></p>
 
-    <p>Imagine you have a single, shared lab workbench. Project A requires the room temperature to be strictly 37°C for an enzyme assay. Project B requires the room to be 20°C for protein crystallization. You cannot run both projects on the same bench at the same time. If you try to change the temperature for Project B, you will instantly ruin Project A.</p>
+    <section>
+        <h3>0.1 Install Dependencies (v4 Method)</h3>
+        <p>In v4, we install the engine and a special Vite plugin. We do <strong>not</strong> need \`postcss\` or \`autoprefixer\` manually anymore.</p>
+        <pre><code>npm install -D tailwindcss @tailwindcss/vite</code></pre>
+    </section>
 
-    <p>In computer science, this catastrophe is called <strong>Dependency Hell</strong>. If you install every piece of bioinformatics software globally onto your main computer system (your "shared bench"), eventually, one tool will demand an older version of Python, overwriting the newer version that your other tool relies on. Suddenly, software that worked perfectly yesterday is completely broken today. </p>
+    <section>
+        <h3>0.2 Configure Vite (The New "Init")</h3>
+        <p>Instead of creating a <code>tailwind.config.js</code> file, we simply add Tailwind as a plugin inside Vite. 
+        <br>Open <strong><code>vite.config.ts</code></strong> and modify it to match this:</p>
+        
+        <pre><code>import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite' // &lt;-- 1. Import the plugin
 
-    <h3>1.1 The Solution: Virtual Environments</h3>
-    <p>An <strong>Environment Manager</strong> solves this by creating invisible, isolated "rooms" inside your computer. You can create a dedicated room for your drug discovery project with its specific tools, and a totally separate room for your genomic data analysis. What happens in one environment does not affect the others.</p>
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(), // &lt;-- 2. Add to plugins array
+  ],
+})</code></pre>
+    </section>
 
-    <h3>1.2 Local vs. Global Installations: Protecting the Operating System</h3>
-    <p>Understanding "Dependency Hell" brings us to another critical concept: the difference between global and local software installations.</p>
+    <section>
+        <h3>0.3 Inject Styles</h3>
+        <p>Open <strong><code>src/index.css</code></strong>. Delete <strong>everything</strong> in this file.
+        <br>In v4, we replace the old <code>@tailwind</code> directives with a single standard CSS import:</p>
+        <pre><code>@import "tailwindcss";</code></pre>
+    </section>
 
-    <p>A <strong>Global Installation</strong> is like modifying the central heating and ventilation system for an entire research building just because your specific experiment needs a colder room. When you install a Python package globally (often requiring administrator passwords or the <code>sudo</code> command), it becomes the default version for the entire computer. This is highly dangerous. Your WSL Linux system actually relies on a built-in, global version of Python to run its own background operating system tasks. If you forcefully upgrade or overwrite those global packages to satisfy a new bioinformatics tool, you risk crashing your entire Linux operating system.</p>
+    <hr />
 
-    <p>A <strong>Local Installation</strong>, on the other hand, is the equivalent of buying a standalone, self-contained incubator for your specific workbench. The temperature inside the incubator can be customized perfectly for your assay, but the rest of the building remains completely unaffected.</p>
+    <section>
+        <h3>0.4 Why did the old commands fail?</h3>
+        <p>If you see older tutorials (or used the previous version of this guide), you will notice differences:</p>
+        <dl>
+            <dt><strong>The "init" Error:</strong></dt>
+            <dd><code>npx tailwindcss init</code> failed because v4 removed the standalone CLI tool. It is now deeply integrated into the build tool (Vite).</dd>
 
-    <p>This is exactly how Environment Managers like Mamba resolve the conflict. When you create and activate a Mamba environment, it installs your Python versions and packages <em>locally</em>—inside a safe, isolated folder dedicated strictly to that project. When the environment is active, Mamba intercepts your commands and temporarily tricks your computer into looking only at your local "incubator" rather than the global "building system." This allows you to install, delete, and experiment with complex pharmacoinformatics software safely, without ever needing administrator privileges and without risking damage to your computer's core OS.</p>
+            <dt><strong>Zero-Config:</strong></dt>
+            <dd>v4 detects your files automatically. You no longer need to manually configure the <code>content</code> array in a separate config file unless you have a very complex setup.</dd>
+        </dl>
+    </section>
+</article>
 
-    <h2>2. What is a Package Manager?</h2>
-    <p>In programming, nobody writes software from scratch. If you want to draw a graph, you do not write the math to draw pixels; you download a pre-built tool called a "package" or "library" that does it for you. <strong>Packages</strong> are just bundles of code written by other scientists that you plug into your own workflow.</p>
+<hr />
 
-    <p>A <strong>Package Manager</strong> is like an incredibly efficient laboratory manager [here, software version manager]. When you tell it, <i>"I want to install Pandas for data analysis,"</i> the package manager goes to the internet, finds Pandas, checks exactly what other secondary software Pandas needs to function (its dependencies), downloads all of them, and installs them in the correct order. </p>
+<article>
+    <h2>1. Establishing the "Scalable" Folder Structure</h2>
+    <p>The default <code>src</code> folder is flat. Professional projects organize files by <strong>Responsibility</strong>. Run these commands to create the standard directory tree.</p>
 
-    <p>For Python and bioinformatics, the industry standard package manager used to be <a href="https://anaconda.org/channels/anaconda/packages/conda/overview" target="_blank">Conda</a>. However, we are going to use <strong><a href="https://github.com/mamba-org/mamba" target="_blank">Mamba</a></strong>. Mamba is a modern, dramatically faster drop-in replacement for Conda. While Conda might take 15 minutes to calculate how to install a complex pharmacoinformatics tool, Mamba does it in seconds.</p>
+    <section>
+        <h3>1.1 Create the Folders</h3>
+        <pre><code>cd src
+mkdir components features layouts pages hooks utils types lib assets/icons</code></pre>
+    </section>
 
-    <h2>3. Setting Up Mamba in WSL (Windows Subsystem for Linux)</h2>
-    <p>Because most high-end bioinformatics tools are built for Linux, using WSL is the best way to run them on a Windows machine. Here is how to install the Mamba package manager directly into your WSL terminal.</p>
+    <section>
+        <h3>1.2 Understanding the Structure (The Decision Logic)</h3>
+        <p>Use these "Litmus Tests" to decide where a new file belongs.</p>
+        
+        <dl>
+            <dt><strong>src/components/ (The Building Blocks)</strong></dt>
+            <dd>
+                UI elements that are "dumb" and generic. They don't know about your specific app logic.
+                <br><strong>Test:</strong> <em>"Could I copy-paste this file into a completely different project (like a To-Do app) and would it still work without errors?"</em>
+                <br><strong>✅ Yes:</strong> It goes here (e.g., <code>Button.tsx</code>, <code>Modal.tsx</code>, <code>Card.tsx</code>).
+                <br><strong>❌ No:</strong> It probably belongs in <code>features</code>.
+            </dd>
 
-<h3>3.1: Download the Installer</h3>
-    <p>Open your WSL terminal (like Ubuntu) and use the <code>wget</code> command to pull the Mambaforge installation [<a href="https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html" target="_blank">detailed guide on mamba</a>] script directly from the internet.</p>
-    <pre><code>wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"</code></pre>
+            <dt><strong>src/features/ (The Business Logic)</strong></dt>
+            <dd>
+                Components and logic that are specific to a domain of your application.
+                <br><strong>Test:</strong> <em>"Does this component contain words specific to my app idea (like 'User', 'Cart', 'Calculator')?"</em>
+                <br><strong>✅ Yes:</strong> It goes here. (e.g., <code>CalculatorDisplay.tsx</code>, <code>UserProfileCard.tsx</code>).
+            </dd>
 
-    <h4>Understanding the Tool: What is <code>wget</code>?</h4>
-    <p>If you are new to the command line, <code>wget</code> (which stands for "web get") is a built-in Linux utility used to download files directly from the internet. Think of it like ordering lab reagents directly to your bench from a catalog, completely bypassing a physical storefront.</p>
+            <dt><strong>src/pages/ (The Routes)</strong></dt>
+            <dd>
+                The entry points that correspond to a URL. They should contain very little code, mostly just arranging components from other folders.
+                <br><strong>Test:</strong> <em>"Is this screen accessible via a specific URL (like /about or /calculator)?"</em>
+                <br><strong>Examples:</strong> <code>HomePage.tsx</code>, <code>SettingsPage.tsx</code>.
+            </dd>
 
-    <p>Because your WSL terminal is a text-based environment without a graphical web browser (like Google Chrome or Microsoft Edge), you cannot simply click a "Download" button. Instead, <code>wget</code> allows you to fetch software installers, massive genomic datasets, or remote CSV files silently in the background just by providing the exact web link.</p>
+            <dt><strong>src/layouts/ (The Frames)</strong></dt>
+            <dd>
+                Wrappers that stick around while the page content changes.
+                <br><strong>Test:</strong> <em>"Do multiple pages share this exact same surrounding structure (sidebar, header, footer)?"</em>
+                <br><strong>Examples:</strong> <code>DashboardLayout.tsx</code>, <code>AuthLayout.tsx</code>.
+            </dd>
 
-    <p><strong>Basic Usage:</strong></p>
-    <pre><code>wget [insert_direct_link_here]</code></pre>
+            <dt><strong>src/hooks/ (The React Logic)</strong></dt>
+            <dd>
+                Reusable logic that relies on React features (useState, useEffect, useNavigate).
+                <br><strong>Test:</strong> <em>"Does this file use React functions but render NO HTML/JSX?"</em>
+                <br><strong>Examples:</strong> <code>useWindowSize.ts</code>, <code>useTheme.ts</code>.
+            </dd>
 
-    <h3>3.2: Run the Installer</h3>
-    <p>Next, execute the script you just downloaded. The <code>bash</code> command tells Linux to run the file.</p>
-    <pre><code>bash Miniforge3-Linux-x86_64.sh</code></pre>
+            <dt><strong>src/utils/ (The Pure Logic)</strong></dt>
+            <dd>
+                Helper functions that are "Pure JavaScript." They don't know React exists.
+                <br><strong>Test:</strong> <em>"Could I run this function in a plain Node.js terminal script without errors?"</em>
+                <br><strong>Examples:</strong> <code>formatCurrency.ts</code>, <code>calculateAge.ts</code>.
+            </dd>
 
-    <p>As the installer runs, press <strong>Enter</strong> to scroll through the license agreement, type <strong>yes</strong> to accept it, and press <strong>Enter</strong> to confirm the default installation location. At the very end, it will ask if you want to initialize <a href="https://github.com/conda-forge/miniforge" target="_blank">Miniforge3</a>. Type <strong>yes</strong>—this is critical, as it connects Mamba to your terminal.</p>
+            <dt><strong>src/types/ (The Dictionary)</strong></dt>
+            <dd>
+                Shared definitions that describe your data. These files contain <em>zero</em> executable code—only "shapes" of data (Interfaces and Types).
+                <br><strong>Test:</strong> <em>"Do I need to use this specific data structure (like 'User' or 'Product') in multiple different files across my app?"</em>
+                <br><strong>✅ Yes:</strong> Put it here (e.g., <code>index.ts</code>, <code>user.ts</code>).
+                <br><strong>❌ No:</strong> If it's only used in <em>one</em> component, define it inside that component file instead.
+            </dd>
+            
+            <dt><strong>src/lib/ (The Configuration)</strong></dt>
+            <dd>
+                Setup files for third-party tools. This keeps your main code clean from configuration clutter.
+                <br><strong>Test:</strong> <em>"Is this file just setting up a tool I installed (like Firebase, Axios, or Supabase)?"</em>
+                <br><strong>Examples:</strong> <code>firebase.ts</code>, <code>axios-client.ts</code>.
+            </dd>
+        </dl>
+    </section>
+</article>
 
-    <h3>3.3: Restart Your Terminal</h3>
-    <p>For the changes to take effect, close your WSL terminal window completely and open a fresh one. You should now see <code>(base)</code> typed on the left side of your command prompt. This means your base environment is active and Mamba is ready.</p>
+<hr />
 
+<article>
+    <h2>2. The Missing Piece: Absolute Imports (Path Aliases)</h2>
+    <p><strong>The Problem:</strong> As your folders get deeper, your imports become ugly: <br><code>import Button from "../../../components/Button"</code></p>
+    <p><strong>The Solution:</strong> We configure the project to use <code>@</code> as a shortcut to <code>src</code>. <br><code>import Button from "@/components/Button"</code></p>
 
-    <h2>4. Creating and Managing Your First Environment</h2>
-    <p>Now that our lab manager (Mamba) is hired, let us build a dedicated, isolated environment for basic data analysis and install Python into it.</p>
+    <section>
+        <h3>2.1 Install Helper</h3>
+        <p>Node.js needs help understanding paths.</p>
+        <pre><code>npm install -D @types/node</code></pre>
+    </section>
 
-    <h3>Creating the Environment</h3>
-    <p>To create a new environment, we use the <code>mamba create</code> command. We use the <code>-n</code> flag to name the environment, and then we tell Mamba exactly which version of Python we want installed in this specific room.</p>
-    <pre><code>mamba create -n data_analysis_env python=3.10</code></pre>
-    <p>Mamba will list the packages it plans to download. Type <strong>y</strong> and press Enter to proceed.</p>
+    <section>
+        <h3>2.2 Update <code>vite.config.ts</code></h3>
+        <p>Add this configuration to tell Vite how to resolve the alias.</p>
+        <pre><code>import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
 
-    <h3>Entering the Environment</h3>
-    <p>To enter this isolated workspace, you must "activate" it.</p>
-    <pre><code>mamba activate data_analysis_env</code></pre>
-    <p>Notice that your terminal prompt has changed from <code>(base)</code> to <code>(data_analysis_env)</code>. Everything you install now is safely trapped inside this specific environment.</p>
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})</code></pre>
+    </section>
 
-    <h3>Leaving the Environment</h3>
-    <p>When you are done working and want to go back to your main system, simply deactivate it.</p>
-    <pre><code>mamba deactivate</code></pre>
+    <section>
+        <h3>2.3 Update <code>tsconfig.app.json</code></h3>
+        <p>Add <code>baseUrl</code> and <code>paths</code> inside <code>compilerOptions</code> so TypeScript understands the alias too.</p>
+        <pre><code>{
+  "compilerOptions": {
+    /* ... existing settings ... */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}</code></pre>
+    </section>
+</article>
 
-    <hr>
+<hr />
 
-    <h2>5. Adding Packages and Checking Versions</h2>
-    <p>Let us go back into our environment and add the tools we need for computational biology workflows.</p>
+<article>
+    <h2>3. Git & GitHub Setup (The Safety Net)</h2>
+    <p>Before writing code, we secure the repository. Choose the scenario that matches your current state.</p>
 
-    <h3>Installing Data Analysis Packages</h3>
-    <p>Make sure your environment is activated. Then, instruct Mamba to install Pandas (for spreadsheet manipulation) and SciPy (for advanced statistical and scientific equations).</p>
-    <pre><code>mamba install pandas scipy</code></pre>
-    <p>Mamba will automatically resolve all the dependencies. It knows exactly which version of SciPy works with the Python 3.10 we installed earlier.</p>
+    <section>
+        <h3>3.1 Scenario A: Starting Fresh (No Repo)</h3>
+        <p>If you haven't connected this to GitHub yet:</p>
+        <pre><code>git init
+git add .
+git commit -m "Initial setup with React, Vite, TS, Tailwind"
+git branch -M main
+# Go to GitHub.com -> Create New Repo -> Copy the URL
+git remote add origin https://github.com/YOUR_USERNAME/ts-calculator.git
+git push -u origin main</code></pre>
+    </section>
 
-    <h3>Checking Your Python Version</h3>
-    <p>It is good practice to verify what tools you are using, especially when writing the methods section of a research paper. To ask your environment what version of Python is currently active, type:</p>
-    <pre><code>python --version</code></pre>
-    <p>The terminal will output something like <code>Python 3.10.13</code>.</p>
+    <section>
+        <h3>3.2 Scenario B: Updating Existing Repo</h3>
+        <p>If you already have a repo connected:</p>
+        <pre><code>git add .
+git commit -m "feat: upgrade project structure and add tailwind"
+git push</code></pre>
+    </section>
+</article>
 
-    <h3>Auditing Your Environment</h3>
-    <p>If you return to a project after three months and forget what you installed, you can ask Mamba to print a comprehensive inventory of every package in the current environment, along with their exact version numbers.</p>
-    <pre><code>mamba list</code></pre>
-    <p>This will output a neat table. If a collaborator asks how you achieved your results, you can share this exact list so they can recreate an identical environment on their own computer, guaranteeing total scientific reproducibility.</p>
-    </article>
+<hr />
+
+<article>
+    <h2>4. Deployment Prep (GitHub Pages)</h2>
+    <p>To make your calculator viewable by the world, we need to prepare it for <strong>gh-pages</strong>.</p>
+
+    <section>
+        <h3>4.1 Install Deploy Tool</h3>
+        <pre><code>npm install -D gh-pages</code></pre>
+    </section>
+
+    <section>
+        <h3>4.2 Configure Base Path</h3>
+        <p>Open <code>vite.config.ts</code>. You must tell Vite that your app will not be at the root of a domain (like <code>google.com/</code>), but in a subfolder (like <code>github.io/ts-calculator/</code>).</p>
+        <pre><code>export default defineConfig({
+  base: "/ts-calculator/", // CHANGE THIS to your repo name
+  plugins: [react()],
+  // ... rest of config
+})</code></pre>
+    </section>
+
+    <section>
+        <h3>4.3 Add Deploy Scripts</h3>
+        <p>Open <code>package.json</code> and add these two scripts to the <code>"scripts"</code> section:</p>
+        <pre><code>"predeploy": "npm run build",
+"deploy": "gh-pages -d dist"</code></pre>
+    </section>
+
+    <section>
+        <h3>4.4 How to Deploy</h3>
+        <p>Whenever you want to update your live website, simply run:</p>
+        <pre><code>npm run deploy</code></pre>
+        <p>This will build your app and push it to a special <code>gh-pages</code> branch on GitHub, which automatically serves the website.</p>
+    </section>
+</article>
+
+</article>
+
 
   `,
 };

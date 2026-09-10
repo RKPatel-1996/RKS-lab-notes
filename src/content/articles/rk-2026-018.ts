@@ -2,339 +2,244 @@ import { Article } from "../../lib/types";
 
 const article: Article = {
   id: "RK-2026-018",
-  title:
-    "Core Pharmacology Databases: Connecting Chemicals, Targets and Drug Response",
-  date: "2026-08-31",
-  tags: ["#Pharmacology", "#DrugDatabases", "#DrugDiscovery"],
+  title: "Composite Databases",
+  date: "2026-02-08",
+  tags: ["#Composite", "#Databases", "#bioinformatics"],
   type: "report",
   template: "standard",
-  readTime: "25 min",
+  readTime: "30 min",
   author: {
     name: "RK Patel",
     role: "Microbiologist",
     avatar: "https://github.com/RKPatel-1996.png",
     affiliation: "Gujarat University",
   },
-  excerpt: `Pharmacology sits at the interface between chemistry and biology: a chemical has a structure, interacts with biological targets, produces measurable activity, and may ultimately become a medicine whose effects vary between patients. This introductory article presents the small set of databases that are most useful for following that chain, including PubChem, ChEMBL, DrugBank, the IUPHAR/BPS Guide to PHARMACOLOGY, BindingDB, DrugCentral, and ClinPGx. The aim is not to memorize databases, but to learn which resource answers which pharmacological question.`,
+  excerpt: `
+    
+`,
   content: `
+
+
 <article>
 
-<section>
-  <h2>1. Pharmacology Needs Both Chemical and Biological Information</h2>
-
-  <p>A pharmacologist rarely asks only, <em>“What is this chemical?”</em> The more useful questions are usually: <strong>What is its structure? Which target does it act on? How strongly does it act? Is it an agonist, antagonist, inhibitor, or activator? Is it an approved drug? What adverse effects or interactions are known? Does genetic variation change the patient's response?</strong></p>
-
-  <p>No single database answers all of these questions equally well. Pharmacology therefore depends on a group of connected resources that describe different parts of the same story.</p>
-
-  <p>A useful way to visualize the information flow is:</p>
-
-  <p><strong>chemical identity → molecular structure → biological target → measured activity → mechanism of action → therapeutic use → patient-specific response</strong></p>
-
-  <p>This article focuses only on databases that directly support this <strong>chemical–biology interface</strong>. General nucleotide, protein-sequence, and protein-structure databases are intentionally left for their own articles.</p>
-
-  <blockquote>
-    <strong>Core idea:</strong> Do not memorize a list of database names. Learn <strong>which pharmacological question each database is designed to answer</strong>.
-  </blockquote>
-</section>
-
-<section>
-  <h2>2. The Core Database Map</h2>
+<h2>1. Introduction</h2>
 
-  <p>For an introductory pharmacology course, seven resources cover most of the concepts worth learning first. They overlap, but each has a particularly useful role.</p>
+<p>The shift of biological research from a science focused on observation and description to a discipline driven by massive datasets was kickstarted by the arrival of high-throughput sequencing (technologies capable of reading DNA sequences at unprecedented speeds) and structural biology. As the amount of molecular data started to grow at an exponential rate—matching the 18-month doubling cycle often seen in computing power, a trend clearly visible in archival systems like GenBank—the scientific community faced a major hurdle: data fragmentation.<sup><a href="#ref1">1</a></sup></p>
 
-  <table class="science-table" data-id="pharmacology-core-database-map">
-    <caption>Table 1: Core databases for connecting chemical and biological information in pharmacology</caption>
-    <thead>
-      <tr>
-        <th>Database</th>
-        <th>Best First Question</th>
-        <th>Main Information</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>PubChem</strong></td>
-        <td>What chemical is this?</td>
-        <td>Structures, identifiers, properties, substances, biological assays, safety links.</td>
-      </tr>
-      <tr>
-        <td><strong>ChEMBL</strong></td>
-        <td>What biological activity has been measured for this compound?</td>
-        <td>Curated compounds, targets, assays, potency/activity measurements, ADMET-related data.</td>
-      </tr>
-      <tr>
-        <td><strong>DrugBank</strong></td>
-        <td>What is known about this drug as a medicine?</td>
-        <td>Drug identity, targets, mechanism, indications, interactions, metabolism and related pharmaceutical information.</td>
-      </tr>
-      <tr>
-        <td><strong>IUPHAR/BPS Guide to PHARMACOLOGY</strong></td>
-        <td>What is the accepted pharmacology of this ligand–target pair?</td>
-        <td>Expert-curated targets, ligands, pharmacological action and quantitative activity.</td>
-      </tr>
-      <tr>
-        <td><strong>BindingDB</strong></td>
-        <td>How strongly does this small molecule bind to this target?</td>
-        <td>Experimentally measured protein–ligand binding affinities.</td>
-      </tr>
-      <tr>
-        <td><strong>DrugCentral</strong></td>
-        <td>What approved-drug, indication and mechanism information is available?</td>
-        <td>Active ingredients, approvals, indications, mode of action, pharmacologic action and target relationships.</td>
-      </tr>
-      <tr>
-        <td><strong>ClinPGx</strong><br><em>(formerly PharmGKB)</em></td>
-        <td>Can genetics alter the response to this drug?</td>
-        <td>Gene–drug relationships, pharmacogenomic annotations, drug labels and genotype-guided prescribing information.</td>
-      </tr>
-    </tbody>
-  </table>
+<p>While primary repositories (the initial storage sites) acted as crucial archives for raw experimental results, they often suffered from redundancy (duplicate data), inconsistent annotations (labeling that varied from one submission to the next), and a lack of integration across different fields of study. To manage this "embarras de richesses" (an overwhelming abundance of valuable resources), bioinformaticians created <strong>composite databases</strong>. These are sophisticated hybrid systems that combine distinct and separate data sources into a single, unified, thoroughly checked, and easily searchable interface.<sup><a href="#ref1">1</a></sup> These systems stand as the pinnacle of biological information management, supplying the essential groundwork needed for complex studies in microbial genomics, the discovery of new drugs, and tracking disease outbreaks (epidemiological surveillance).</p>
 
-  <p><strong>Takeaway:</strong> The databases overlap, but their <strong>center of gravity</strong> differs: PubChem begins with the chemical, ChEMBL and BindingDB emphasize measured activity, DrugBank and DrugCentral emphasize drugs, Guide to PHARMACOLOGY emphasizes established ligand–target pharmacology, and ClinPGx emphasizes patient variation.</p>
-</section>
+<h3>1.1 The Ontological Framework of Biological Databases</h3>
 
-<section>
-  <h2>3. PubChem: Start With the Chemical</h2>
+<p>To fully grasp why composite databases are so useful, we need to place them within the hierarchy (or ontological framework) of how biological information is stored. Generally, we categorize biological databases into three distinct layers. This classification depends on how much the data has been processed and integrated: primary, secondary, and composite.<sup><a href="#ref3">3</a></sup></p>
 
-  <p><a href="https://pubchem.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer"><strong>PubChem</strong></a>, maintained by the U.S. National Institutes of Health, is an open chemistry resource containing chemical structures, identifiers, physicochemical properties, biological activities, safety information and links to many contributing sources.<sup><a href="#ref1">1</a></sup></p>
+<p><strong>Composite databases</strong> act as integrative platforms that merge features from both the primary and secondary sources.<sup><a href="#ref3">3</a></sup> By gathering multiple datasets under a single "roof," they solve the problem of researchers having to hunt through dozens of scattered repositories one by one.<sup><a href="#ref1">1</a></sup> The ultimate goal of a composite database isn't just to store data, but to "connect the dots." They aim to link genetic sequences, protein structures, metabolic pathways (chemical reactions in the cell), and clinical metadata (patient or environmental information) into one coherent picture.<sup><a href="#ref3">3</a></sup></p>
 
-  <p>For a pharmacology student, PubChem is often the best <strong>first stop when the starting point is a compound name</strong>. Searching a familiar drug such as aspirin can quickly connect the common name with its standardized chemical structure, formula, molecular weight, synonyms and external records.</p>
+<table class="science-table" data-id="table-1">
+<caption>Table 1: A Comparison of Biological Database Classifications, highlighting the differences in data sources, roles, and quality control.</caption>
+<thead>
+<tr>
+<th>Database Type</th>
+<th>Data Source</th>
+<th>Primary Role</th>
+<th>Metadata Quality</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Primary</strong></td>
+<td>Experimental output</td>
+<td>Archival of raw data</td>
+<td>Variable; often raw <sup><a href="#ref3">3</a></sup></td>
+<td>GenBank, PDB, DDBJ <sup><a href="#ref1">1</a></sup></td>
+</tr>
+<tr>
+<td><strong>Secondary</strong></td>
+<td>Primary database analysis</td>
+<td>Pattern and motif discovery</td>
+<td>High; manually/auto-curated <sup><a href="#ref3">3</a></sup></td>
+<td>InterPro, PROSITE, Pfam <sup><a href="#ref2">2</a></sup></td>
+</tr>
+<tr>
+<td><strong>Composite</strong></td>
+<td>Amalgamation of 1° & 2°</td>
+<td>Unified search & integration</td>
+<td>Filtered & non-redundant <sup><a href="#ref2">2</a></sup></td>
+<td>Entrez, UniProtKB, BV-BRC <sup><a href="#ref3">3</a></sup></td>
+</tr>
+</tbody></table>
 
-  <h3>3.1 Three PubChem IDs Worth Recognizing</h3>
 
-  <p>PubChem separates submitted information from standardized chemical structures. The distinction is useful because the same molecule may be supplied by many different organizations.<sup><a href="#ref2">2</a></sup></p>
+<h2>2. Foundational Characteristics of Composite Databases</h2>
 
-  <ul>
-    <li><strong>SID — Substance ID:</strong> identifies a substance description submitted by a particular data source.</li>
-    <li><strong>CID — Compound ID:</strong> identifies a standardized chemical structure derived from contributed substance records.</li>
-    <li><strong>AID — Assay ID:</strong> identifies a biological assay record in PubChem BioAssay.</li>
-  </ul>
+<p>The effectiveness (efficacy) of composite databases is defined by several key characteristics that address the natural limitations of standard archival systems. These features are designed to improve the speed and ease of searching for genetic sequences and to increase the accuracy of how we interpret biological data.</p>
 
-  <p>This immediately teaches an important pharmacological lesson: <strong>a chemical structure and an experimental sample record are related concepts, but they are not identical data objects</strong>.</p>
+<h3>2.1 Amalgamation and Unified Searching</h3>
 
-  <h3>3.2 PubChem BioAssay Adds the Biology</h3>
+<p>The primary characteristic of a composite database is its ability to combine and merge, a variety of different primary source databases.<sup><a href="#ref1">1</a></sup> This amalgamation offers a single, consistent screen or tool for asking questions (searching) across all the data, rather than having to learn different tools for each source. This streamlines the search process significantly.<sup><a href="#ref4">4</a></sup></p>
 
-  <p><a href="https://pubchem.ncbi.nlm.nih.gov/docs/bioassays" target="_blank" rel="noopener noreferrer">PubChem BioAssay</a> stores contributed biological screening and activity data. A record may indicate whether a substance was active or inactive in an experiment and can include measurements such as <strong>IC<sub>50</sub>, percentage inhibition, or assay signals</strong>.<sup><a href="#ref3">3</a></sup></p>
+<p>Instead of visiting individual web portals for the European Molecular Biology Laboratory (EMBL), GenBank, and the DNA Data Bank of Japan (DDBJ) separately, a researcher can use a composite resource to query the entire collective databases at once.<sup><a href="#ref2">2</a></sup> It is important to note that different composite databases may use different subsets of these primary sources and apply distinct criteria in their search algorithms (the rules they use to find matches), allowing for diverse analytical perspectives on the same raw data.<sup><a href="#ref1">1</a></sup></p>
 
-  <p><strong>Note:</strong> A PubChem Compound page aggregates information from many sources. <strong>Presence on a compound page does not mean every statement was independently experimentally verified by PubChem.</strong> Follow the source links when the evidence matters.</p>
+<h3>2.2. Non-Redundancy and Sequence Filtering</h3>
 
-  <p><strong>Takeaway:</strong> Use PubChem to establish <strong>chemical identity, structure and basic context</strong>, then follow links to the experimental or pharmacological evidence.</p>
-</section>
+<p>A major technical challenge in bioinformatics is the rapid spread of identical or nearly identical sequences in primary repositories. This often happens due to overlapping submissions (different labs submitting the same gene) or different translations of the same gene being uploaded separately.<sup><a href="#ref4">4</a></sup> Composite databases implement strategies to mitigate this unnecessary repetition.</p>
 
-<section>
-  <h2>4. ChEMBL and BindingDB: From a Molecule to Quantitative Activity</h2>
+<ul>
+<li><strong>Non-identical Filtering:</strong> In this method, only identical sequence copies are removed. A prominent example is the <strong>NRDB</strong> (Non-Redundant Database) built at the National Center for Biotechnology Information (NCBI). It aggregates data from GenPept, PDB (Protein Data Bank), Swiss-Prot, and PIR, while removing only exact duplicates.<sup><a href="#ref4">4</a></sup></li>
+<li><strong>True Non-Redundancy:</strong> Here, more stringent criteria are applied. Sequences that are highly similar—for example, those differing by only a single amino acid residue (the building blocks of proteins)—are also ejected or merged.<sup><a href="#ref4">4</a></sup> This ensures that the database reflects actual biological diversity rather than just the volume of submissions.</li>
+</ul>
 
-  <p>Once the compound is identified, pharmacology moves from <em>“What is it?”</em> to <em>“What does it do, against which biological system, and at what concentration?”</em></p>
+<h3>2.3 Data Integration and Interoperability</h3>
 
-  <h3>4.1 ChEMBL: Bioactivity in Drug Discovery</h3>
+<p>Composite databases are designed to bridge the gap between different types of biological information. An <strong>integrated database</strong> like NCBI Entrez or Ensembl combines genetic sequences with protein structures, metabolic pathways (the chemical reactions occurring within a cell), and scholarly articles.<sup><a href="#ref3">3</a></sup></p>
 
-  <p><a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener noreferrer"><strong>ChEMBL</strong></a> is a manually curated database of bioactive molecules with drug-like properties. It brings together <strong>chemical, bioactivity and genomic information</strong> for drug-discovery research.<sup><a href="#ref4">4</a></sup></p>
+<p>This cross-referencing allows for complex queries, such as identifying all protein structures linked to a specific metabolic pathway in a particular bacterial genus.<sup><a href="#ref3">3</a></sup> Modern systems achieve this through the use of standardized identifiers (like <strong>rsIDs</strong> for genetic variants) and cross-database mapping tools like <strong>BioMart</strong>, which ensure <strong>interoperability</strong>—the ability of different computer systems to exchange and make use of information.<sup><a href="#ref14">14</a></sup></p>
 
-  <p>ChEMBL is especially useful when a student encounters measurements such as <strong>IC<sub>50</sub>, EC<sub>50</sub>, K<sub>i</sub>, K<sub>d</sub>, potency, inhibition or activity in a cellular assay</strong>. These values should always be interpreted together with the assay conditions and target information.</p>
+<h3>2.4 Curated Annotation and Data Quality</h3>
 
-  <p>A lower numerical concentration does not automatically mean a “better drug.” The number may describe <strong>binding, enzyme inhibition, receptor activation, a cellular response, or another assay endpoint</strong>. Different assays are not automatically interchangeable.</p>
+<p>Many composite databases, such as the <strong>UniProt Knowledgebase (UniProtKB)</strong>, integrate manually curated components (like <strong>Swiss-Prot</strong>, which is reviewed by human experts) with automatically annotated ones (like <strong>TrEMBL</strong>, which is processed by computer algorithms).<sup><a href="#ref4">4</a></sup></p>
 
-  <h3>4.2 BindingDB: Focus on Binding Affinity</h3>
+<p>This hybrid approach provides a resource that is both comprehensive in its coverage and reliable in its functional insights.<sup><a href="#ref4">4</a></sup> Curated databases reduce errors and inconsistencies that are common in raw experimental submissions. This accuracy is critical in time-sensitive fields like drug development, where accurate data can determine the success or failure of a treatment candidate.<sup><a href="#ref8">8</a></sup></p>
 
-  <p><a href="https://www.bindingdb.org/" target="_blank" rel="noopener noreferrer"><strong>BindingDB</strong></a> focuses more specifically on <strong>experimentally measured binding affinities between proteins and small, drug-like molecules</strong>.<sup><a href="#ref5">5</a></sup></p>
 
-  <p>It becomes useful when the question is narrow: <em>“What experimental binding measurements have been reported between this ligand and this target?”</em></p>
+<h2>3. Major Composite Databases in Microbiology</h2>
 
-  <blockquote>
-    <strong>Important:</strong> <strong>Binding is not the same as functional effect.</strong> A molecule may bind a receptor without producing the same cellular consequence as another ligand. Pharmacology requires both <strong>affinity and functional context</strong>.
-  </blockquote>
+<p>In microbiology, composite databases are essential for tracking the evolution of pathogens (disease-causing microorganisms), understanding the dynamics of microbial communities, and exploring the vast diversity of metabolic pathways.</p>
 
-  <p><strong>Takeaway:</strong> ChEMBL provides broad <strong>bioactivity context</strong>; BindingDB is particularly useful for <strong>measured molecular binding</strong>.</p>
-</section>
+<h3>3.1 The Bacterial and Viral Bioinformatics Resource Center (BV-BRC)</h3>
 
-<section>
-  <h2>5. DrugBank, Guide to PHARMACOLOGY and DrugCentral: From Activity to Drug Action</h2>
+<p>The <strong><a href="https://www.bv-brc.org/">BV-BRC</a></strong> represents a pinnacle of microbiology-specific data integration. It was created by merging two established systems: <strong>PATRIC</strong> (the bacterial system) and <strong>IRD/ViPR</strong> (the viral systems).<sup><a href="#ref10">10</a></sup> This resource provides an integrated scalable framework for comparative bioinformatics, multi-scale systems biology exploration (looking at biological systems as a whole rather than just individual parts), and machine learning.<sup><a href="#ref10">10</a></sup></p>
 
-  <p>Experimental potency is only one layer of pharmacology. Students also need to connect a compound to its <strong>mechanism, target, therapeutic role and approved-drug context</strong>.</p>
+<ul>
+<li><strong>Content and Scope:</strong> The BV-BRC hosts hundreds of thousands of bacterial genomes and over a million viral genomes.<sup><a href="#ref18">18</a></sup> It provides detailed data on protein structure and function, clinical studies, drug targets, antimicrobial resistance (AMR), and epidemiology (the study of disease distribution).<sup><a href="#ref18">18</a></sup></li>
+<li><strong>Integrated Services:</strong> Users can access specialized tools for <strong>genome assembly</strong> (piecing together short DNA reads to reconstruct the original chromosome) using RASTtk for bacteria and VIGOR4 for viruses. It also supports annotation, variation analysis, and <strong>phylogenetic tree construction</strong> (creating diagrams that show evolutionary relationships).<sup><a href="#ref19">19</a></sup> These services are specifically tailored to support research on infectious diseases such as Influenza H5N1, SARS-CoV-2, and Mpox.<sup><a href="#ref17">17</a></sup></li>
+</ul>
 
-  <h3>5.1 DrugBank: A Drug-Centered Knowledge Resource</h3>
+<h3>3.2 NCBI Entrez and the Pathogen Detection Database</h3>
 
-  <p><a href="https://go.drugbank.com/" target="_blank" rel="noopener noreferrer"><strong>DrugBank</strong></a> integrates detailed information about drugs with information about their biological targets and related pharmaceutical properties. Its content includes drug–target relationships, mechanisms, indications, interactions, metabolism and other drug-centered information.<sup><a href="#ref6">6</a></sup></p>
+<p>The <strong>NCBI Entrez</strong> system is arguably the most famous composite database platform. It provides a unified portal for searching across multiple integrated databases, including the Nucleotide, Protein, Genome, and PubMed repositories.<sup><a href="#ref3">3</a></sup> Within this ecosystem, the <strong><a href="https://www.ncbi.nlm.nih.gov/pathogens/">NCBI Pathogen Detection Database</a></strong> is a specialized resource for the surveillance of human pathogenic bacteria.<sup><a href="#ref21">21</a></sup></p>
 
-  <p>For a student, DrugBank is useful when the starting question is <strong>“Tell me the pharmacological story of this drug.”</strong></p>
-
-  <p><strong>Note:</strong> DrugBank has specific access and licensing conditions. Always check the current terms before assuming that data can be downloaded or redistributed freely.</p>
-
-  <h3>5.2 IUPHAR/BPS Guide to PHARMACOLOGY: Pharmacological Authority</h3>
-
-  <p><a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener noreferrer"><strong>IUPHAR/BPS Guide to PHARMACOLOGY (GtoPdb)</strong></a> is an expert-curated resource focused on <strong>ligand–activity–target relationships</strong>. It is designed specifically for pharmacology and drug-discovery users and provides quantitative information on drug targets and the ligands that act on them.<sup><a href="#ref7">7</a></sup></p>
-
-  <p>This is particularly valuable when learning <strong>receptor pharmacology, ion channels, enzymes, transporters, nuclear receptors, agonists, antagonists, inhibitors and selective experimental ligands</strong>.</p>
-
-  <p>When a lecture asks, <em>“What are the important ligands for this receptor, and how do they act?”</em>, this resource is often more directly pharmacological than a general chemistry database.</p>
-
-  <h3>5.3 DrugCentral: Approved Drugs, Indications and Mode of Action</h3>
-
-  <p><a href="https://drugcentral.org/" target="_blank" rel="noopener noreferrer"><strong>DrugCentral</strong></a> is an online drug information resource that connects active ingredients with pharmaceutical products, <strong>mode of action, indications, pharmacologic action and biological targets</strong>. Its maintainers monitor major regulatory agencies for new drug approvals.<sup><a href="#ref8">8</a></sup></p>
-
-  <p>It is useful as an additional drug-centered resource when asking how a compound connects to <strong>approved therapeutic use and mechanism-of-action targets</strong>.</p>
-
-  <p><strong>Takeaway:</strong> Use these resources after experimental activity has been established to understand <strong>what the compound means pharmacologically as a drug or ligand</strong>.</p>
-</section>
-
-<section>
-  <h2>6. ClinPGx: Why the Same Drug Does Not Affect Every Patient the Same Way</h2>
-
-  <p>Pharmacology does not end at the drug–target interaction. Differences in <strong>drug-metabolizing enzymes, transporters, receptors and other genes</strong> can alter efficacy or toxicity between patients.</p>
-
-  <p><a href="https://www.clinpgx.org/" target="_blank" rel="noopener noreferrer"><strong>ClinPGx</strong></a> is the current home of the resource formerly known as <strong>PharmGKB</strong>. The transition brought PharmGKB content together with clinical pharmacogenomics resources such as CPIC, while retaining curated information about how genetic variation affects drug response.<sup><a href="#ref9">9</a></sup></p>
-
-  <p>Students may therefore encounter both names:</p>
-
-  <p><strong>older literature/textbooks: PharmGKB → current resource: ClinPGx</strong></p>
-
-  <p>Its information connects <strong>chemicals/drugs → genes and variants → altered drug response → clinical annotations or prescribing guidance</strong>.</p>
-
-  <p>This is the database layer that helps answer questions such as:</p>
-
-  <ul>
-    <li>Can a genetic variant alter metabolism of this drug?</li>
-    <li>Is a gene–drug relationship supported by pharmacogenomic evidence?</li>
-    <li>Does an established guideline recommend changing therapy according to genotype?</li>
-  </ul>
-
-  <blockquote>
-    <strong>Important:</strong> A gene–drug association is not automatically a prescribing recommendation. Distinguish <strong>research evidence</strong> from <strong>clinically actionable guidance</strong>.
-  </blockquote>
-
-  <p><strong>Takeaway:</strong> ClinPGx extends pharmacology from <strong>“What does the drug do?”</strong> to <strong>“How might patient genetics change what the drug does?”</strong></p>
-</section>
-
-<section>
-  <h2>7. How to Use the Databases Together</h2>
-
-  <p>The most useful skill is not knowing every field in every database. It is knowing <strong>where to go next when a question changes</strong>.</p>
-
-  <table class="science-table" data-id="pharmacology-question-to-database">
-    <caption>Table 2: Choosing a database from the pharmacological question</caption>
-    <thead>
-      <tr>
-        <th>Your Question</th>
-        <th>Good Starting Resource</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>What is the correct chemical structure and identifier?</td>
-        <td><strong>PubChem</strong></td>
-      </tr>
-      <tr>
-        <td>What activity values have been measured against biological targets?</td>
-        <td><strong>ChEMBL</strong></td>
-      </tr>
-      <tr>
-        <td>What binding affinity measurements exist for a protein–ligand pair?</td>
-        <td><strong>BindingDB</strong></td>
-      </tr>
-      <tr>
-        <td>What is the drug's mechanism, target and pharmaceutical context?</td>
-        <td><strong>DrugBank</strong> / <strong>DrugCentral</strong></td>
-      </tr>
-      <tr>
-        <td>What is the accepted pharmacology of this target and its ligands?</td>
-        <td><strong>IUPHAR/BPS Guide to PHARMACOLOGY</strong></td>
-      </tr>
-      <tr>
-        <td>Can genetic variation alter response to the drug?</td>
-        <td><strong>ClinPGx</strong></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>7.1 A Simple Workflow</h3>
-
-  <p>Suppose you are given an unfamiliar candidate molecule. A sensible investigation might proceed as follows:</p>
-
-  <ol>
-    <li><strong>PubChem:</strong> establish chemical identity and structure.</li>
-    <li><strong>ChEMBL:</strong> inspect reported assays and activity measurements.</li>
-    <li><strong>BindingDB:</strong> examine measured binding where target-affinity data are relevant.</li>
-    <li><strong>Guide to PHARMACOLOGY:</strong> determine whether the ligand–target relationship has established pharmacological interpretation.</li>
-    <li><strong>DrugBank or DrugCentral:</strong> check whether the molecule is an established drug and inspect mechanism, indication and related drug information.</li>
-    <li><strong>ClinPGx:</strong> determine whether important pharmacogenomic relationships are known.</li>
-  </ol>
-
-  <p>This workflow is not mandatory. It simply demonstrates that <strong>different databases answer successive parts of one pharmacological problem</strong>.</p>
-</section>
-
-<section>
-  <h2>8. The Most Important Rules for Reading Pharmacology Databases</h2>
-
-  <ol>
-    <li><strong>Do not treat database presence as proof.</strong> Follow the underlying experiment, publication, label or curated evidence.</li>
-    <li><strong>Do not confuse chemical identity with biological activity.</strong> A structure record tells you what the molecule is, not necessarily what it does.</li>
-    <li><strong>Do not compare potency numbers without checking the assay.</strong> IC<sub>50</sub>, EC<sub>50</sub>, K<sub>i</sub> and K<sub>d</sub> describe different experimental concepts.</li>
-    <li><strong>Binding does not automatically imply agonism, antagonism or therapeutic efficacy.</strong></li>
-    <li><strong>Distinguish target from mechanism of action.</strong> A compound may interact with several proteins, while only some interactions explain its clinically relevant action.</li>
-    <li><strong>Check whether the information describes an approved drug, an investigational compound, or an experimental ligand.</strong></li>
-    <li><strong>Preserve identifiers.</strong> Names and synonyms vary; database identifiers and chemical structures make records easier to trace.</li>
-    <li><strong>Use more than one source for important conclusions.</strong> The databases complement rather than replace one another.</li>
-  </ol>
-
-  <p>The central lesson is therefore simple:</p>
-
-  <blockquote>
-    <strong>Pharmacology databases are bridges.</strong> PubChem connects names to structures; ChEMBL and BindingDB connect structures to experimental activity; Guide to PHARMACOLOGY connects ligands to established target pharmacology; DrugBank and DrugCentral connect molecules to medicines; ClinPGx connects medicines to patient genetic variation.
-  </blockquote>
-</section>
-
-<section id="references">
-  <h2>9. References</h2>
-  <ol>
-    <li id="ref1">
-      National Center for Biotechnology Information.
-      <a href="https://pubchem.ncbi.nlm.nih.gov/docs/about" target="_blank" rel="noopener noreferrer">About PubChem</a>.
-      National Library of Medicine, NIH. Accessed 31 August 2026.
-    </li>
-    <li id="ref2">
-      National Center for Biotechnology Information.
-      <a href="https://pubchem.ncbi.nlm.nih.gov/docs/compound-vs-substance" target="_blank" rel="noopener noreferrer">What is the difference between a substance and a compound in PubChem?</a>.
-      PubChem documentation.
-    </li>
-    <li id="ref3">
-      National Center for Biotechnology Information.
-      <a href="https://pubchem.ncbi.nlm.nih.gov/docs/bioassays" target="_blank" rel="noopener noreferrer">PubChem BioAssays</a>.
-      PubChem documentation. Accessed 31 August 2026.
-    </li>
-    <li id="ref4">
-      Zdrazil B, Felix E, Hunter F, et al.
-      <a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener noreferrer">The ChEMBL Database in 2023: a drug discovery platform spanning multiple bioactivity data types and time periods</a>.
-      <em>Nucleic Acids Research</em>. 2024;52(D1):D1180-D1192. doi:10.1093/nar/gkad1004.
-    </li>
-    <li id="ref5">
-      Gilson MK, Liu T, Baitaluk M, Nicola G, Hwang L, Chong J.
-      <a href="https://www.bindingdb.org/" target="_blank" rel="noopener noreferrer">BindingDB in 2024: a FAIR knowledgebase of protein-small molecule binding data</a>.
-      <em>Nucleic Acids Research</em>. 2024. doi:10.1093/nar/gkae1075.
-    </li>
-    <li id="ref6">
-      Knox C, Wilson M, Klinger CM, et al.
-      <a href="https://academic.oup.com/nar/article/52/D1/D1265/7416367" target="_blank" rel="noopener noreferrer">DrugBank 6.0: the DrugBank Knowledgebase for 2024</a>.
-      <em>Nucleic Acids Research</em>. 2024;52(D1):D1265-D1275. doi:10.1093/nar/gkad976.
-    </li>
-    <li id="ref7">
-      Harding SD, Armstrong JF, Faccenda E, et al.
-      <a href="https://academic.oup.com/nar/article/54/D1/D1446/8306131" target="_blank" rel="noopener noreferrer">The IUPHAR/BPS Guide to PHARMACOLOGY in 2026</a>.
-      <em>Nucleic Acids Research</em>. 2026;54(D1):D1446-D1456. doi:10.1093/nar/gkaf1067.
-    </li>
-    <li id="ref8">
-      DrugCentral.
-      <a href="https://drugcentral.org/about" target="_blank" rel="noopener noreferrer">About DrugCentral</a>.
-      Division of Translational Informatics, University of New Mexico. Accessed 31 August 2026.
-    </li>
-    <li id="ref9">
-      Whirl-Carrillo M.
-      <a href="https://blog.clinpgx.org/pharmgkb-is-now-clinpgx/" target="_blank" rel="noopener noreferrer">Announcing ClinPGx</a>.
-      ClinPGx, 29 July 2025. See also the current <a href="https://www.clinpgx.org/" target="_blank" rel="noopener noreferrer">ClinPGx resource</a>.
-    </li>
-  </ol>
-</section>
+<ul>
+<li><strong>Surveillance Utility:</strong> As of 2025, the genomes of 101 species are monitored in the Pathogen Detection Database, allowing for real-time tracking of outbreaks and the identification of antimicrobial resistance determinants.<sup><a href="#ref21">21</a></sup></li>
+<li><strong>Data Retrieval:</strong> Through the Entrez API (specifically <strong>E-utilities</strong>, a set of programming tools), researchers can automatically download bacterial genomes for specific species. They can limit their search to <strong>RefSeq</strong> sequences (a curated collection of reference sequences), completed chromosomes, or <strong>plasmids</strong>.<sup><a href="#ref22">22</a></sup></li>
+</ul>
+
+<h3>3.3 Mypathogen Database (MPD)</h3>
+
+<p>The <strong><a href="http://data.mypathogen.org/">MPD</a></strong> is the first comprehensive database specifically for pathogenic microbial genomes and metagenomes.<sup><a href="#ref24">24</a></sup> Founded in 2018 and managed by the National Institute for Communicable Disease Control and Prevention in Beijing, it serves as a global catalog of pathogenic diversity.<sup><a href="#ref24">24</a></sup></p>
+
+<ul>
+<li><strong>Database Composition:</strong> It covers 6,604 genera, 11,071 species, and 41,906 strains of pathogenic bacteria.<sup><a href="#ref24">24</a></sup></li>
+<li><strong>Environmental Scope:</strong> MPD includes <strong>metagenomic data</strong> (genetic material recovered directly from environmental samples like water or soil) from various sources, encompassing 28,816 samples.<sup><a href="#ref24">24</a></sup> This breadth makes it a critical tool for Centers for Disease Control (CDC) and epidemiological research.<sup><a href="#ref24">24</a></sup></li>
+</ul>
+
+<h3>3.4 Microbial Genome Database for Comparative Analysis (MBGD)</h3>
+
+<p><strong><a href="https://mbgd.nibb.ac.jp/">MBGD</a></strong> is a specialized composite resource that facilitates large-scale <strong>orthology analysis</strong> (identifying genes in different species that evolved from a common ancestor) across complete microbial genomes.<sup><a href="#ref25">25</a></sup> Its ortholog tables are constructed hierarchically, spanning genus-level and species-level <strong>pan-genomes</strong> (the entire gene set of all strains of a species).<sup><a href="#ref25">25</a></sup></p>
+
+<ul>
+<li><strong>Hierarchical Organization:</strong> The system currently integrates 1,812 genus-level pan-genomes and 6,268 species-level pan-genomes, totaling over 34,000 genomes.<sup><a href="#ref25">25</a></sup></li>
+<li><strong>Functional Characterization:</strong> By cross-referencing with the <strong>KEGG Module</strong> database (a resource for understanding high-level functions of biological systems), MBGD allows users to evaluate genomic functions in newly sequenced genomes rapidly.<sup><a href="#ref25">25</a></sup> It also features a phylogenetic profile search interface, which helps researchers identify ortholog groups present or absent in specific taxonomic or environmental groups.<sup><a href="#ref25">25</a></sup></li>
+</ul>
+
+<h2>4. Advanced Applications in Microbiology</h2>
+
+<p>The integration of disparate (different and distinct) datasets in composite databases has enabled scientific breakthroughs that would be impossible using isolated primary sources. By combining vast amounts of data, we can now see patterns that were previously invisible.</p>
+
+<h3>4.1 Pangenome-Based Analysis</h3>
+
+<p><strong>Pangenomics</strong> involves the study of the complete gene repertoire across all sequenced representatives of a species.<sup><a href="#ref37">37</a></sup> While a single genome tells you what one specific strain looks like, a pangenome tells you what the entire species is capable of. Composite databases enable this by providing large, standardized datasets of related genomes.</p>
+
+<ul>
+<li><strong>Core vs. Accessory Genome:</strong>
+<ul>
+<li>The <strong>Core Genome</strong> consists of genes found in almost all strains of a species. These typically encode essential functions like DNA replication or basic metabolism—the "housekeeping" genes.<sup><a href="#ref34">34</a></sup></li>
+<li>The <strong>Accessory (or Dispensable) Genome</strong> consists of genes found in only some strains. These are often the ones that make a specific strain dangerous or unique, contributing to pathogenicity (ability to cause disease), niche adaptation, and antibiotic resistance.<sup><a href="#ref34">34</a></sup></li>
+</ul>
+</li>
+<li><strong>Open vs. Closed Pangenomes:</strong>
+<ul>
+<li>Some species, like <em>Mycobacterium tuberculosis</em>, have <strong>"closed" pangenomes</strong>. This means that as we sequence more strains, we rarely find new genes; the gene set is relatively stable.<sup><a href="#ref37">37</a></sup></li>
+<li>Others exhibit <strong>"open" pangenomes</strong>, where new genetic material continues to be discovered as more strains are sampled. This suggests the species is constantly evolving and acquiring new traits.<sup><a href="#ref37">37</a></sup> Metrics like "pangenome openness" help quantify the evolutionary fluidity and adaptive strategy of microbial populations.<sup><a href="#ref38">38</a></sup></li>
+</ul>
+</li>
+</ul>
+
+<h3>4.2 Outbreak Tracking and Microbial Forensics</h3>
+
+<p>Composite databases are the backbone of modern epidemiological surveillance. By combining <strong>Whole-Genome Sequencing (WGS)</strong> data with clinical metadata (details like the date and location of isolation), researchers can track the spread of pathogens with unprecedented precision.<sup><a href="#ref29">29</a></sup></p>
+
+<ul>
+<li><strong>SNP Mapping:</strong> Reference-based <strong>SNP (Single Nucleotide Polymorphism)</strong> detection is used to identify minute genetic variations—often just a single letter change in the DNA code—between outbreak strains.<sup><a href="#ref31">31</a></sup> By counting these differences, scientists can build a family tree of the outbreak to see who infected whom.</li>
+<li><strong>Source Attribution:</strong> In <strong>microbial forensics</strong>, the goal is to characterize a sample to trace it back to a unique source.<sup><a href="#ref40">40</a></sup> This is like CSI for bacteria. The fine genomic detail provided by composite databases allows for identification at the species, strain, and even isolate levels, helping to pinpoint exactly where a pathogen came from (e.g., a specific food processing plant or hospital ward).<sup><a href="#ref40">40</a></sup></li>
+</ul>
+
+<h3>4.3 Metagenomics and Microbial Community Profiling</h3>
+
+<p>The move toward culture-independent surveys—where we don't need to grow the bacteria in a petri dish to study them—has revolutionized microbiology. <strong>Metagenomics</strong> allows for the identification of microbes directly from environmental or clinical samples.<sup><a href="#ref28">28</a></sup></p>
+
+<ul>
+<li><strong>MAGs (Metagenome-Assembled Genomes):</strong> Third-generation sequencing technologies (like PacBio HiFi and Oxford Nanopore) now allow for the assembly of near-complete microbial genomes from environmental DNA. These are called MAGs. It's like assembling a puzzle without the box picture, but the pieces are now large enough that we can reconstruct the whole picture without needing to culture the organism first.<sup><a href="#ref26">26</a></sup></li>
+<li><strong>Taxonomic Classification:</strong> Services in composite databases, like the Taxonomic Classification Service in BV-BRC, use <strong><var>k</var>-mer based approaches</strong> to profile the composition of complex microbial communities.<sup><a href="#ref19">19</a></sup>
+<ul>
+<li><em>Note on <var>k</var>-mers:</em> A <var>k</var>-mer is simply a substring of length <var>k</var>. Imagine chopping a long DNA sequence into overlapping chunks of 5 letters each; those are 5-mers. Computers can compare these short chunks very quickly to identify which species are present in a sample.</li>
+</ul>
+</li>
+</ul>
+
+<h2>Works Cited</h2>
+
+<ol start="1">
+    <li>Introduction to Biological Databases - NSS College Nilamel, accessed on February 13, 2026. <a href="http://www.nsscnilamel.org/images/Download/4198570bed66b665de0fb42e478bfe3c.pdf">Link</a></li>
+    <li>Biological databases, accessed on February 13, 2026. <a href="https://jncollegeonline.co.in/attendence/classnotes/files/1628250334.pptx">Link</a></li>
+    <li>Introduction to Biological Databases - Bioinformatics Home, accessed on February 13, 2026. <a href="https://bioinformaticshome.com/edu/Bioinformatics/Biological_Databases/introduction_to_biolocal_databases.html">Link</a></li>
+    <li>Composite Dbs | PDF | Bioinformatics | Macromolecules - Scribd, accessed on February 13, 2026. <a href="https://www.scribd.com/presentation/854471862/Composite-dbs">Link</a></li>
+    <li>Types of biological Database in Bioinformatics - GeeksforGeeks, accessed on February 13, 2026. <a href="https://www.geeksforgeeks.org/dbms/types-of-biological-database-in-bioinformatics/">Link</a></li>
+    <li>biological data and database, accessed on February 13, 2026. <a href="https://mccollegeonline.co.in/attendence/classnotes/files/1586267644.pdf">Link</a></li>
+    <li>Chapter 13: Introduction to Bioinformatics – Molecular Plant Breeding, accessed on February 13, 2026. <a href="https://iastate.pressbooks.pub/molecularplantbreeding/chapter/introduction-to-bioinformatics/">Link</a></li>
+    <li>Composite Databases In Bioinformatics: Types, Importance And Examples - LLRI, accessed on February 13, 2026. <a href="https://llri.in/composite-databases-in-bioinformatics/">Link</a></li>
+    <li>Bioinformatics Data Types and Databases - Galaxy Training!, accessed on February 13, 2026. <a href="https://training.galaxyproject.org/training-material/topics/data-science/tutorials/online-resources-gene/slides.html">Link</a></li>
+    <li>About Us - BV-BRC, accessed on February 13, 2026. <a href="https://www.bv-brc.org/about">Link</a></li>
+    <li>Sequence Retrieval System (SRS) - TAU, accessed on February 13, 2026. <a href="https://www.cs.tau.ac.il/~rshamir/algmb/98/scribe/html/lec04/node6.html">Link</a></li>
+    <li>Sequence Retrieval System | PDF - Scribd, accessed on February 13, 2026. <a href="https://www.scribd.com/document/463698590/Sequence-Retrieval-System">Link</a></li>
+    <li>Access to genes and genomes with - Ensembl, accessed on February 13, 2026. <a href="https://www.ensembl.org/info/website/tutorials/coursebook.pdf">Link</a></li>
+    <li>Ensembl genome browser 115, accessed on February 13, 2026. <a href="https://www.ensembl.org/index.html">Link</a></li>
+    <li>How to Combine Data from Different Bioinformatics Databases for Better Results, accessed on February 13, 2026. <a href="https://www.wolfelabs.com/blog/ngs-libraries-171/how-to-combine-data-from-different-bioinformatics-databases-for-better-results-62">Link</a></li>
+    <li>Gramene 2025: expanded comparative genomics and pathway resources, integrated search, and pan-genome portals for crop research - PubMed, accessed on February 13, 2026. <a href="https://pubmed.ncbi.nlm.nih.gov/41335101/">Link</a></li>
+    <li>BV-BRC: Bacterial and Viral Bioinformatics Resource Center, accessed on February 13, 2026. <a href="https://www.bv-brc.org/">Link</a></li>
+    <li>BV-BRC - Bacterial and Viral Bioinformatics Resource Center - GitHub, accessed on February 13, 2026. <a href="https://github.com/BV-BRC">Link</a></li>
+    <li>Tools & Services - BV-BRC, accessed on February 13, 2026. <a href="https://www.bv-brc.org/docs/quick_references/services_menu.html">Link</a></li>
+    <li>All Tools & Services - BV-BRC, accessed on February 13, 2026. <a href="https://www.bv-brc.org/tools">Link</a></li>
+    <li>Composite Genome Quality Index for Pathogenic Bacterial Genomes - MDPI, accessed on February 13, 2026. <a href="https://www.mdpi.com/2673-8007/5/4/144">Link</a></li>
+    <li>How to Download Bacterial Genomes Using the Entrez API - NCBI Insights - NIH, accessed on February 13, 2026. <a href="https://ncbiinsights.ncbi.nlm.nih.gov/2013/02/19/how-to-download-bacterial-genomes-using-the-entrez-api/">Link</a></li>
+    <li>Entrez Archives - NCBI Insights - NIH, accessed on February 13, 2026. <a href="https://ncbiinsights.ncbi.nlm.nih.gov/tag/entrez/">Link</a></li>
+    <li>MPD - Database Commons, accessed on February 13, 2026. <a href="https://ngdc.cncb.ac.cn/databasecommons/database/id/6789">Link</a></li>
+    <li>MBGD: Microbial Genome Database for Comparative Analysis Featuring Enhanced Functionality to Characterize Gene and Genome Functions Through Large-scale Orthology Analysis - PubMed, accessed on February 13, 2026. <a href="https://pubmed.ncbi.nlm.nih.gov/39826711/">Link</a></li>
+    <li>MiFoDB, a workflow for microbial food metagenomic characterization, enables high-resolution analysis of fermented food microbial dynamics | mSystems - ASM Journals, accessed on February 13, 2026. <a href="https://journals.asm.org/doi/10.1128/msystems.00141-25">Link</a></li>
+    <li>Contents, Construction Methods, Data Resources, and Functions Comparative Analysis of Bacteria Databases - PMC, accessed on February 13, 2026. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7019132/">Link</a></li>
+    <li>MetagenomicKG: a knowledge graph for metagenomic applications ..., accessed on February 13, 2026. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10980061/">Link</a></li>
+    <li>Microbial genomics - PacBio, accessed on February 13, 2026. <a href="https://www.pacb.com/microbial-genomics/">Link</a></li>
+    <li>Application-Brief-Microbial-whole-genome-sequencing-Best-Practices.pdf - PacBio, accessed on February 13, 2026. <a href="https://www.pacb.com/wp-content/uploads/Application-Brief-Microbial-whole-genome-sequencing-Best-Practices.pdf">Link</a></li>
+    <li>BV-BRC: a unified bacterial and viral bioinformatics resource with ..., accessed on February 13, 2026. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12807693/">Link</a></li>
+    <li>Data Management and Sharing - BV-BRC, accessed on February 13, 2026. <a href="https://www.bv-brc.org/docs/system_documentation/data_management_sharing.html">Link</a></li>
+    <li>PanBGC: a pangenome-inspired framework for comparative analysis of biosynthetic gene clusters - PMC, accessed on February 13, 2026. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12704434/">Link</a></li>
+    <li>Machine Learning Approaches for Epidemiological Investigations of Food-Borne Disease Outbreaks - Frontiers, accessed on February 13, 2026. <a href="https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2019.01722/full">Link</a></li>
+    <li>Entrez Help - NCBI, accessed on February 13, 2026. <a href="https://www.ncbi.nlm.nih.gov/books/NBK3837/">Link</a></li>
+    <li>Accessing NCBI's Entrez databases — test test documentation - Biopython, accessed on February 13, 2026. <a href="https://biopython-tutorial.readthedocs.io/en/latest/notebooks/09%20-%20Accessing%20NCBIs%20Entrez%20databases.html">Link</a></li>
+    <li>Beyond H37Rv: Mycobacterium tuberculosis pangenome structure and applications, accessed on February 13, 2026. <a href="https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2025.1695567/full">Link</a></li>
+    <li>PanBGC: A Pangenome-inspired framework for comparative analysis of biosynthetic gene clusters | bioRxiv, accessed on February 13, 2026. <a href="https://www.biorxiv.org/content/10.1101/2025.08.11.669102v1.full-text">Link</a></li>
+    <li>PanKB: An interactive microbial pangenome knowledgebase for research, biotechnological innovation, and knowledge mining - PMC, accessed on February 13, 2026. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11701538/">Link</a></li>
+    <li>The Science and Applications of Microbial Genomics: Workshop Summary (2013), accessed on February 13, 2026. <a href="https://www.nationalacademies.org/read/18261/chapter/3">Link</a></li>
+    <li>Big Data Challenges in Bioinformatics and How to Tackle Them with Data Science - Medium, accessed on February 13, 2026. <a href="https://medium.com/@waqas.ahmad_7638/big-data-challenges-in-bioinformatics-and-how-to-tackle-them-with-data-science-72bb8719a694">Link</a></li>
+    <li>Database integration and interoperability | Bioinformatics Class Notes - Fiveable, accessed on February 13, 2026. <a href="https://fiveable.me/bioinformatics/unit-2/database-integration-interoperability/study-guide/22SHdBU0Y4IbPBYJ">Link</a></li>
+    <li>Biggest challenges in bioinformatics - PMC - NIH, accessed on February 13, 2026. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3615659/">Link</a></li>
+    <li>Global Whole Genome Sequencing Market Outlook 2025-2032:, accessed on February 13, 2026. <a href="https://www.openpr.com/news/4384004/global-whole-genome-sequencing-market-outlook-2025-2032">Link</a></li>
+    <li>Trends in Microbiology 2024 - MDPI, accessed on February 13, 2026. <a href="https://www.mdpi.com/2075-1729/15/1/65">Link</a></li>
+    <li>COMET 2025 TREND PREDICTIONS, accessed on February 13, 2026. <a href="https://comet-bio.com/comet-2025-trend-predictions/">Link</a></li>
+</ol>
 
 </article>
+
+
   `,
 };
 

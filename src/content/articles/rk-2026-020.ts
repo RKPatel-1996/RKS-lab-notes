@@ -1,393 +1,214 @@
 import { Article } from "../../lib/types";
-import uniprotResourceFlowImg from "./article_images/uniprot_resource_flow.png";
+import f020_001 from "./article_images/f020_001.png";
+import f020_002 from "./article_images/f020_002.png";
 
 const article: Article = {
   id: "RK-2026-020",
-  title: "Protein Sequence Databases: Understanding UniProt and Swiss-Prot",
-  date: "2026-09-01",
-  tags: ["#UniProt", "#SwissProt", "#ProteinDatabases"],
+  title: "Bacterial genome comparison",
+  date: "2026-02-15",
+  tags: ["#Genome", "#comparison", "#bioinformatics"],
   type: "report",
   template: "standard",
-  readTime: "25 min",
+  readTime: "30 min",
   author: {
     name: "RK Patel",
     role: "Microbiologist",
     avatar: "https://github.com/RKPatel-1996.png",
     affiliation: "Gujarat University",
   },
-  excerpt: `UniProt is one of the most important resources for connecting a protein sequence with biological knowledge about its function, location, domains, variants, interactions, and supporting evidence. This introductory article explains how UniProtKB, Swiss-Prot, TrEMBL, UniParc, UniRef, and Proteomes relate to one another, what a first-time visitor should look for on a protein entry page, and how UniProt identifiers are used. The emphasis is on using the resource correctly as a biology and pharmacology student rather than on database software or computational infrastructure.`,
+  excerpt: `
+    
+`,
   content: `
+
+
 <article>
+<h2>1. Introduction</h2>
 
-<section>
-  <h2>1. Why Do We Need a Protein Sequence Database?</h2>
-
-  <p>A protein sequence by itself is only a chain of amino-acid letters such as <code>MKT...</code>. For biological or pharmacological work, we usually need much more information: <strong>What protein is this? Which organism produced it? What gene encodes it? What does the protein do? Where is it located? Which domains or active sites are present? Are variants known? Which publications support these conclusions?</strong></p>
-
-  <p><a href="https://www.uniprot.org/" target="_blank" rel="noopener noreferrer"><strong>UniProt</strong></a>, the Universal Protein Resource, was created to make protein sequence and functional information <strong>comprehensive, consistent, richly annotated, and freely accessible</strong>.<sup><a href="#ref1">1</a></sup></p>
-
-  <p>For a student, the simplest way to think about its purpose is:</p>
-
-  <p><strong>protein sequence → reliable identity → biological annotation → supporting evidence → links to related biological resources</strong></p>
-
-  <p>UniProt is therefore <strong>not merely a collection of protein FASTA sequences</strong>. Its major value is the biological knowledge attached to those sequences.</p>
-
-  <blockquote>
-    <strong>Core idea:</strong> Use UniProt when you want to move from <em>“I have a protein sequence or protein name”</em> to <strong>“What is known about this protein biologically?”</strong>
-  </blockquote>
-</section>
-
-<section>
-  <h2>2. What Is UniProt, and Who Manages It?</h2>
-
-  <p>UniProt is maintained by the <strong>UniProt Consortium</strong>, a collaboration between three institutions:<sup><a href="#ref1">1</a></sup></p>
-
-  <ul>
-    <li><strong>EMBL-EBI</strong> — European Molecular Biology Laboratory, European Bioinformatics Institute;</li>
-    <li><strong>SIB</strong> — Swiss Institute of Bioinformatics;</li>
-    <li><strong>PIR</strong> — Protein Information Resource.</li>
-  </ul>
-
-  <p>The modern UniProt Consortium was formed in 2002 by combining major protein-information efforts, including <strong>Swiss-Prot, TrEMBL, and PIR resources</strong>.<sup><a href="#ref1">1</a></sup></p>
-
-  <p>The key resource most students use is the <strong>UniProt Knowledgebase (UniProtKB)</strong>. UniProtKB is the central hub for protein sequence and functional information and contains two major sections:</p>
-
-  <ul>
-    <li><strong>UniProtKB/Swiss-Prot</strong> — reviewed, manually curated entries;</li>
-    <li><strong>UniProtKB/TrEMBL</strong> — unreviewed entries with computational annotation.</li>
-  </ul>
-
-  <p>This terminology is important. <strong>Swiss-Prot is not a completely separate modern database from UniProt.</strong> It is the <strong>reviewed section of UniProtKB</strong>.<sup><a href="#ref2">2</a></sup></p>
-
-  <p><strong>Takeaway:</strong> Remember the hierarchy as <strong>UniProt → UniProtKB → Swiss-Prot reviewed / TrEMBL unreviewed</strong>.</p>
-</section>
-
-<section>
-  <h2>3. The UniProt Family: What Are UniProtKB, UniParc, UniRef, and Proteomes?</h2>
-
-  <p>When first visiting UniProt, several names appear in the menus. They serve different purposes and should not be confused.<sup><a href="#ref3">3</a></sup></p>
-
-  <table class="science-table" data-id="uniprot-resource-map">
-    <caption>Table 1: The main UniProt resources a first-time user should recognize</caption>
-    <thead>
-      <tr>
-        <th>Resource</th>
-        <th>Main Purpose</th>
-        <th>What a Beginner Should Remember</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>UniProtKB</strong></td>
-        <td>Protein sequence plus functional information</td>
-        <td>This is the main resource to search when studying a specific protein.</td>
-      </tr>
-      <tr>
-        <td><strong>Swiss-Prot</strong></td>
-        <td>Reviewed section of UniProtKB</td>
-        <td>Expert-curated entries with literature-based biological interpretation.</td>
-      </tr>
-      <tr>
-        <td><strong>TrEMBL</strong></td>
-        <td>Unreviewed section of UniProtKB</td>
-        <td>Automatically annotated entries that have not undergone full manual review.</td>
-      </tr>
-      <tr>
-        <td><strong>UniParc</strong></td>
-        <td>Protein sequence archive</td>
-        <td>Tracks unique sequences and their history, including sequences that may no longer be present in a source database.</td>
-      </tr>
-      <tr>
-        <td><strong>UniRef</strong></td>
-        <td>Sequence clusters</td>
-        <td>Groups related sequences to reduce redundancy; common levels are UniRef100, UniRef90, and UniRef50.</td>
-      </tr>
-      <tr>
-        <td><strong>Proteomes</strong></td>
-        <td>Protein sets associated with organisms</td>
-        <td>Useful when the question concerns the collection of proteins encoded by an organism rather than one protein.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p>For most introductory pharmacology or biology exercises, <strong>start with UniProtKB</strong>. UniParc and UniRef become useful when you need sequence history or large-scale sequence comparison, while the Proteomes portal becomes useful when studying protein sets from whole organisms.</p>
-
-  <p><strong>Takeaway:</strong> <strong>UniProtKB answers “What is known about this protein?”</strong> The other UniProt resources reorganize or archive protein sequences for different purposes.</p>
-</section>
-
-<section>
-  <h2>4. Swiss-Prot vs. TrEMBL: Why “Reviewed” Matters</h2>
-
-  <p>The distinction between <strong>reviewed</strong> and <strong>unreviewed</strong> is one of the most important things to notice on a UniProt entry page.</p>
-
-  <h3>4.1 UniProtKB/Swiss-Prot: Reviewed</h3>
-
-  <p><strong>Swiss-Prot entries are manually reviewed by expert biocurators.</strong> Curators examine scientific literature, evaluate experimental and computational evidence, verify sequence information, and organize knowledge about the protein into a consistent record.<sup><a href="#ref2">2</a></sup></p>
-
-  <p>A reviewed entry may include carefully evaluated information about:</p>
-
-  <ul>
-    <li>protein and gene names;</li>
-    <li>molecular function;</li>
-    <li>catalytic activity and cofactors;</li>
-    <li>subcellular location;</li>
-    <li>domains and important sequence sites;</li>
-    <li>post-translational modifications;</li>
-    <li>protein interactions;</li>
-    <li>disease-associated variants;</li>
-    <li>supporting publications.</li>
-  </ul>
-
-  <h3>4.2 UniProtKB/TrEMBL: Unreviewed</h3>
-
-  <p><strong>TrEMBL entries are computationally analysed and automatically annotated</strong>. This allows UniProt to provide broad protein coverage even though manual curation cannot keep pace with the enormous number of protein sequences generated from genome sequencing.<sup><a href="#ref2">2</a></sup></p>
-
-  <p>“Unreviewed” does <strong>not</strong> mean “useless” or “wrong.” It means that the record has <strong>not undergone the same level of expert manual review</strong> as a Swiss-Prot record.</p>
-
-  <blockquote>
-    <strong>Practical rule:</strong> When both are available for the biological question, a <strong>reviewed Swiss-Prot entry is usually the best starting point for biological interpretation</strong>. An unreviewed TrEMBL entry may still be valuable, especially for poorly studied organisms or proteins.
-  </blockquote>
-</section>
-
-<section>
-  <h2>5. Your First Visit to a UniProtKB Entry: What Should You Look At?</h2>
-
-  <p>A good first example for pharmacology students is the human <strong>beta-2 adrenergic receptor</strong>, a major G-protein-coupled receptor and drug target. Its reviewed UniProt entry is <a href="https://www.uniprot.org/uniprotkb/P07550/entry" target="_blank" rel="noopener noreferrer"><strong>P07550 · ADRB2_HUMAN</strong></a>.<sup><a href="#ref4">4</a></sup></p>
-
-  <p>Do not try to read every field on your first visit. Start with the following:</p>
-
-  <table class="science-table" data-id="first-uniprot-entry-fields">
-    <caption>Table 2: The first information to inspect on a UniProtKB protein entry</caption>
-    <thead>
-      <tr>
-        <th>Entry Area</th>
-        <th>What to Look For</th>
-        <th>Why It Matters</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Protein / Gene</strong></td>
-        <td>Protein name and gene symbol</td>
-        <td>Confirms what biological molecule the record describes.</td>
-      </tr>
-      <tr>
-        <td><strong>Status</strong></td>
-        <td>Reviewed or unreviewed</td>
-        <td>Tells you whether the entry belongs to Swiss-Prot or TrEMBL.</td>
-      </tr>
-      <tr>
-        <td><strong>Organism</strong></td>
-        <td>Species or strain</td>
-        <td>The same protein name may occur in many organisms.</td>
-      </tr>
-      <tr>
-        <td><strong>Function</strong></td>
-        <td>Biological role and supporting evidence</td>
-        <td>Provides the main biological interpretation.</td>
-      </tr>
-      <tr>
-        <td><strong>Sequence</strong></td>
-        <td>Amino-acid sequence, length, sequence status</td>
-        <td>Provides the protein sequence used in downstream analysis.</td>
-      </tr>
-      <tr>
-        <td><strong>Features</strong></td>
-        <td>Domains, binding sites, modified residues, variants, processing sites</td>
-        <td>Maps biological information onto specific sequence positions.</td>
-      </tr>
-      <tr>
-        <td><strong>Publications / Evidence</strong></td>
-        <td>Supporting papers and evidence labels</td>
-        <td>Helps distinguish experimentally supported statements from predictions or similarity-based annotation.</td>
-      </tr>
-      <tr>
-        <td><strong>External links</strong></td>
-        <td>Connections to structures, pathways, genome resources and other databases</td>
-        <td>Allows the protein entry to serve as a gateway into related biological information.</td>
-      </tr>
-    </tbody>
-  </table>
+<p>Bacterial genome comparison, often termed <strong>comparative genomics</strong> or <strong>pangenomics</strong>, is the systematic alignment, annotation, and analysis of multiple bacterial genomes. Instead of looking at an isolated strain, this comprehensive process examines the genomes of entire species populations or complex communities. The primary goal is to categorize the genetic landscape into two main parts: conserved <strong>core genetic elements</strong> (the essential genes shared by all members of a species, typically responsible for fundamental, life-sustaining cellular functions like DNA replication and basic metabolism) and variable <strong>accessory components</strong> (genes present only in specific strains, which drive species diversity and provide specialized adaptations, such as environmental resilience or unique virulence traits).</p>
 
-  <p>For the ADRB2 example, the page immediately tells you that the entry is <strong>reviewed (Swiss-Prot)</strong>, belongs to <em>Homo sapiens</em>, contains <strong>413 amino acids</strong>, and has <strong>evidence at protein level</strong>.<sup><a href="#ref4">4</a></sup></p>
 
-  <h3>5.1 Two Extra Fields Worth Recognizing</h3>
+<p>A single reference genome is entirely inadequate to capture the full genetic diversity of a bacterial species. Single-genome study approach is unable to the provide insights on critical natural variations—such as differences in gene copy numbers, structural rearrangements, or the complete presence and absence of vital genes across different strains.</p>
 
-  <p><strong>Protein existence</strong> indicates the type of evidence supporting the existence of the protein. A protein supported directly at the protein level is different from one inferred only from homology or prediction.<sup><a href="#ref5">5</a></sup></p>
+<p>As bacteria frequently exchange DNA using horizontal gene transfer, relying on one genome can result in failure to obtain crucial information regarding virulence (the severity or harmfulness of a disease) or metabolic innovations. Comparing multiple genomes will construct a <strong>"pangenome"</strong>. The pangenome reflects the absolute entirety of the genetic material—every unique gene—found within a phylogenetic group (a group of organisms that share a common evolutionary ancestor). This allows for a complete, high-resolution understanding of a species' total genetic repository.</p>
 
-  <p><strong>Canonical sequence and isoforms</strong> are important for eukaryotic proteins. A Swiss-Prot entry may describe multiple protein products produced from one gene, while displaying one sequence as the canonical representative.<sup><a href="#ref6">6</a></sup></p>
+<h3>1.2 Applications for Bacterial Genome Comparison</h3>
 
-  <p><strong>Takeaway:</strong> On a first visit, check <strong>identity → reviewed status → organism → function → sequence → features → evidence</strong>.</p>
-</section>
+<ul>
+  <li>
+    <strong>Epidemiological Surveillance and Outbreak Tracking:</strong> Comparative genomics is essential for identifying and tracking infectious diseases in real-time. By analyzing whole-genome sequences, public health officials can determine the exact environmental or biological source of an infection, establish precise epidemiological linkages (connecting individual patient cases to a specific transmission chain), and distinguish between local, community-driven transmission and imported cases during active outbreaks.
+  </li>
+  
+  <li>
+    <strong>Tracking Antimicrobial Resistance (AMR) and Virulence:</strong> Genome comparison allows researchers to monitor the rapid evolution and spread of antibiotic resistance genes and virulence factors. It helps clinical microbiologists understand exactly how otherwise benign bacteria acquire <strong>mobile genetic elements</strong> (segments of DNA that can move between genomes, such as plasmids, transposons, resistance islands, or pathogenicity islands) to transform into multidrug-resistant "superbugs."
+  </li>
 
-<section>
-  <h2>6. How UniProt IDs Work</h2>
+  <li>
+    <strong>Vaccine and Therapeutic Design:</strong> This is the foundational tool for <strong>reverse vaccinology</strong>, a modern, computational method of vaccine design that starts with the genomic sequence rather than cultivating the live pathogen. By screening the entire pangenome of a pathogen, researchers can identify proteins that are conserved across all strains, non-host-homologous (meaning they do not share dangerous similarities with the host's own proteins, thereby avoiding autoimmune reactions), and highly immunogenic. This rapidly accelerates the development of broad-spectrum vaccines and targeted therapeutics.
+  </li>
 
-  <p>Protein names and gene symbols are useful to humans, but they are not always unique or stable. UniProt therefore assigns identifiers to entries.</p>
+  <li>
+    <strong>Studying Evolution and Ecological Adaptation:</strong> It provides a high-resolution lens into how bacteria evolve dynamically over time. Researchers use it to trace <strong>horizontal gene transfer (HGT)</strong> (the non-sexual movement of genetic material between different organisms), gene loss (reductive evolution), and recombination events. This reveals exactly how bacteria adapt to survive in highly specialized ecological niches or extreme, stressful environments.
+  </li>
 
-  <h3>6.1 Accession Number: The Stable Identifier</h3>
+  <li>
+    <strong>Understanding Host-Pathogen Interactions:</strong> By comparing the genomes of highly pathogenic strains directly against their harmless, non-pathogenic neighbors, scientists can pinpoint the exact genes responsible for causing disease. This helps map the biological mechanisms and secretion systems underlying how a pathogen successfully colonizes, evades the immune system, and establishes a stable population within a new host species.
+  </li>
 
-  <p>The most important identifier is the <strong>UniProtKB accession</strong>. UniProt recommends using the <strong>primary accession number</strong> when citing or linking to a protein entry because it is designed to remain stable.<sup><a href="#ref7">7</a></sup></p>
+  <li>
+    <strong>Taxonomic Classification:</strong> Traditional bacterial classification heavily relied on phenotypic traits (observable characteristics) or <strong>16S rRNA sequences</strong> (genes coding for a component of the bacterial ribosome). While historically useful, 16S sequencing lacks modern, strain-level resolution. Comparative genomics offers an objective, highly accurate method to classify and delineate distinct bacterial species based on comprehensive, whole-genome phylogeny and precise gene content differences.
+  </li>
 
-  <p>Examples include:</p>
+  <li>
+    <strong>Probiotics and Industrial Biotechnology:</strong> Beyond studying dangerous pathogens, genomic comparisons are widely used to characterize beneficial microbes. It helps identify desirable, health-promoting traits in probiotics (like high stomach acid tolerance or immune modulation pathways) and discovers entirely novel metabolic pathways in bacteria that can be leveraged for industrial <strong>bioremediation</strong> (using microorganisms to consume and clean up environmental pollutants) or agricultural enhancements.
+  </li>
+</ul>
 
-  <pre><code>P07550
-P35354
-A0A023GPI8</code></pre>
+<h2>2. The Concept of the Pangenome</h2>
 
-  <p>UniProtKB accessions currently use either <strong>6-character or 10-character alphanumeric formats</strong>.<sup><a href="#ref7">7</a></sup> A record may also contain older <strong>secondary accessions</strong> if database entries were merged or reorganized.</p>
+<p>The concept of the pangenome (sometimes called a supragenome) was introduced by Sigaux in 2000 and popularized by Tettelin et al. in 2005 to describe the absolute entirety of the genetic repertoire for a specific species, phylogenetic group (a group of organisms that share a common evolutionary ancestor), or population.</p>
 
-  <h3>6.2 Entry Name: Useful but Not the Main Stable ID</h3>
+<p>The various characteristics, components, and concepts associated with the pangenome are structured as follows:</p>
 
-  <p>A reviewed entry also has a readable mnemonic <strong>entry name</strong>. For example:</p>
+<h3>2.1. Components of the Pangenome</h3>
 
-  <pre><code>P07550      = primary accession
-ADRB2_HUMAN = entry name
-ADRB2       = gene name
-Beta-2 adrenergic receptor = protein name</code></pre>
+<p>The pangenome is generally divided into three distinct categories based on how frequently a gene appears within the studied population:</p>
 
-  <p>The entry name is convenient for humans, but UniProt explicitly notes that it is <strong>not the stable identifier</strong>. For reproducible work, record the <strong>primary accession</strong>.<sup><a href="#ref8">8</a></sup></p>
-
-  <h3>6.3 Do Not Confuse Different Kinds of Names</h3>
 
-  <p>A protein may therefore have several labels simultaneously:</p>
-
-  <ul>
-    <li><strong>UniProt accession:</strong> database identifier;</li>
-    <li><strong>entry name:</strong> UniProt mnemonic;</li>
-    <li><strong>gene name:</strong> symbol for the encoding gene;</li>
-    <li><strong>recommended protein name:</strong> curated biological name;</li>
-    <li><strong>alternative names:</strong> historical names, abbreviations, or synonyms.</li>
-  </ul>
-
-  <blockquote>
-    <strong>Practical rule:</strong> When recording a protein for an assignment or analysis, preserve at least <strong>protein name + organism + UniProt accession</strong>.
-  </blockquote>
-</section>
-
-<section>
-  <h2>7. Understanding the Flow of Data Through UniProt</h2>
-
-  <p>The figure below summarizes why UniProt contains several related resources rather than a single undifferentiated protein database.</p>
-
-  <figure class="science-figure" data-id="FIG-1" data-clean-src="${uniprotResourceFlowImg}">
-    <img src="${uniprotResourceFlowImg}" alt="Flow diagram showing external protein sequence sources entering UniParc, UniProtKB TrEMBL and Swiss-Prot, and feeding UniRef clusters and Proteomes" />
-    <figcaption>Figure 1: Simplified flow of protein sequence information through the UniProt resource. External sequence sources feed the UniProt sequence archive and knowledgebase; automatically annotated TrEMBL records may undergo expert review to become Swiss-Prot records, while UniRef groups related sequences and the Proteomes portal organizes protein sets by organism. Source: EMBL-EBI UniProt training materials, CC BY 4.0. <a href="https://www.ebi.ac.uk/training/online/courses/uniprot-quick-tour/the-uniprot-databases/" target="_blank" rel="noopener noreferrer">View source and explanation</a>.</figcaption>
-  </figure>
-
-  <h3>7.1 External Sources → UniParc</h3>
-
-  <p>Protein sequences originate from several external sources. A major source is the translation of coding sequences deposited in the international nucleotide databases <strong>ENA, GenBank, and DDBJ</strong>. UniProt also receives sequence information from resources such as RefSeq, Ensembl, protein structures, direct protein sequencing, and the scientific literature.<sup><a href="#ref9">9</a></sup></p>
-
-  <p><strong>UniParc</strong> acts as the broad sequence archive. It tracks unique protein sequences and their source identifiers, including historical sequences that may later be changed or removed from an original source.</p>
-
-  <h3>7.2 Sequence → TrEMBL Automatic Annotation</h3>
-
-  <p>Protein sequences selected for UniProtKB can enter the <strong>TrEMBL</strong> section, where computational methods add automatic annotation. This provides broad coverage without waiting for every protein to be manually reviewed.</p>
-
-  <h3>7.3 TrEMBL → Swiss-Prot Expert Curation</h3>
-
-  <p>Selected entries may then undergo <strong>expert manual curation</strong>. Curators examine the literature, evaluate evidence, resolve inconsistencies, and build the high-quality reviewed record that appears in <strong>Swiss-Prot</strong>.<sup><a href="#ref2">2</a></sup></p>
-
-  <p>The arrow should therefore be interpreted conceptually as:</p>
-
-  <p><strong>large-scale sequence acquisition → automatic annotation → selected expert review</strong></p>
-
-  <p>It does <strong>not</strong> mean that every TrEMBL record will eventually become a Swiss-Prot record.</p>
-
-  <h3>7.4 UniRef: Grouping Similar Sequences</h3>
-
-  <p><strong>UniRef</strong> clusters related protein sequences at different identity levels. UniRef100, UniRef90, and UniRef50 progressively group sequences to reduce redundancy and make large sequence collections easier to analyse.<sup><a href="#ref3">3</a></sup></p>
-
-  <h3>7.5 Proteomes: Looking at the Organism Level</h3>
-
-  <p>The <strong>Proteomes</strong> portal organizes protein sets associated with organisms. This changes the question from <em>“What is known about this protein?”</em> to <em>“What proteins are represented for this organism or proteome?”</em></p>
-
-  <h3>7.6 A Practical First-Use Workflow</h3>
-
-  <ol>
-    <li>Search UniProt using a <strong>protein name, gene name, or accession</strong>.</li>
-    <li>Confirm the <strong>organism</strong>.</li>
-    <li>Prefer a <strong>reviewed Swiss-Prot entry</strong> when one is available and appropriate.</li>
-    <li>Read the <strong>Function</strong> section and note how the statements are supported.</li>
-    <li>Inspect <strong>sequence features</strong> relevant to your question: active sites, domains, variants, modifications, transmembrane regions, or binding sites.</li>
-    <li>Use <strong>external cross-references</strong> when you need structures, pathways, genomic context, disease information, or other specialist resources.</li>
-    <li>Download the <strong>FASTA sequence</strong> only when the next analytical step requires the sequence itself.</li>
-    <li>Record the <strong>primary UniProt accession</strong> so the protein can be traced later.</li>
-  </ol>
-
-  <blockquote>
-    <strong>Final principle:</strong> A UniProt entry is a <strong>protein knowledge record</strong>, not proof that every annotation has equal experimental support. Always check <strong>review status and evidence</strong> before treating a statement as established biological fact.
-  </blockquote>
-</section>
-
-<section id="references">
-  <h2>8. References</h2>
-
-  <ol>
-    <li id="ref1">
-      UniProt Consortium.
-      <a href="https://www.uniprot.org/help/about" target="_blank" rel="noopener noreferrer">About UniProt</a>.
-      UniProt. Updated June 2026. Accessed 1 September 2026.
-    </li>
-
-    <li id="ref2">
-      EMBL-EBI Training.
-      <a href="https://www.ebi.ac.uk/training/online/courses/uniprot-quick-tour/the-uniprot-databases/uniprotkb/" target="_blank" rel="noopener noreferrer">UniProtKB: Swiss-Prot and TrEMBL</a>.
-      European Bioinformatics Institute. Accessed 1 September 2026.
-    </li>
-
-    <li id="ref3">
-      EMBL-EBI Training.
-      <a href="https://www.ebi.ac.uk/training/online/courses/uniprot-quick-tour/the-uniprot-databases/" target="_blank" rel="noopener noreferrer">The UniProt Databases</a>.
-      European Bioinformatics Institute. CC BY 4.0. Accessed 1 September 2026.
-    </li>
-
-    <li id="ref4">
-      UniProt.
-      <a href="https://www.uniprot.org/uniprotkb/P07550/entry" target="_blank" rel="noopener noreferrer">P07550 · ADRB2_HUMAN — Beta-2 adrenergic receptor</a>.
-      UniProtKB/Swiss-Prot. Accessed 1 September 2026.
-    </li>
-
-    <li id="ref5">
-      UniProt.
-      <a href="https://www.uniprot.org/help/annotation_guidelines" target="_blank" rel="noopener noreferrer">Annotation Guidelines and Protein Existence</a>.
-      UniProt Help. Updated June 2026.
-    </li>
-
-    <li id="ref6">
-      UniProt.
-      <a href="https://www.uniprot.org/help/canonical_and_isoforms" target="_blank" rel="noopener noreferrer">Canonical Sequences and Isoforms</a>.
-      UniProt Help. Accessed 1 September 2026.
-    </li>
-
-    <li id="ref7">
-      UniProt.
-      <a href="https://www.uniprot.org/help/accession_numbers" target="_blank" rel="noopener noreferrer">UniProtKB Accession Numbers</a>.
-      UniProt Help. Updated June 2026.
-    </li>
-
-    <li id="ref8">
-      UniProt.
-      <a href="https://www.uniprot.org/help/entry_information_section" target="_blank" rel="noopener noreferrer">Entry Information Section</a>.
-      UniProt Help. Accessed 1 September 2026.
-    </li>
-
-    <li id="ref9">
-      EMBL-EBI Training.
-      <a href="https://www.ebi.ac.uk/training/online/courses/uniprot-exploring-protein-sequence-and-functional-info/where-does-the-data-come-from/sequence-data/" target="_blank" rel="noopener noreferrer">Where Does UniProtKB Sequence Data Come From?</a>.
-      European Bioinformatics Institute. Accessed 1 September 2026.
-    </li>
-
-    <li id="ref10">
-      UniProt Consortium.
-      <a href="https://academic.oup.com/nar/article/53/D1/D609/7902999" target="_blank" rel="noopener noreferrer">UniProt: the Universal Protein Knowledgebase in 2025</a>.
-      <em>Nucleic Acids Research</em>. 2025;53(D1):D609-D617. doi:10.1093/nar/gkae1010.
-    </li>
-  </ol>
-</section>
+
+<ul>
+  <li>
+    <strong>Core Genome:</strong> This consists of the genes shared by all sequenced strains in the group. These genes are usually associated with the preservation of life and essential biological processes, such as DNA replication, translation (the process of synthesizing proteins from an RNA template), cellular homeostasis (maintaining a stable, balanced internal environment), and core metabolism.
+  </li>
+  <li>
+    <strong>Accessory (or Dispensable/Flexible) Genome:</strong> This comprises genes present in some, but not all, of the isolates. The accessory genome is largely shaped by <strong>horizontal gene transfer (HGT)</strong> (the non-sexual transmission of genetic material between different organisms) and is a key driver of niche adaptation. It often harbors genes responsible for virulence, antibiotic resistance, and specialized metabolic capabilities.
+  </li>
+  <li>
+    <strong>Unique (or Strain-Specific) Genome:</strong> These are genes restricted to only a single isolated strain. They often represent recent horizontal acquisitions from the environment or highly specialized evolutionary adaptations unique to that specific bacterium.
+  </li>
+</ul>
+
+<h3>2.2. Open vs. Closed Pangenomes</h3>
+
+<p>The size and trajectory of a pangenome are strongly influenced by the organism's lifestyle and environment, categorizing pangenomes into two distinct types:</p>
+
+
+
+<ul>
+  <li>
+    <strong>Open (Infinite) Pangenomes:</strong> In an open pangenome, the total number of non-redundant (unique) genes continuously increases every time a new genome is sequenced. This is characteristic of <strong>sympatric species</strong>—organisms that live in shared, highly variable, and mixed microbial communities where they have a high rate of horizontal gene exchange and encounter diverse selective pressures. A classic example is <em>Escherichia coli</em>.
+  </li>
+  <li>
+    <strong>Closed (Finite) Pangenomes:</strong> In a closed pangenome, the gene content is highly stable; adding newly sequenced genomes does not significantly expand the known pangenome size, and the gene discovery curve quickly reaches a plateau. This occurs in <strong>allopatric species</strong> that live in isolated, restricted, or specialized ecological niches with limited opportunities for genetic exchange with other microbes. Examples include the specialized pathogens <em>Bacillus anthracis</em> and <em>Yersinia pestis</em>.
+  </li>
+</ul>
+
+<h3>2.3. Pangenome Fluidity</h3>
+
+<p>Pangenome fluidity is a structural metric used to quantify the average proportion of genes that are not shared between any two random genomes of the same species. Fluidity is shaped by the organism's lifestyle and genome size; species with larger genomes tend to exhibit higher pangenome fluidity. This is likely because smaller genomes consist of a much higher fraction of absolutely essential core genes and are thus more biologically constrained against losing or gaining genetic material without severe consequences.</p>
+
+
+<h2>3. Web-Based Tools and Automated Pipelines</h2>
+
+<p>There is a rich ecosystem of web-based tools, automated pipelines, and curated databases designed to facilitate bacterial genome comparison and pangenome analysis without the need for extensive command-line expertise. These resources range from comprehensive "all-in-one" analytical platforms to highly specialized tools for detecting specific genomic features.</p>
+
+<h3>3.1 Comprehensive Bioinformatics Platforms and Portals</h3>
+
+<ul>
+  <li>
+    <strong><a href="https://www.bv-brc.org/">BV-BRC</a> (Bacterial and Viral Bioinformatics Resource Center):</strong> This expansive platform integrates data from public repositories like NCBI (National Center for Biotechnology Information, a primary centralized database for global genomic data) and offers a comprehensive suite of web-based services. Its tools include the Comprehensive Genome Analysis meta-service (which performs assembly, annotation, and basic comparative analysis), Proteome Comparison (using bidirectional <strong>BLASTP</strong>, an algorithm that compares the amino acid sequences of proteins to find regions of local evolutionary similarity), Phylogenetic Tree building (creating branching diagrams that show inferred evolutionary relationships), Similar Genome Finder, and Variation Analysis.
+  </li>
+  <li>
+    <strong><a href="https://enterobase.warwick.ac.uk/">EnteroBase</a>:</strong> A primary platform for the global surveillance of <strong>enteric pathogens</strong> (microorganisms like <em>Salmonella</em> or <em>E. coli</em> that infect the gastrointestinal tract) containing over 1.1 million bacterial genomes. It provides automated pipelines that assemble and annotate sequence data, alongside powerful tools for <strong>cgMLST</strong> (core genome Multi-Locus Sequence Typing) and <strong>wgMLST</strong> (whole-genome MLST)—methods that accurately categorize bacteria by comparing the exact DNA sequences of hundreds to thousands of standard genes. It notably utilizes a Hierarchical Clustering (HierCC) system (a statistical method to build a tree-like hierarchy of genetic similarity) to categorize genomes for rapid identification of epidemic chains, and GrapeTree for visualizing core genomic relationships.
+  </li>
+  
+  
+
+  <li>
+    <strong><a href="https://pathogen.watch/">Pathogenwatch</a>:</strong> A web application tailored for genomic epidemiology. It integrates tailored genome analytics (such as identifying antimicrobial resistance and virulence genes) with epidemiological metadata and visualization tools, making it highly effective for tracking the transmission of priority pathogens in public health settings.
+  </li>
+  <li>
+    <strong><a href="https://pubmlst.org/">PubMLST</a>:</strong> A web-based platform hosting curated databases of genome sequences and genotypes. It is widely used for gene-by-gene typing and provides universally accessible nomenclatures, such as stable LIN (Life Identification Numbers) codes, for referencing and comparing bacterial strains globally.
+  </li>
+</ul>
+
+<h3>3.2 Genome Annotation & Alignment Web Servers</h3>
+
+<ul>
+  <li>
+    <strong><a href="https://basys2.ca/">BASys2</a> (Bacterial Annotation System 2.0):</strong> A highly comprehensive, automated genome annotation web server. It rapidly processes uploaded genomes to generate up to 62 annotation fields per gene, offering interactive circular genome map visualizations via CGView.js, metabolic pathway visualization linked to PathBank, and 3D protein structure modeling via Mol*.
+  </li>
+  
+  
+  <li>
+    <strong><a href="https://rast.nmpdr.org/">RAST </a>(Rapid Annotation using Subsystem Technology):</strong> A widely utilized online tool that provides high-quality <em>de novo</em> functional annotation (identifying and categorizing genes from scratch without a template) and comparative pathway analysis by mapping genomes against the SEED database.
+  </li>
+  <li>
+    <strong><a href="https://proksee.ca/">Proksee</a> & <a href="https://www.gensas.org/">GenSAS</a>:</strong> Web servers that provide in-depth characterization, structural annotation, and interactive circular visualizations of bacterial genomes.
+  </li>
+ </ul>
+
+<h3>3.3 Dedicated Pangenome Web Tools</h3>
+
+<ul>
+  <li>
+    <strong><a href="https://panexplorer.southgreen.fr/">PanExplorer</a>:</strong> A web-based application designed for the exploratory analysis and visual representation of bacterial pangenomes.
+  </li>
+
+  <li>
+    <strong>PANINI:</strong> A web browser tool for the online visualization of core and accessory genome components, which utilizes a machine learning technique called <strong>t-SNE</strong> (a statistical algorithm used to visualize high-dimensional genetic data in an easy-to-read 2D map) to identify the closest genetic "neighbor" of each isolate in a dataset.
+  </li>
+  
+</ul>
+
+
+
+<h2>4. Visual Representations in Comparative Genomics</h2>
+
+<p>In comparative genomics, visual representations are essential for distilling high-dimensional, complex data into interpretable formats. Researchers use a variety of charts and diagrams to evaluate evolutionary relationships, structural variations, and gene content across multiple genomes. The most common charts and representations include:</p>
+
+<h3>4.1. Circular Genome Maps (Concentric Rings)</h3>
+
+<p>Circular maps are highly effective for providing a global view of sequence presence, absence, or variation across many genomes simultaneously.</p>
+<figure class="science-figure" data-id="Figure 2" data-clean-src="${f020_001}"> 
+  <img src="${f020_001}" alt="Circular genome map of E. coli plasmids from Mali showing concentric rings and antimicrobial resistance genes." />
+  <figcaption> A circular genome map comparing <em>Escherichia coli</em> (<em>E. coli</em>) plasmids isolated in Mali, with a total reference size of 122,030 <strong>base pairs (bp)</strong>. The concentric colored rings represent different plasmid sequences (identified in the right-hand legend) being visually aligned and compared against one another to show regions of genetic similarity and absence. 
+    <br><br>
+    The outermost circle pinpoints the exact physical locations of highly important annotated genes. Notably, this region is densely clustered with <strong>antimicrobial resistance (AMR) genes</strong>, such as <em>bla-CTX-15</em> and <em>bla-TEM-1</em> (which confer resistance to beta-lactam antibiotics like penicillins), <em>tetAR</em> and <em>tetR</em> (tetracycline resistance), and <em>sul2</em> (sulfonamide resistance). The map also highlights several <strong>IS1 (Insertion Sequences)</strong>; these are simple, highly mobile genetic elements that act as "jumping genes," playing a crucial role in capturing and transferring these resistance traits between different bacteria.
+  </figcaption> 
+</figure>
+
+
+<ul>
+  <li><strong>How they work:</strong> A central reference genome is placed in the middle, and subsequent query genomes are displayed as concentric outer rings. The rings are color-coded based on sequence similarity, such as <strong>BLAST identity</strong> (the percentage of exact genetic matches between two aligned sequences using the Basic Local Alignment Search Tool), to the reference.</li>
+  <li><strong>Common uses:</strong> They are ideal for highlighting conserved regions, visualizing the absence of specific <strong>pathogenicity islands</strong> (distinct genetic regions acquired through horizontal gene transfer that contain dense clusters of virulence genes) in certain strains, or mapping features like <strong>GC skew</strong> (a statistical measure of the distribution of Guanine and Cytosine across the DNA strand, often used to pinpoint the origin of replication), <strong>GC content</strong> (the overall percentage of nitrogenous bases in a DNA molecule that are guanine or cytosine), and <strong>read coverage</strong> (the number of times a specific targeted nucleotide in a genome has been sequenced). Tools like BRIG (BLAST Ring Image Generator) and CGView are standard for generating these informative circular figures.</li>
+</ul>
+
+<h3>4.2. Heatmaps (Presence/Absence Matrices)</h3>
+
+<p>Heatmaps are the standard visual format for mapping large-scale gene content variations across dozens or hundreds of genomes simultaneously.</p>
+<figure class="science-figure" data-id="Figure 3" data-clean-src="${f020_002}"> 
+  <img src="${f020_002}" alt="Heatmap showing the presence and absence of aminoglycoside antibiotic resistance genes across different bacterial cohorts." />
+  <figcaption>
+    <strong>Figure 3:</strong> A presence/absence heatmap illustrating the distribution of genes associated with resistance to <strong>aminoglycoside antibiotics</strong> across various bacterial genomic cohorts (indicated by the top color bar: Gu_genomes, Guj_genomes, India_genomes, and Global_genomes). 
+    <br><br>
+    In this matrix, each row represents a specific antimicrobial resistance gene (such as <em>mexX</em>, <em>mexY</em>, and various <em>APH</em>, <em>AAC</em>, and <em>aad</em> modifying enzymes), and each column represents an individual sequenced genome. A solid red block indicates that the gene is present (a score of 1), while a black block indicates that the gene is completely absent (a score of 0). For example, the large, solid red block at the very top indicates a set of core resistance genes that are ubiquitous across almost all the sequenced genomes in this study.
+    <br><br>
+    On the far left, a <strong>hierarchical clustering dendrogram</strong> visually groups the genes based on their co-occurrence patterns (genes that tend to appear together are grouped on the same branches). Adjacent to this dendrogram, a vertical color bar categorizes each gene by its specific biological <strong>Resistance Mechanism</strong>: antibiotic inactivation (red), antibiotic efflux pumps (blue), or antibiotic target alteration (green).
+  </figcaption> 
+</figure>
+
+
+<ul>
+  <li><strong>How they work:</strong> Genomes are typically represented as horizontal rows, and <strong>orthologous genes</strong> (genes in different species that evolved from a common ancestral gene and usually retain the same function) or specific genomic features as vertical columns. A colored block indicates the presence of a gene, while a blank or white block indicates its absence.</li>
+  <li><strong>Common uses:</strong> They are frequently used to visualize the entire pangenome distribution (core versus accessory genes) or to track specific gene profiles, such as Antimicrobial Resistance (ARG) genes or virulence factors across different host isolates. They are often paired with <strong>hierarchical clustering dendrograms</strong> (tree-like diagrams that illustrate the arrangement of genetic clusters, grouping the most similar organisms closest together) to group genomes with shared profiles.</li>
+</ul>
+
+
 
 </article>
+
+
   `,
 };
 

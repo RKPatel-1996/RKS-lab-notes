@@ -1,10 +1,17 @@
 import { Article } from "../../lib/types";
+import f016_001 from "./article_images/016_001.png";
+import f016_002 from "./article_images/016_002.png";
+import f016_003 from "./article_images/016_003.png";
+import f016_004 from "./article_images/016_004.png";
+import f016_005 from "./article_images/016_005.png";
+import f016_006 from "./article_images/016_006.png";
+import f016_007 from "./article_images/016_007.png";
 
 const article: Article = {
   id: "RK-2026-016",
-  title: "Nucleic Acid and Protein Sequences in FASTA Format",
-  date: "2026-08-31",
-  tags: ["#FASTA", "#SequenceFormats", "#bioinformatics"],
+  title: "Phylogenetic Tree construction using MEGA",
+  date: "2026-02-05",
+  tags: ["#PhylogeneticTree", "#MEGA", "#bioinformatics"],
   type: "report",
   template: "standard",
   readTime: "30 min",
@@ -14,485 +21,333 @@ const article: Article = {
     avatar: "https://github.com/RKPatel-1996.png",
     affiliation: "Gujarat University",
   },
-  excerpt: `FASTA is one of the simplest and most widely used text formats for representing DNA, RNA, and protein sequences in bioinformatics. This article explains how FASTA records are structured, how nucleotide and amino-acid alphabets are represented, how ambiguity and multi-FASTA records are handled, and why identifiers and metadata matter in real analysis workflows. It also distinguishes FASTA from richer annotation formats and from FASTQ, helping researchers choose and prepare sequence files correctly for downstream tools.`,
+  excerpt: `
+    
+`,
   content: `
+
+
 <article>
 
-<section>
-  <h2>1. Why Biological Sequences Need a Digital Representation</h2>
+<h2>1. Sequence Acquisition</h2>
+
+<h3>1.1 How to do it:</h3>
+<ol>
+    <li>Open MEGA and navigate to <strong>Align</strong> &rarr; <strong>Edit/Build Alignment</strong>.</li>
+    <li>A dialog box will appear. Select <strong>Retrieve a sequence from NCBI [Show Web Browser]</strong>. (Note: If you already have <code>.fasta</code> files on your computer, you would select "Retrieve from file" here).</li>
+    <li>The internal browser will open. Search for your Gene/Protein (e.g., "16S rRNA E. coli").</li>
+    <li>Once you have located the correct entry, click the button <strong>Add to Alignment</strong> at the top of the browser.</li>
+</ol>
+
+<figure class="science-figure" data-id="Figure: 1" data-clean-src="${f016_001}"> 
+    <img src="${f016_001}" alt="Screenshot of the MEGA align option" />
+</figure>
+
+<figure class="science-figure" data-id="Figure: 1" data-clean-src="${f016_002}"> 
+    <img src="${f016_002}" alt="Screenshot of the MEGA internal web browser showing the Add to Alignment button" />             
+</figure>
+
+<figure class="science-figure" data-id="Figure: 1" data-clean-src="${f016_003}">
+    <img src="${f016_003}" alt="Screenshot of the MEGA alignment window showing the added sequences" />
+<figcaption>Show Web browser: The internal NCBI browser in MEGA. Using this tool prevents copy-paste errors common with manual data entry.
+</figcaption>
+</figure>
+
+<h2>2. Sequence Alignment</h2>
+
+<p>Before we can compare differences between organisms, we must ensure we are comparing the "same" positions. This concept is called <strong>Positional Homology</strong>.</p>
+Sequence alignment introduces "gaps" (dashes) to shift sequences so that column 10 in <em>Organism 1 seq.</em> corresponds to the evolutionarily equivalent spot in <em>Organism 2 seq.</em>.</p>
+
+<h3>2.1 ClustalW / MUSCLE [vs] ClustalW (codon) / MUSCLE (codon) </h3>
+<p>MEGA offers different "engines" or logical sets of rules to organize your data. The choice depends on the size of your dataset and the accuracy required.</p>
+
+<figure class="science-figure" data-id="Figure: 2" data-clean-src="${f016_004}">
+    <img src="${f016_004}" alt="Screenshot of the MEGA alignment options showing the different algorithms and modes" />
+<figcaption>MEGA Alignment Options: The different alignment algorithms and modes available in MEGA. Choose the appropriate one based on your dataset size and biological context.</figcaption>
+</figure>
+
+<table class="science-table" data-id="tab2">
+<caption>Table 1: Comparison of Alignment Algorithms in MEGA.</caption> 
+<thead> 
+    <tr> 
+        <th>Feature</th>
+        <th>Align by MUSCLE (Standard)</th>
+        <th>Align by ClustalW (Classic)</th>
+    </tr>
+</thead>
+<tbody> 
+    <tr>
+        <td><strong>The "Logic"</strong></td>
+        <td><strong>Iterative.</strong> Think of this like writing a draft, editing it, and re-writing it. MUSCLE builds a draft alignment, then refines it repeatedly until the statistical score cannot be improved further.</td>
+        <td><strong>Progressive.</strong> It builds a quick "guide tree" first and adds sequences one by one. Once a sequence is added, its position is "locked" and never re-adjusted.</td>
+    </tr>
+    <tr>
+        <td><strong>Best Use Case</strong></td>
+        <td>Use this for almost everything <sup><a href="#ref5">5</a></sup>. It is essential if you have >15 sequences or very long sequences.</td>
+        <td>Use mainly for small, highly similar datasets, or if you are trying to replicate older studies that specifically used ClustalW.</td>
+    </tr>
+    <tr>
+        <td><strong>Weakness</strong></td>
+        <td>Slightly more computationally intensive (though negligible on modern computers).</td>
+        <td><strong>The "Greedy" Error.</strong> If it makes a mistake early in the alignment (e.g., placing a gap wrong), that error propagates through the whole alignment and cannot be fixed.</td>
+    </tr>
+</tbody>
+</table>
+
+<p>In the MEGA alignment menu, the option to align by <strong>Codons</strong> can help facilitate better alignments based on the functional context of your DNA sequence.</p>
+
+
+<table class="science-table" data-id="tab3">
+<caption>Table 2: Choosing the Correct Alignment Mode.</caption> 
+<thead> 
+    <tr> 
+        <th>Alignment Mode</th>
+        <th>Biological Context</th>
+        <th>Why use it?</th>
+    </tr>
+</thead>
+<tbody> 
+    <tr>
+        <td><strong>Standard Align (DNA)</strong></td>
+        <td><strong>Non-coding DNA</strong> (e.g., 16S rRNA, ITS regions, promoters).</td>
+        <td>Treats every nucleotide (A, T, G, C) as an independent unit. Since these regions don't code for proteins, there are no "reading frames" to break.</td>
+    </tr>
+    <tr>
+        <td><strong>Align by Codons</strong></td>
+        <td><strong>Protein-Coding Genes</strong> (e.g., <em>COI</em>, <em>cytb</em>, <em>RAG1</em>).</td>
+        <td><strong>Mandatory for coding genes.</strong> It recognizes that DNA is read in triplets (codons). It translates DNA to amino acids, aligns the proteins, and then maps the DNA back. This prevents "frameshift" errors where a gap is inserted in the middle of a codon, which would biologically destroy the protein function.</td>
+    </tr>
+</tbody>
+</table>
+
+<h2>3. Refining the Parameters: Tuning the Algorithm</h2>
+<p>When you select MUSCLE [Recommended for most cases], you will see the <strong>Alignment Options</strong> window. These settings control the mathematical balance between matching bases and creating gaps. </p>
+
+<figure class="science-figure" data-id="Figure: 3" data-clean-src="${f016_005}">
+    <img src="${f016_005}" alt="Screenshot of the MEGA alignment options showing the different parameters" />
+<figcaption>Alignment Options: The various parameters that can be adjusted to refine the alignment process, speed and accuracy. </figcaption>
+</figure>
+
+<h3>3.1 Gap Penalties</h3>
+<p>Biological evolution involves point mutations (changing a letter) and Indels (insertions or deletions). In an alignment, Indels are represented by gaps (dashes). The "Gap Penalties" tell the computer how reluctant it should be to add these gaps.</p>
+
+<ul>
+    <li><strong>Gap Open (-400.00):</strong> This is the "toll fee" the computer pays to <em>start</em> a new gap. A high negative score acts as a deterrent. 
+    <br><em>Tip:</em> If your alignment looks "choppy" (lots of tiny, scattered gaps), <strong>increase</strong> this penalty (e.g., to -600) to force the algorithm to create cleaner, contiguous blocks.</li>
+    
+    <li><strong>Gap Extend (0.00):</strong> This is the cost to make an existing gap <em>longer</em>. In biology, a single event (like a polymerase slippage) can delete 10 nucleotides just as easily as it can delete 1. Therefore, once the "toll fee" is paid (Gap Open), extending the gap is usually "free" or very cheap.</li>
+</ul>
+
+<h3>3.2 Clustering: UPGMA vs. UPGMB</h3>
+<p>Before the final alignment is polished, the software builds a rough "guide tree" to decide which sequences are similar enough to be aligned first. The method you choose here depends on your sampling strategy.</p>
+
+<table class="science-table" data-id="tab3">
+<caption>Table 3: Clustering Methods for Guide Trees.</caption> 
+<thead> 
+    <tr> 
+        <th>Method</th>
+        <th>Mechanism</th>
+        <th>When to use</th>
+    </tr>
+</thead>
+<tbody> 
+    <tr>
+        <td><strong>UPGMA</strong></td>
+        <td><strong>Unweighted Pair Group Method with Arithmetic Mean.</strong> It gives equal weight to every individual sequence.</td>
+        <td>Use when your sampling is balanced (e.g., 10 sequences from Species A, 10 from Species B).</td>
+    </tr>
+    <tr>
+        <td><strong>UPGMB</strong></td>
+        <td><strong>Unweighted Pair Group Method with Bi-weighted Mean.</strong> It weights the <em>clusters</em> themselves.</td>
+        <td>Use when you have <strong>uneven sampling</strong> (e.g., 50 sequences of <em>E. coli</em> and only 2 of <em>Bacillus</em>). It prevents the large <em>E. coli</em> group from mathematically dominating the calculation.</td>
+    </tr>
+</tbody>
+</table>
+
+<h3>3.3 Summary of Alignment Logic</h3>
+<p>To synthesize the alignment parameters we've discussed, here is a quick-reference guide tailored to standard biological use cases. Always remember that these are starting points; you should visually inspect your alignment to ensure biological reality is preserved.</p>
+
+<table class="science-table" data-id="table4">
+<caption>Table 4: Alignment Decision Matrix for optimal settings in common biological scenarios.</caption>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Choice / Modification</th>
+<th>Biological Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>16S rRNA / 18S rRNA</strong></td>
+<td>Align by MUSCLE (Standard)</td>
+<td>Because these are non-coding structural RNAs, maintaining the triplet reading frame isn't necessary. Finding positional homology nucleotide-by-nucleotide is the primary goal.</td>
+</tr>
+<tr>
+<td><strong>Functional Protein Gene</strong></td>
+<td>Align by MUSCLE (Codons)</td>
+<td>Crucial for maintaining the triplet reading frame. It prevents the software from inserting a gap that would cause a biologically fatal frameshift mutation in the resulting protein.</td>
+</tr>
+<tr>
+<td><strong>Uneven Taxa Sampling</strong></td>
+<td>Use UPGMB Clustering</td>
+<td>If you have 50 sequences from one clade and 2 from another, UPGMB prevents the over-represented group from mathematically dominating and biasing the initial guide tree.</td>
+</tr>
+<tr>
+<td><strong>Too many 1-bp gaps</strong></td>
+<td>Increase Gap Open Penalty</td>
+<td>A higher penalty acts as a strict "toll fee," discouraging the algorithm from unrealistically breaking the sequence into tiny fragments just to force a few nucleotide matches.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>4. Final Step: Tree Building and Validation</h2>
+<p>Once your sequences are perfectly aligned, you transition from data preparation to evolutionary inference. This involves choosing the right mathematical rules (the model) and then testing how trustworthy your resulting tree actually is.</p>
+
+<h3>4.1. Find Best DNA/Protein Models (ML) (The Primary Choice)</h3>
+<p>The <strong>Models</strong> panel in MEGA 11 is essentially the diagnostic center for your molecular data. Before building your final phylogeny, you must ensure your data doesn't violate the core assumptions of molecular evolution.</p>
+
+
+<h3>4.2 Model Selection</h3>
+<p>After your sequences are aligned, you must identify the mathematical "rules" that governed their evolution. The <strong>Find Best DNA/Protein Models</strong> tool provides a table of different possibilities, ranked by their statistical fit to your data.</p>
+
+<h4>4.2.1. How to Read the Model Selection Table</h4>
+<p>The table below represents the top results from a typical analysis. It identifies which mathematical filter describes your biological data with the highest precision.</p>
+
+<table class="science-table" data-id="tab5">
+<caption>Table 5: Top-ranked substitution models for a dataset.</caption>
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameters</th>
+<th>BIC</th>
+<th>AICc</th>
+<th>lnL</th>
+<th>Invariant (+I)</th>
+<th>Gamma (+G)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HKY+I</strong></td>
+<td>101</td>
+<td>15957.723</td>
+<td>15891.126</td>
+<td>-7935.544</td>
+<td>0.41</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td><strong>TN93+I</strong></td>
+<td>111</td>
+<td>15966.383</td>
+<td>15893.130</td>
+<td>-7935.542</td>
+<td>0.41</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td><strong>HKY+G+I</strong></td>
+<td>111</td>
+<td>15966.397</td>
+<td>15893.144</td>
+<td>-7935.549</td>
+<td>0.00</td>
+<td>200.00</td>
+</tr>
+</tbody>
+</table>
+
+<p>When looking at this table, the most important column is the <strong>BIC (Bayesian Information Criterion)</strong>.</p>
+<ul>
+    <li>Models with the <strong>lowest BIC scores</strong> are considered the best fit.</li>
+    <li><strong>Why:</strong> BIC balances how well the model fits the data against the complexity of the model. It "penalizes" models that have too many unnecessary parameters, preventing over-fitting.</li>
+    <li><strong>In the example above:</strong> <strong>HKY+I</strong> has the lowest BIC (15957.723) and is your best choice to input into the final tree builder.</li>
+</ul>
+
+<h2>5. Phylogeny: Choosing the Tree Method</h2>
+<p>This menu determines the mathematical logic used to construct your tree.</p>
+<figure class="science-figure" data-id="Figure: 4" data-clean-src="${f016_006}">
+    <img src="${f016_006}" alt="Screenshot of the MEGA tree construction options showing the different methods" />
+<figcaption>Tree Construction Methods: The various algorithms available for building phylogenetic trees, each with its own assumptions and best use cases.</figcaption>
+</figure>
+<ul>
+    <li><strong>Maximum Likelihood Tree (ML):</strong> <strong>Recommended.</strong> Use this for almost all modern publications. It uses your specific substitution model (e.g., HKY) to calculate the statistical probability of every branch.</li>
+    <li><strong>Neighbor-Joining Tree (NJ):</strong> A distance-based method. Very fast. Great for a "quick look" or if you have thousands of sequences where ML would crash your computer. Avoid for publication if your species are highly divergent.</li>
+    <li><strong>Minimum Evolution Tree (ME):</strong> A "middle ground." It searches for the tree topology with the <strong>smallest total sum of branch lengths</strong> (the simplest evolutionary pathway). More rigorous than NJ but faster than ML.</li>
+    <li><strong>Maximum Parsimony Tree (MP):</strong> Operates on "Occam's Razor" (the fewest mutations is the best explanation). Rarely used for highly variable DNA today because of "Long Branch Attraction" (incorrectly grouping fast-mutating species). Best for morphological traits.</li>
+    <li><strong>UPGMA Tree:</strong> <strong>Avoid this for evolution.</strong> It assumes a strict "molecular clock" where evolution happens at the exact same speed in all branches, which is biologically unrealistic.</li>
+</ul>
+
+<h2>6. Fine-Tuning Maximum Likelihood (ML) Settings</h2>
+<p>When you select Maximum Likelihood, you must configure the parameters to tell the algorithm how to search "Tree Space."</p>
+<figure class="science-figure" data-id="Figure: 5" data-clean-src="${f016_007}">
+    <img src="${f016_007}" alt="Screenshot of the MEGA maximum likelihood tree options showing the different parameters" />
+<figcaption>ML Tree Options: The various settings that can be adjusted to refine the maximum likelihood tree construction process, including mutation rates, search strategy, and gap treatment.</figcaption>
+</figure>
+
+
+<h3>6.1. Rates and Patterns (Mutation Rates)</h3>
+<p>Does every nucleotide in your sequence mutate at the same speed? Usually, no.</p>
+
+<ul>
+    <li><strong>Uniform Rates:</strong> Assumes all sites mutate equally. Rarely true in biology.</li>
+    <li><strong>Gamma Distributed (G):</strong> <strong>Standard default.</strong> Acknowledges that some sites are mutational "hotspots" and others are "cold".</li>
+    <li><strong>Has Invariant Sites (I):</strong> Assumes a percentage of your sites <strong>never change</strong> (e.g., critical structural domains in a protein).</li>
+    <li><strong>Gamma + Invariant (G+I):</strong> The most complex. Only use this if your BIC table specifically recommended it.</li>
+</ul>
+
+<h3>6.2. Tree Inference Options (Search Strategy)</h3>
+<p>MEGA cannot test every possible tree (there are trillions). It uses "heuristics" (shortcuts) to find the best one.</p>
+<ul>
+    <li><strong>Nearest-Neighbor-Interchange (NNI):</strong> Makes small, local swaps of branches to see if the tree score improves. <strong>Fastest option.</strong></li>
+    <li><strong>Subtree-Pruning-Regrafting (SPR):</strong> Cuts off entire branches and re-attaches them to completely different parts of the tree to test new topologies. <strong>More thorough.</strong> Use SPR for final publications to ensure you don't get stuck in a "local optimum."</li>
+</ul>
+
+<h3>6.3. Gaps/Missing Data Treatment</h3>
+<p>How do you handle the dashes (--) in your alignment?</p>
+<ul>
+    <li><strong>Complete Deletion:</strong> Deletes any column that has a gap in <em>even one</em> species. Best for extremely clean, high-quality datasets.</li>
+    <li><strong>Partial Deletion (Default):</strong> Preserves columns unless the gap percentage exceeds a cutoff (e.g., 95%). Best for "messy" environmental data or sequences of slightly different lengths.</li>
+</ul>
+
+<h2>7. Summary Checklist for Your ML Run</h2>
+<table class="science-table" data-id="tab6">
+<caption>Table 6: Quick-reference checklist for final tree construction.</caption>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Standard Recommendation</th>
+<th>Why?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Model/Method</strong></td>
+<td>Match the lowest BIC score.</td>
+<td>Ensures biological accuracy based on your specific data.</td>
+</tr>
+<tr>
+<td><strong>Rates and Patterns</strong></td>
+<td>Gamma Distributed (G).</td>
+<td>Accounts for biological reality that mutation rates vary across a gene.</td>
+</tr>
+<tr>
+<td><strong>Heuristic Method</strong></td>
+<td>SPR (Level 5).</td>
+<td>A thorough search to ensure the most statistically likely topology is found.</td>
+</tr>
+<tr>
+<td><strong>Bootstrap Replications</strong></td>
+<td>1000.</td>
+<td>Provides robust statistical confidence (>70 is good, >90 is strong).</td>
+</tr>
+</tbody>
+</table>
 
-  <p>DNA, RNA, and proteins are <strong>physical biological molecules</strong>, but bioinformatics programs work with <strong>digital representations</strong>. Each nucleotide or amino-acid residue is represented by a character, preserving the <em>order of residues</em> along the molecule. A short DNA sequence may therefore appear as <code>ATGCGTAC</code>, while a protein sequence may appear as <code>MKTLLV</code>.</p>
-
-  <p>This conversion from molecule to text is what makes sequence analysis possible. Once represented digitally, sequences can be <strong>searched, aligned, translated, assembled, annotated, compared, and supplied to prediction tools</strong>. In other words, the text sequence becomes the computational form of the biological molecule.</p>
-
-  <p>One of the most widely used representations is <strong>FASTA</strong>. NCBI describes FASTA-formatted sequence as a <strong>definition line beginning with <code>&gt;</code></strong>, followed by one or more lines containing sequence data.<sup><a href="#ref2">2</a></sup> EMBL-EBI uses the same core structure when accepting or returning biological sequences.<sup><a href="#ref3">3</a></sup></p>
-
-  <figure class="science-figure" data-id="FIG-1" data-clean-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/DNA_sequence.jpg/960px-DNA_sequence.jpg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/DNA_sequence.jpg/960px-DNA_sequence.jpg" alt="Large DNA nucleotide letters displayed as a linear sequence" />
-    <figcaption> Biological sequence information can be represented as an ordered series of residue symbols. Image: MIKI Yoshihito, <a href="https://commons.wikimedia.org/wiki/File:DNA_sequence.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>, CC BY 2.0.</figcaption>
-  </figure>
-
-  <h3>1.1 Where the Name FASTA Comes From</h3>
-
-  <p>The name is historically associated with the <strong>FASTA sequence-comparison program</strong> developed by William Pearson and David Lipman. Their 1988 paper described FASTA as a tool for comparing protein and DNA sequences.<sup><a href="#ref1">1</a></sup> The simple sequence-file convention associated with FASTA subsequently became widely used as an exchange format across bioinformatics software.</p>
-
-  <blockquote>
-    <strong>Key principle:</strong> FASTA is primarily a <strong>sequence representation and exchange format</strong>. It does not, by itself, preserve the full biological annotation associated with a sequence.
-  </blockquote>
-
-  <p><strong>Takeaway:</strong> FASTA converts a biological sequence into a <strong>simple, portable text representation</strong> that computational tools can read.</p>
-</section>
-
-<section>
-  <h2>2. The Basic Anatomy of a FASTA Record</h2>
-
-  <p>A FASTA record has two essential parts: the <strong>header or definition line</strong> and the <strong>sequence body</strong>.<sup><a href="#ref2">2</a></sup></p>
-
-  <pre><code>&gt;sequence_identifier optional description
-ATGCGTACGTTAGCTAGCTAGCTAGCTAGCTA</code></pre>
-
-  <h3>2.1 The Header Line</h3>
-
-  <p>The header starts with the greater-than symbol <code>&gt;</code>. The text following it identifies the sequence and can also provide a description. EMBL-EBI notes that the <strong>first word is commonly treated as the sequence name</strong>, while the remaining text is a description.<sup><a href="#ref3">3</a></sup></p>
-
-  <pre><code>&gt;geneA Escherichia_coli hypothetical_gene
-ATGAAACCGTTAGCGTAA</code></pre>
-
-  <p>Here, <code>geneA</code> is the identifier. The rest of the line provides additional context. For researcher-created files, a practical strategy is to keep the first identifier <strong>short, unique, stable, and free of spaces</strong>. NCBI explicitly recommends short sequence IDs without spaces for GenBank submissions.<sup><a href="#ref2">2</a></sup></p>
-
-  <p><strong>Important:</strong> the header itself should remain on <strong>one line</strong>. NCBI definition-line modifiers, for example, must not be broken across hard returns.<sup><a href="#ref2">2</a></sup></p>
-
-  <h3>2.2 The Sequence Body</h3>
-
-  <p>All lines after a header belong to that record until the next line beginning with <code>&gt;</code>. Sequence lines may be wrapped for readability.</p>
-
-  <pre><code>&gt;seq1
-ATGCGTACGT
-TAGCTAGCTA
-GCTAGCTA</code></pre>
-
-  <p>The biological sequence above is continuous: <code>ATGCGTACGTTAGCTAGCTAGCTAGCTA</code>. The line breaks are formatting; they do not represent biological interruptions.</p>
-
-  <h3>2.3 FASTA at a Glance</h3>
-
-  <table class="science-table" data-id="fasta-record-components">
-    <caption>Table 1: FASTA record components and their meaning</caption>
-    <thead>
-      <tr>
-        <th>Component</th>
-        <th>Example</th>
-        <th>Meaning</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Record marker</strong></td>
-        <td><code>&gt;</code></td>
-        <td>Marks the beginning of a new FASTA record.</td>
-      </tr>
-      <tr>
-        <td><strong>Identifier</strong></td>
-        <td><code>geneA</code></td>
-        <td>Provides a name used by software and researchers to track the sequence.</td>
-      </tr>
-      <tr>
-        <td><strong>Description</strong></td>
-        <td><code>DNA_gyrase_subunit_A</code></td>
-        <td>Optional human-readable context.</td>
-      </tr>
-      <tr>
-        <td><strong>Sequence body</strong></td>
-        <td><code>ATGCGT...</code> or <code>MKKIG...</code></td>
-        <td>Stores the ordered nucleotide or amino-acid residues.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Takeaway:</strong> when scanning a FASTA file, identify <strong><code>&gt;</code> → identifier → description → sequence</strong>.</p>
-</section>
-
-<section>
-  <h2>3. Representation of Nucleic Acid Sequences</h2>
-
-  <p>Nucleic-acid sequences are written using <strong>one-letter nucleotide symbols</strong>. The canonical DNA symbols are <code>A</code>, <code>C</code>, <code>G</code>, and <code>T</code>. Importantly, the FASTA structure itself does <em>not</em> declare that a record is DNA or RNA; molecule type must come from the sequence source, accompanying metadata, or the receiving tool.</p>
-
-  <p>INSDC uses the IUPAC nucleotide code system and notes that <code>T</code> represents <strong>thymine in DNA and uracil in RNA</strong> in its nucleotide sequence standard.<sup><a href="#ref4">4</a></sup> Therefore, an RNA-derived database sequence is not guaranteed to contain the letter <code>U</code>. User-created RNA files may use <code>U</code>, but researchers should always check the convention required by the destination software.</p>
-
-  <h3>3.1 Sequence Direction Matters</h3>
-
-  <p>Nucleotide sequences are conventionally interpreted in the <strong>5′ → 3′ direction</strong>. FASTA stores the character string but does not independently tell you whether a sequence represents the forward genomic strand, its reverse complement, an mRNA, an amplicon, or another derived molecule. That biological orientation must come from <strong>provenance and annotation</strong>.</p>
-
-  <h3>3.2 Example: DNA Sequence in FASTA</h3>
-
-  <pre><code>&gt;EC01_16S partial_16S_rRNA_gene
-AGAGTTTGATCCTGGCTCAG
-GATGAACGCTGGCGGCAGGC</code></pre>
-
-  <p>The text is easy to read, but the file alone does not establish whether this sequence is experimentally determined, assembled, predicted, complete, partial, or taxonomically verified. <strong>FASTA preserves sequence; provenance preserves meaning.</strong></p>
-
-  <h3>3.3 IUPAC Ambiguity Codes</h3>
-
-  <p>Real sequence data may contain uncertain positions. The IUPAC nucleotide alphabet represents these possibilities explicitly rather than forcing an incorrect single-base call.<sup><a href="#ref4">4</a></sup></p>
-
-  <table class="science-table" data-id="iupac-nucleotide-symbols">
-    <caption>Table 2: IUPAC nucleotide symbols commonly encountered in sequence files</caption>
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>Possible Bases</th>
-        <th>Interpretation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>A</code></td><td>A</td><td>Adenine</td></tr>
-      <tr><td><code>C</code></td><td>C</td><td>Cytosine</td></tr>
-      <tr><td><code>G</code></td><td>G</td><td>Guanine</td></tr>
-      <tr><td><code>T</code></td><td>T</td><td>Thymine in DNA; uracil in RNA in the INSDC convention</td></tr>
-      <tr><td><code>M</code></td><td>A or C</td><td>Amino</td></tr>
-      <tr><td><code>R</code></td><td>A or G</td><td>Purine</td></tr>
-      <tr><td><code>W</code></td><td>A or T</td><td>Weak interaction</td></tr>
-      <tr><td><code>S</code></td><td>C or G</td><td>Strong interaction</td></tr>
-      <tr><td><code>Y</code></td><td>C or T</td><td>Pyrimidine</td></tr>
-      <tr><td><code>K</code></td><td>G or T</td><td>Keto</td></tr>
-      <tr><td><code>V</code></td><td>A, C, or G</td><td>Not T</td></tr>
-      <tr><td><code>H</code></td><td>A, C, or T</td><td>Not G</td></tr>
-      <tr><td><code>D</code></td><td>A, G, or T</td><td>Not C</td></tr>
-      <tr><td><code>B</code></td><td>C, G, or T</td><td>Not A</td></tr>
-      <tr><td><code>N</code></td><td>A, C, G, or T</td><td>Any/unspecified base</td></tr>
-    </tbody>
-  </table>
-
-  <pre><code>&gt;sequence_with_ambiguity
-ATGCRYNNATGCT</code></pre>
-
-  <p><strong>Do not automatically delete ambiguity codes.</strong> An <code>N</code>, <code>R</code>, or <code>Y</code> can carry information about uncertainty, consensus sequence construction, polymorphism, or unresolved sequencing. Whether such symbols are acceptable depends on the downstream analysis.</p>
-
-  <p><strong>Takeaway:</strong> a nucleotide FASTA sequence is an <strong>ordered 5′ → 3′ residue string</strong>; ambiguity symbols are part of the biological representation, not necessarily formatting errors.</p>
-</section>
-
-<section>
-  <h2>4. Representation of Protein Sequences</h2>
-
-  <p>Protein FASTA uses the <strong>same header-plus-sequence structure</strong>, but its sequence body contains <strong>one-letter amino-acid codes</strong>. The INSDC feature-table standard uses IUPAC one-letter amino-acid abbreviations for translated protein sequence.<sup><a href="#ref4">4</a></sup></p>
-
-  <pre><code>&gt;proteinA hypothetical_enzyme
-MKKIGYSAPRQTKEAIEAGADVVVVATGGTGIGLA</code></pre>
-
-  <p>Protein sequences are written from the <strong>amino terminus (N-terminus) toward the carboxyl terminus (C-terminus)</strong>. As with nucleotides, FASTA preserves residue order but does not by itself establish protein function, experimental evidence, domain boundaries, post-translational modifications, or biological activity.</p>
-
-  <h3>4.1 Standard One-Letter Amino-Acid Codes</h3>
-
-  <table class="science-table" data-id="amino-acid-one-letter-codes">
-    <caption>Table 3: Standard and commonly encountered one-letter amino-acid codes</caption>
-    <thead>
-      <tr>
-        <th>Code</th>
-        <th>Amino Acid</th>
-        <th>Code</th>
-        <th>Amino Acid</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>A</code></td><td>Alanine</td><td><code>R</code></td><td>Arginine</td></tr>
-      <tr><td><code>N</code></td><td>Asparagine</td><td><code>D</code></td><td>Aspartate</td></tr>
-      <tr><td><code>C</code></td><td>Cysteine</td><td><code>Q</code></td><td>Glutamine</td></tr>
-      <tr><td><code>E</code></td><td>Glutamate</td><td><code>G</code></td><td>Glycine</td></tr>
-      <tr><td><code>H</code></td><td>Histidine</td><td><code>I</code></td><td>Isoleucine</td></tr>
-      <tr><td><code>L</code></td><td>Leucine</td><td><code>K</code></td><td>Lysine</td></tr>
-      <tr><td><code>M</code></td><td>Methionine</td><td><code>F</code></td><td>Phenylalanine</td></tr>
-      <tr><td><code>P</code></td><td>Proline</td><td><code>S</code></td><td>Serine</td></tr>
-      <tr><td><code>T</code></td><td>Threonine</td><td><code>W</code></td><td>Tryptophan</td></tr>
-      <tr><td><code>Y</code></td><td>Tyrosine</td><td><code>V</code></td><td>Valine</td></tr>
-      <tr><td><code>U</code></td><td>Selenocysteine</td><td><code>O</code></td><td>Pyrrolysine</td></tr>
-      <tr><td><code>B</code></td><td>Aspartate or asparagine</td><td><code>Z</code></td><td>Glutamate or glutamine</td></tr>
-      <tr><td><code>J</code></td><td>Leucine or isoleucine</td><td><code>X</code></td><td>Any/unknown amino acid</td></tr>
-    </tbody>
-  </table>
-
-  <h3>4.2 Unknown Residues and Stop Symbols</h3>
-
-  <p><code>X</code> commonly represents an <strong>unknown or unspecified amino acid</strong>.<sup><a href="#ref4">4</a></sup> A terminal <code>*</code> may be produced by some translation programs to indicate a stop codon, but software differs in whether it accepts this character in protein input. Check the destination tool before retaining or removing it.</p>
-
-  <p><strong>Note:</strong> do not classify a short FASTA record as nucleotide or protein from its letters alone. Protein sequences can contain letters such as <code>A</code>, <code>C</code>, <code>G</code>, and <code>T</code>. For short sequences in particular, <strong>alphabet inspection alone can be ambiguous</strong>.</p>
-
-  <p><strong>Takeaway:</strong> protein FASTA represents the <strong>N → C amino-acid sequence</strong>; it does not prove the protein's function or experimental existence.</p>
-</section>
-
-<section>
-  <h2>5. Single FASTA, Multi-FASTA, and Aligned FASTA</h2>
-
-  <h3>5.1 Multi-FASTA: Many Records in One File</h3>
-
-  <p>A FASTA file can contain a single record or many records. When several records are placed consecutively in one file, the file is commonly called a <strong>multi-FASTA</strong>.</p>
-
-  <pre><code>&gt;isolate_A
-ATGCGTACGTAGCTAGC
-&gt;isolate_B
-ATGCGTACGTGGCTAGC
-&gt;isolate_C
-ATGCGTACGTAGTTAGC</code></pre>
-
-  <p>This is common in microbiology and genomics. A multi-FASTA file may contain <strong>all genome contigs, all predicted proteins, multiple isolates, orthologous genes, marker genes, or reference sequences</strong>. NCBI submission workflows likewise accept multiple sequences in a single FASTA file, with a separate definition line for each record.<sup><a href="#ref2">2</a></sup> Each record requires its own header, and identifiers should be unique because downstream tools commonly use them to label results.</p>
-
-  <h3>5.2 FASTA Is Not an Alignment Method</h3>
-
-  <p>A FASTA file may also be used to store sequences that have already been aligned. Such files can contain gap characters such as <code>-</code>. The presence of gaps does <strong>not</strong> mean FASTA itself performed the alignment; it only stores the resulting aligned strings.</p>
-
-  <pre><code>&gt;isolate_A
-ATGCGTACGTAGC
-&gt;isolate_B
-ATGCGTA-GTAGC</code></pre>
-
-  <p>For an <strong>unaligned raw sequence</strong>, gap characters should not be inserted simply to make sequences look similar. Gaps should appear only when they have a defined meaning, such as an alignment output or a representation explicitly required by a workflow.</p>
-
-  <p><strong>Takeaway:</strong> <strong>multi-FASTA means multiple records</strong>; aligned FASTA means the same record structure is being used to store an alignment.</p>
-</section>
-
-<section>
-  <h2>6. FASTA Headers Are Not Universally Identical</h2>
-
-  <p>The structural rule <code>&gt;header</code> is simple, but the information after <code>&gt;</code> is <strong>not governed by one universal biological header schema</strong>. EMBL-EBI explicitly notes that different data sources can return different, yet valid, FASTA header conventions.<sup><a href="#ref3">3</a></sup></p>
-
-  <h3>6.1 A Simple Local Header</h3>
-
-  <pre><code>&gt;ECOLI_K12_gyrA DNA_gyrase_subunit_A</code></pre>
-
-  <p>This works well for many local analyses because the first token is a stable machine-readable identifier and the remaining text is descriptive.</p>
-
-  <h3>6.2 NCBI Definition-Line Information</h3>
-
-  <p>For sequence submission, NCBI can encode biological source information in bracketed definition-line modifiers such as <code>[organism=...]</code>, <code>[strain=...]</code>, or <code>[plasmid-name=...]</code>.<sup><a href="#ref2">2</a></sup></p>
-
-  <pre><code>&gt;contig02 [organism=Clostridium difficile] [strain=ABDC] [plasmid-name=pABDC1]</code></pre>
-
-  <h3>6.3 UniProt Protein Headers</h3>
-
-  <p><a href="https://www.uniprot.org/help/fasta-headers" target="_blank" rel="noopener noreferrer">UniProt</a> uses a structured protein header that may include the database class, accession, entry name, protein name, organism, taxonomy identifier, gene, evidence level, and sequence version.<sup><a href="#ref5">5</a></sup></p>
-
-  <pre><code>&gt;sp|P12345|AATM_RABIT Aspartate aminotransferase, mitochondrial ...</code></pre>
-
-  <p><strong>Do not write a parser based on assumptions from one database.</strong> A script that expects every header to contain pipe-separated UniProt fields may fail on an NCBI, ENA, or locally generated FASTA file.</p>
-
-  <p><strong>Takeaway:</strong> the <strong>FASTA record structure is stable; header semantics are source-dependent</strong>.</p>
-</section>
-
-<section>
-  <h2>7. FASTA Is Not the Same as an Annotated Database Record</h2>
-
-  <p>A common beginner mistake is assuming that exporting a sequence as FASTA preserves everything shown on the database page. It does not. Rich records from <a href="https://www.ncbi.nlm.nih.gov/genbank/" target="_blank" rel="noopener noreferrer">GenBank</a>, <a href="https://www.ebi.ac.uk/ena/browser/home" target="_blank" rel="noopener noreferrer">ENA</a>, and <a href="https://www.uniprot.org/" target="_blank" rel="noopener noreferrer">UniProt</a> can contain extensive annotation that is not represented in the sequence body.<sup><a href="#ref3">3</a></sup><sup><a href="#ref5">5</a></sup></p>
-
-  <table class="science-table" data-id="fasta-vs-annotated-record">
-    <caption>Table 4: FASTA compared with a richly annotated biological record</caption>
-    <thead>
-      <tr>
-        <th>Information</th>
-        <th>FASTA</th>
-        <th>Annotated Record</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>Sequence</strong></td><td>Yes</td><td>Yes</td></tr>
-      <tr><td><strong>Identifier</strong></td><td>Usually</td><td>Yes</td></tr>
-      <tr><td><strong>Short description</strong></td><td>Possible</td><td>Usually</td></tr>
-      <tr><td><strong>Gene/CDS coordinates</strong></td><td>Not inherently</td><td>Usually represented</td></tr>
-      <tr><td><strong>Feature annotations</strong></td><td>Not inherently</td><td>Often extensive</td></tr>
-      <tr><td><strong>Literature references</strong></td><td>Normally absent</td><td>Often present</td></tr>
-      <tr><td><strong>Evidence/provenance</strong></td><td>Very limited</td><td>Can be extensive</td></tr>
-      <tr><td><strong>Database cross-references</strong></td><td>Normally absent</td><td>Often present</td></tr>
-    </tbody>
-  </table>
-
-  <blockquote>
-    <strong>Note:</strong> use FASTA when the <strong>sequence itself</strong> is the required input. Preserve the original database record, accession/version, and associated annotation when <strong>biological context</strong> is required.
-  </blockquote>
-
-  <p><strong>Takeaway:</strong> FASTA is <strong>sequence-rich but annotation-poor</strong>.</p>
-</section>
-
-<section>
-  <h2>8. FASTA vs. FASTQ: Sequence Representation vs. Sequencing Evidence</h2>
-
-  <p>FASTA and FASTQ both contain biological sequence text, but they answer different questions. <strong>FASTA stores the sequence</strong>; FASTQ stores the sequence together with <strong>per-base quality scores</strong>. The FASTQ structure and the historical Sanger/Solexa/Illumina variants were described in detail by Cock and colleagues.<sup><a href="#ref7">7</a></sup> NCBI SRA documentation likewise describes FASTQ as a read identifier, base calls, a second definition line, and a quality string.<sup><a href="#ref6">6</a></sup></p>
-
-  <table class="science-table" data-id="fasta-vs-fastq">
-    <caption>Table 5: Practical distinction between FASTA and FASTQ</caption>
-    <thead>
-      <tr>
-        <th>Question</th>
-        <th>FASTA</th>
-        <th>FASTQ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Stores sequence?</strong></td>
-        <td>Yes</td>
-        <td>Yes</td>
-      </tr>
-      <tr>
-        <td><strong>Stores per-base quality?</strong></td>
-        <td>No</td>
-        <td>Yes</td>
-      </tr>
-      <tr>
-        <td><strong>Typical use</strong></td>
-        <td>Reference sequences, assemblies, proteins, alignments, database queries</td>
-        <td>Raw or processed sequencing reads with quality information</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p>A useful memory shortcut is: <strong>FASTA = what sequence?</strong> FASTQ = <strong>what sequence + how confident were the base calls?</strong></p>
-
-  <p><strong>Takeaway:</strong> do not discard FASTQ quality information early if your analysis still depends on sequencing confidence.</p>
-</section>
-
-<section>
-  <h2>9. Common FASTA Filename Extensions</h2>
-
-  <p>The FASTA syntax does not require one universal file extension. Extensions are mainly <strong>workflow conventions</strong>, so the file contents and provenance remain more important than the filename. NCBI genome-submission workflows, for example, use <code>.fsa</code> for FASTA sequence files.<sup><a href="#ref2">2</a></sup></p>
-
-  <table class="science-table" data-id="fasta-file-extensions">
-    <caption>Table 6: Common extensions used for FASTA-formatted sequence files</caption>
-    <thead>
-      <tr>
-        <th>Extension</th>
-        <th>Common Usage</th>
-        <th>Interpretation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>.fasta</code></td><td>General FASTA file</td><td>May contain nucleotide or protein sequence.</td></tr>
-      <tr><td><code>.fa</code></td><td>Short general extension</td><td>Sequence type must be determined from context.</td></tr>
-      <tr><td><code>.fna</code></td><td>Often nucleotide FASTA</td><td>Convention, not a different syntax.</td></tr>
-      <tr><td><code>.faa</code></td><td>Often amino-acid FASTA</td><td>Frequently used for protein collections.</td></tr>
-      <tr><td><code>.fsa</code></td><td>Used in several NCBI submission workflows</td><td>Still FASTA-formatted sequence.</td></tr>
-    </tbody>
-  </table>
-
-  <p><strong>Do not trust the extension alone.</strong> A mislabeled file can still be syntactically valid, and many tools inspect the sequence rather than the filename.</p>
-
-  <p><strong>Takeaway:</strong> the <strong>content defines the FASTA record</strong>; extensions are convenience labels.</p>
-</section>
-
-<section>
-  <h2>10. Practical Quality Checks Before Using a FASTA File</h2>
-
-  <p>Many FASTA failures are caused by <strong>file hygiene rather than complex biology</strong>. A brief inspection before analysis can prevent mislabeled sequences, duplicate output labels, invalid characters, and lost provenance. NCBI submission guidance emphasizes unique sequence IDs and valid definition-line structure, while INSDC standards define the accepted nucleotide and amino-acid alphabets.<sup><a href="#ref2">2</a></sup><sup><a href="#ref4">4</a></sup></p>
-
-  <ol>
-    <li><strong>Confirm the biological sequence type.</strong> Is the input DNA, RNA, protein, or an aligned sequence set?</li>
-    <li><strong>Check record boundaries.</strong> Every record must begin with <code>&gt;</code>.</li>
-    <li><strong>Check identifiers.</strong> Keep IDs unique when downstream tools use them as labels.</li>
-    <li><strong>Inspect the alphabet.</strong> Distinguish valid ambiguity codes from accidental characters.</li>
-    <li><strong>Check orientation.</strong> For nucleotide sequences, know whether the sequence is forward, reverse-complemented, transcript-derived, or otherwise transformed.</li>
-    <li><strong>Check for unintended gaps.</strong> A <code>-</code> may be appropriate in an alignment but suspicious in a raw sequence.</li>
-    <li><strong>Remove copied formatting.</strong> Page numbers, commas, rich-text characters, and word-processor markup do not belong in the sequence body.</li>
-    <li><strong>Record provenance.</strong> Keep the database name, accession, accession version, sample identifier, or analysis step that produced the sequence.</li>
-    <li><strong>Preserve metadata separately.</strong> FASTA alone usually cannot preserve feature coordinates, experimental conditions, or full sample metadata.</li>
-    <li><strong>Check the destination tool.</strong> Different tools may differ in accepted ambiguity codes, gap symbols, stop characters, and header conventions.</li>
-  </ol>
-
-  <h3>10.1 Poor Identifier Practice</h3>
-
-  <pre><code>&gt;sequence 1 final new corrected copy
-ATGCGT...</code></pre>
-
-  <p>The text is understandable to its creator today but is difficult to track reproducibly later.</p>
-
-  <h3>10.2 Improved Identifier Practice</h3>
-
-  <pre><code>&gt;EC01_16S isolate_EC01_16S_rRNA
-AGAGTT...</code></pre>
-
-  <p>The improved version has a <strong>stable machine-readable identifier</strong> plus a concise biological description.</p>
-
-  <p><strong>Takeaway:</strong> before analysis, verify <strong>type, IDs, alphabet, orientation, gaps, and provenance</strong>.</p>
-</section>
-
-<section>
-  <h2>11. FASTA in Real Bioinformatics Workflows</h2>
-
-  <p>FASTA is best understood as a <strong>common interface between databases and analytical tools</strong>. The same basic representation can move from sequence retrieval to alignment, similarity searching, annotation, and prediction.</p>
-
-  <p>A typical workflow may be summarized as:</p>
-
-  <p><strong>Biological sample → sequencing/assembly → sequence record → FASTA export → computational analysis → biological interpretation.</strong></p>
-
-  <h3>11.1 Sequence Similarity Searching</h3>
-
-  <p>A nucleotide or protein sequence can be pasted or uploaded to <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank" rel="noopener noreferrer">NCBI BLAST</a>. BLAST accepts nucleotide and protein queries and compares them with sequence databases.<sup><a href="#ref8">8</a></sup> FASTA is therefore often the bridge between a locally stored sequence and database similarity searching.</p>
-
-  <h3>11.2 Multiple Sequence Alignment</h3>
-
-  <p>A multi-FASTA collection of related sequences can be supplied to tools such as <a href="https://www.ebi.ac.uk/jdispatcher/msa/clustalo" target="_blank" rel="noopener noreferrer">Clustal Omega</a> for multiple sequence alignment. The input file identifies each sequence; the alignment program determines how residues should be arranged relative to one another.</p>
-
-  <h3>11.3 Protein Family and Domain Analysis</h3>
-
-  <p>A protein FASTA sequence can be supplied to <a href="https://www.ebi.ac.uk/interpro/search/sequence/" target="_blank" rel="noopener noreferrer">InterPro</a> or InterProScan to search protein family, domain, site, and repeat signatures. The resulting annotations are <strong>predictions or database-supported classifications</strong>, not experimental proof of function.</p>
-
-  <h3>11.4 Genome and Metagenome Workflows</h3>
-
-  <p>Genome assemblies are commonly represented as multi-FASTA files containing contigs or scaffolds, while predicted proteomes are commonly represented as protein FASTA files. The same dataset may therefore move through several FASTA representations during a project: <strong>assembled DNA → predicted coding sequences → translated proteins</strong>.</p>
-
-  <p><strong>Takeaway:</strong> FASTA is not the analysis itself; it is often the <strong>input/output language connecting analytical steps</strong>.</p>
-</section>
-
-<section>
-  <h2>12. Common Misinterpretations to Avoid</h2>
-
-  <dl>
-    <dt><strong>"The file ends in .fasta, so I know what molecule it contains."</strong></dt>
-    <dd>No. The extension identifies a likely format, not necessarily whether the sequence is DNA, RNA, protein, aligned, predicted, or experimentally determined.</dd>
-
-    <dt><strong>"The header contains a gene name, therefore the sequence must be that gene."</strong></dt>
-    <dd>No. A FASTA header is metadata supplied by a database, program, or user. Its correctness depends on the source and annotation process.</dd>
-
-    <dt><strong>"An N in a DNA sequence is an error that should be deleted."</strong></dt>
-    <dd>No. <code>N</code> is a valid IUPAC symbol representing an unspecified nucleotide. Removing it changes sequence length and positional relationships.</dd>
-
-    <dt><strong>"A protein FASTA hit proves the protein has that function."</strong></dt>
-    <dd>No. Sequence similarity or domain annotation can support a functional hypothesis, but <strong>prediction is not experimental validation</strong>.</dd>
-
-    <dt><strong>"FASTA preserves everything from GenBank or UniProt."</strong></dt>
-    <dd>No. FASTA intentionally reduces the record to a header and sequence; much of the structured biological annotation is lost.</dd>
-  </dl>
-
-  <p><strong>Takeaway:</strong> FASTA tells you <strong>what sequence string was supplied</strong>; correct biological interpretation still depends on source, metadata, analysis, and validation.<sup><a href="#ref2">2</a></sup><sup><a href="#ref4">4</a></sup><sup><a href="#ref5">5</a></sup></p>
-</section>
-
-<section>
-  <h2>13. Conclusion</h2>
-
-  <p>FASTA is simple enough to learn quickly, but correct use requires more than recognizing the <code>&gt;</code> symbol. A FASTA record combines an <strong>identifier/description</strong> with an <strong>ordered nucleotide or amino-acid sequence</strong>. The same representation can describe one sequence, thousands of sequences, or even sequences that have already been aligned.</p>
-
-  <p>The most important distinction is that FASTA is a <strong>representation format, not an annotation system</strong>. It normally does not preserve gene coordinates, detailed feature tables, experimental evidence, quality scores, or the full provenance found in biological databases. Those details must be retained separately when they matter to interpretation.</p>
-
-  <p>For reliable use, remember the short checklist: <strong>identify the molecule → inspect the header → verify the alphabet → preserve orientation and provenance → check tool requirements</strong>. With these habits, FASTA becomes a dependable interface for sequence searching, alignment, annotation, genomics, proteomics, and many other bioinformatics workflows.<sup><a href="#ref2">2</a></sup><sup><a href="#ref3">3</a></sup></p>
-</section>
-
-<section id="references">
-  <h2>References</h2>
-  <ol>
-    <li id="ref1">Pearson WR, Lipman DJ. Improved tools for biological sequence comparison. <em>Proceedings of the National Academy of Sciences</em>. 1988;85(8):2444–2448. DOI: <a href="https://doi.org/10.1073/pnas.85.8.2444" target="_blank" rel="noopener noreferrer">10.1073/pnas.85.8.2444</a>. <a href="https://pubmed.ncbi.nlm.nih.gov/3162770/" target="_blank" rel="noopener noreferrer">PubMed</a>.</li>
-
-    <li id="ref2">National Center for Biotechnology Information (NCBI). FASTA-formatted sequences and GenBank submission guidance. <a href="https://submit.ncbi.nlm.nih.gov/about/genbank/" target="_blank" rel="noopener noreferrer">GenBank submission guidance</a>; <a href="https://www.ncbi.nlm.nih.gov/genbank/genomesubmit/" target="_blank" rel="noopener noreferrer">Genome submission FASTA guidance</a>; <a href="https://www.ncbi.nlm.nih.gov/genbank/mods_fastadefline/" target="_blank" rel="noopener noreferrer">Modifiers for FASTA definition lines</a>.</li>
-
-    <li id="ref3">EMBL-EBI. Sequence formats and Dbfetch FASTA documentation. <a href="https://www.ebi.ac.uk/jdispatcher/docs/formats/" target="_blank" rel="noopener noreferrer">Example sequence formats</a>; <a href="https://www.ebi.ac.uk/Tools/dbfetch/faq.jsp" target="_blank" rel="noopener noreferrer">Dbfetch FASTA header conventions</a>.</li>
-
-    <li id="ref4">International Nucleotide Sequence Database Collaboration (INSDC). Feature Table Definition: controlled vocabularies for <strong>IUPAC nucleotide base codes</strong> and <strong>amino-acid abbreviations</strong>. <a href="https://www.insdc.org/submitting-standards/feature-table/" target="_blank" rel="noopener noreferrer">INSDC Feature Table</a>.</li>
-
-    <li id="ref5">UniProt Consortium. FASTA header conventions for UniProtKB, UniRef, UniParc, and related sequence sets. <a href="https://www.uniprot.org/help/fasta-headers" target="_blank" rel="noopener noreferrer">UniProt FASTA headers</a>.</li>
-
-    <li id="ref6">National Center for Biotechnology Information (NCBI), Sequence Read Archive. File Format Guide: FASTQ files. <a href="https://www.ncbi.nlm.nih.gov/sra/docs/submitformats/" target="_blank" rel="noopener noreferrer">SRA file format guide</a>.</li>
-
-    <li id="ref7">Cock PJA, Fields CJ, Goto N, Heuer ML, Rice PM. The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. <em>Nucleic Acids Research</em>. 2010;38(6):1767–1771. DOI: <a href="https://doi.org/10.1093/nar/gkp1137" target="_blank" rel="noopener noreferrer">10.1093/nar/gkp1137</a>.</li>
-
-    <li id="ref8">National Center for Biotechnology Information (NCBI). Basic Local Alignment Search Tool (BLAST). <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank" rel="noopener noreferrer">NCBI BLAST</a>.</li>
-  </ol>
-</section>
 
 </article>
+
+
   `,
 };
 

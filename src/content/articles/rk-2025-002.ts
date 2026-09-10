@@ -3,7 +3,7 @@ import { Article } from "../../lib/types";
 const article: Article = {
   id: "RK-2025-002",
   title: "Syllabus",
-  date: "2026-07-05",
+  date: "2025-01-01",
   tags: ["#syllabus", "#topics", "#bioinformatics"],
   type: "report",
   template: "standard",
@@ -15,79 +15,39 @@ const article: Article = {
     affiliation: "Gujarat University",
   },
   excerpt:
-    "A comprehensive course syllabus covering the foundational progression from computer operations to practical computational biology. The curriculum explores Linux basics, laboratory spreadsheet data handling, and introductory Python and R programming, before advancing into biological databases, sequence formats, pairwise alignment algorithms, and structural bioinformatics.",
+    "Bioinformatics might seem foreign to someone who has spent most of their life in a lab working with test tubes, flasks, and shakers...",
   content: `
   <article>
-
-<h2>Unit-I Fundamentals of Computer Operations & Data Tools</h2>
-
-
-  <h3>Computer Architecture & Data Integrity:</h3>
-  <ul>
-  <li>Core hardware components (CPU, RAM, storage mediums, etc.)&#10004;</li>
-  <li>the role of computers in the pharmaceutical industry (ELNs, LIMS)&#10004;;</li>
-  <li>introduction to data integrity and ALCOA+ principles.&#10004;</li>
-  </ul>
-
-  <h3>Operating Systems & Linux Basics:&#10004;</h3>
-  <ul>
-  <li>Navigating operating systems (Windows vs. Linux);&#10004;</li>
-  <li>utilizing the Linux Command Line Interface (CLI) for directory navigation (cd, ls, mkdir)&#10004;</li>
-  <li>basic text processing (cat, head, grep) for handling large biological text files.&#10004;</li>
-  </ul>
-
-
-    <h3>Spreadsheet Competency for Lab Data:</h3>
-  <ul>
-    <li>Advanced data entry, &#10004;</li>
-    <li>formatting tables,&#10004; </li>
-    <li>using basic statistical formulas (mean, standard deviation), </li>
-    <li>absolute cell referencing, creating standard plots (bar, scatter, line), </li>
-    <li>data sorting/filtering mechanisms.&#10004;</li>
-  </ul>
-
-    <h3>Python Programming Basics:</h3>
-  <ul>
-    <li>Introduction to Python syntax and IDEs &#10004;; </li>
-    <li>core data types (strings &#10004;, integers &#10004;, floats) &#10004;</li>
-    <li>basic data structures (lists &#10004;, dictionaries); </li>
-    <li>implementing control flow (if statements, for loops); </li>
-    <li>writing scripts to open and parse simple text or data files.</li>
-  </ul>
-
-  <h3>Introduction to R for Biostatistics:</h3>
-  <ul>
-  <li>R syntax basics; </li>
-  <li>understanding vectors and data frames. </li>
-  </ul>
-
-<h2>Unit-II Foundations of Bioinformatics & Structure Databases</h2>
-<h3>Introduction to Bioinformatics:</h3>
+<h2>PMB4802 Bioinformatics, IPR, Bioethics, Biosafety & Regulatory affairs</h2>
+<h3>Unit-1: Basic bioinformatics (15 L)</h3>
 <ul>
-  <li>Definition, scope, and computational handling of biological data &#10004;</li>
-  <li>representation of nucleic acid and protein sequences (FASTA format). &#10004;</li>
+  <li>1. Introduction to databases: primary <span style="color: green;">&#10004;</span>
+, secondary <span style="color: green;">&#10004;</span>
+, composite<span style="color: green;">&#10004;</span>.</li>
+  <li>2. Databases related to human diseases: OMIM<span style="color: green;">&#10004;</span>
+, HGMD<span style="color: green;">&#10004;</span>
+</li>
+  <li>3. Sequence similarity search: local<span style="color: green;">&#10004;</span>
+, global<span style="color: green;">&#10004;</span>
+, multiple<span style="color: green;">&#10004;</span>
+ and pairwise<span style="color: green;">&#10004;</span>
+</li>
+  <li>4. Comparison of bacterial genome<span style="color: green;">&#10004;</span></li>
+  <li>5. Protein structure: PDB<span style="color: green;">&#10004;</span>
+, protein structure prediction<span style="color: green;">&#10004;</span>
+</li>
+  <li>6. Human genome variation<span style="color: green;">&#10004;</span>
+</li>
+  <li>7. Functional genomics.<span style="color: green;">&#10004;</span>
+</li>
 </ul>
-
-<h3>Biological Databases (NCBI, EBI, DDBJ):&#10004;</h3>
+<h3>Unit-2: Introduction to Omics (15 L)</h3>
 <ul>
-  <li>Introduction to primary nucleotide databases (GenBank, EMBL, DDBJ) &#10004; </li>
-  <li>protein sequence databases (UniProt, Swiss-Prot) </li>
-  <li>search syntax, accession numbers &#10004;, and filtering search results</li>
-</ul>
-
-<h3>Sequence Alignment Basics:</h3>
-<ul>
-  <li>Concept of homology, orthology, and paralogy </li>
-  <li>understanding local vs. global alignment </li>
-  <li>practical execution of Pairwise Sequence Alignment using BLAST (BLASTn, BLASTp) </li>
-  <li>interpretation of E-values and bit scores</li>
-</ul>
-
-<h3>Structural Bioinformatics Basics:</h3>
-<ul>
-  <li>Introduction to the Protein Data Bank (PDB); &#10004;</li>
-  <li>anatomy of a PDB file; &#10004;</li>
-  <li>introduction to basic standalone or web-based molecular visualization software (e.g., PyMOL, Chimera, or Jmol) for viewing three-dimensional macromolecular structures.</li>
+<li>  1. Bioinformatics approach to RNA: eQtls, understanding the Genetic basis of Variation in Gene expression.</li>
+<li>  2. Protein analysis and proteomics<span style="color: green;">&#10004;</span>.</li>
+<li>  3. Molecular phylogeny & evaluation <span style="color: green;">&#10004;</span>.</li>
+<li>  4. Pharmacognosy<span style="color: green;">&#10004;</span>: protein drug interaction<span style="color: green;">&#10004;</span>, protein - protein interaction.</li>
+<li>  5. DNA-Drug interaction<span style="color: green;">&#10004;</span>, gene prediction, analysis of gene expression by microarray, homology modelling<span style="color: green;">&#10004;</span>.</li>
 </ul>
   </article>
   `,

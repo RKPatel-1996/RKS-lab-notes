@@ -30,12 +30,8 @@ const article: Article = {
 
   <section id="VisualizingChange">
     <h2>Visualizing The Shift</h2>
-    <p>The transformation from traditional biology to a data-intensive science involves quantifying biological randomness. One key concept often used in analyzing sequences is <strong>Shannon Entropy</strong> \( H \), which measures the uncertainty or information content in a sequence:</p>
-
-    $$ H = -\\sum_{i=1}^{n} p_i \\log_2 p_i $$
-
-    <p>Where \( p_i \) is the probability of character \( i \) appearing in the sequence. This mathematical foundation allows us to detect motifs and conserved regions in DNA.</p>
-
+    <p>The transformation from traditional biology to a data-intensive science can be visualized through the changing landscape of data accumulation. The following figure illustrates the exponential growth of GenBank sequences over time.</p>
+    
     <figure class="science-figure" data-id="FIG-1" data-clean-src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Pleiades_large.jpg">
       <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Pleiades_large.jpg" alt="Visualization of Data Growth" />
       <figcaption>Figure 1: Conceptual representation of the exponential expansion of biological data. The 'stars' represent data points in the genomic universe. (Source: NASA, Public Domain - Used for illustrative purposes).</figcaption>
@@ -54,7 +50,7 @@ const article: Article = {
  <p>
    <b>The Goal:</b> To create robust, scalable, and accurate software tools, databases, and algorithms that others can use.</p>
    <p><b>The Day-to-Day: </b>Their work involves writing complex code, optimizing algorithms for speed, managing server architecture, ensuring data security, and maintaining cloud infrastructure.</p>
-
+   
    <table class="science-table" data-id="table-skills">
     <caption>Table 1: Comparative Analysis of Skill Sets Required for Different Roles in Bioinformatics</caption>
     <thead>
@@ -118,17 +114,17 @@ const article: Article = {
  <h3>The Explorers: The User Side (The "Biologists")</h3>
 <p>This side is populated by wet-lab biologists, clinicians, and researchers. Their primary product is biological insight. They use the infrastructure built by the architects to answer specific scientific questions.</p>
 <p>
-
+  
    <b>The Goal:</b> To extract meaning from biological data. They care about what the data says about life, disease, or evolution.
   </p>
   <p> <b>The Day-to-Day: </b>Their work involves generating data (sequencing, mass spec), uploading it to servers, running analysis pipelines, visualizing results, and interpreting the biological significance.
 </p>
  <h4>The Knowledge Base Required:</h4>
-
+     
        <p><i>Biological Expertise:</i> Deep domain knowledge (e.g., microbiology, immunology) is their superpower. They know why the data matters.</p>
        <p><i>Data Literacy:</i> Understanding file formats (<a href="https://www.ncbi.nlm.nih.gov/genbank/fastaformat/">FASTA</a>, <a href="https://knowledge.illumina.com/software/general/software-general-reference_material-list/000002211">FASTQ</a>, <a href="https://support.illumina.com/help/BS_App_RNASeq_Alignment_OLH_1000000006112/Content/Source/Informatics/BAM-Format.htm">BAM</a>, <a href="https://support.illumina.com/help/BS_App_RNASeq_Alignment_OLH_1000000006112/Content/Source/Informatics/VCF-Format.htm">VCF</a>), experimental design, and statistical significance (<a href="https://en.wikipedia.org/wiki/P-value">p-values</a>, <a href="https://en.wikipedia.org/wiki/False_discovery_rate">FDR</a>).</p>
        <p><i>Practical Computing: </i>Basic command-line navigation (Linux), scripting for automation (Python/R), and familiarity with specific tools (<a href="https://galaxyproject.org">Galaxy</a> @thegalaxycommunityGalaxyPlatformAccessible2024, <a href="https://www.ncbi.nlm.nih.gov">NCBI</a>, <a href="https://genome.ucsc.edu/index.html">UCSC Genome Browser</a>).</p>
-
+     
 
 <h3>The Trap: Losing Yourself in the "Engineer's Domain"</h3>
 <p>
@@ -177,7 +173,7 @@ One of the most common pitfalls for modern biologists is the feeling that they m
 
 <h2>Conclusion</h2>
 <p>
-
+  
   The "New Age Biologist" is a hybrid, but a balanced one. You are a scientist first and a computer user second. Do not feel pressured to master the depths of computer science unless that is where your passion lies. Your role is to bridge the gap—to take the powerful tools built by engineers and apply them to the messy, complex, and beautiful reality of biology. By respecting the tool builders but mastering the tool's application, you remain the master of your scientific domain.
 </p>
 

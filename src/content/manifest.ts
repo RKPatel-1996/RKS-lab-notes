@@ -1,15 +1,15 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 export const ARTICLE_MANIFEST = [
   {
-    "id": "RK-2026-019",
-    "title": "Definition, Scope, and Computational Handling of Biological Data",
-    "date": "2026-09-01",
+    "id": "RK-2026-023",
+    "title": "Basic Molecular Structure Visualization with ChimeraX, PyMOL, and Jmol",
+    "date": "2026-09-07",
     "tags": [
-      "#Bioinformatics",
-      "#BiologicalData",
-      "#Pharmacology"
+      "#ChimeraX",
+      "#MolecularVisualization",
+      "#ProteinStructure"
     ],
-    "excerpt": "Bioinformatics developed as biology became increasingly data-rich, first through molecular sequence and structural information and later through genomics, transcriptomics, proteomics, metabolomics, chemical biology, and systems-level studies. This article introduces bioinformatics as the organization, management, analysis, and interpretation of biological data, showing how information expands from DNA to proteins, pathways, organisms, drugs, and phenotypes. The emphasis is on understanding why biological data require computational handling and how bioinformatics supports modern biology and pharmacology.",
+    "excerpt": "Molecular-visualization software converts structural coordinates into interactive three-dimensional representations that biologists can explore. This article introduces UCSF ChimeraX as the primary learning tool, with PyMOL and Jmol/JSmol as useful alternatives, and uses the human beta-2 adrenergic receptor structure PDB 2RH1 as a running pharmacology example. Students learn what cartoon, stick, sphere, and surface representations mean biologically and complete a small first-session workflow for locating a ligand, examining a binding pocket, selecting residues, and interpreting structural context.",
     "readTime": "25 min",
     "type": "report",
     "template": "standard",
@@ -19,19 +19,19 @@ export const ARTICLE_MANIFEST = [
       "avatar": "https://github.com/RKPatel-1996.png",
       "affiliation": "Gujarat University"
     },
-    "modulePath": "./articles/rk-2026-019.ts"
+    "modulePath": "./articles/rk-2026-023.ts"
   },
   {
-    "id": "RK-2026-020",
-    "title": "Protein Sequence Databases: Understanding UniProt and Swiss-Prot",
-    "date": "2026-09-01",
+    "id": "RK-2026-031",
+    "title": "Practical 4: MEGA- Phylogenetic tree plotting",
+    "date": "2026-03-15",
     "tags": [
-      "#UniProt",
-      "#SwissProt",
-      "#ProteinDatabases"
+      "#Tree",
+      "#Phylogenetic Tree",
+      "#MEGA"
     ],
-    "excerpt": "UniProt is one of the most important resources for connecting a protein sequence with biological knowledge about its function, location, domains, variants, interactions, and supporting evidence. This introductory article explains how UniProtKB, Swiss-Prot, TrEMBL, UniParc, UniRef, and Proteomes relate to one another, what a first-time visitor should look for on a protein entry page, and how UniProt identifiers are used. The emphasis is on using the resource correctly as a biology and pharmacology student rather than on database software or computational infrastructure.",
-    "readTime": "25 min",
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
     "type": "report",
     "template": "standard",
     "author": {
@@ -40,19 +40,19 @@ export const ARTICLE_MANIFEST = [
       "avatar": "https://github.com/RKPatel-1996.png",
       "affiliation": "Gujarat University"
     },
-    "modulePath": "./articles/rk-2026-020.ts"
+    "modulePath": "./articles/rk-2026-031.ts"
   },
   {
-    "id": "RK-2026-021",
-    "title": "Introduction to the Protein Data Bank (PDB)",
-    "date": "2026-09-01",
+    "id": "RK-2026-032",
+    "title": "Practical 5: Mutation and correct frame prediction ",
+    "date": "2026-03-15",
     "tags": [
-      "#PDB",
-      "#ProteinStructure",
-      "#StructuralBiology"
+      "#Mutation",
+      "#FramePrediction",
+      "#Expasy"
     ],
-    "excerpt": "The Protein Data Bank (PDB) is the global archive for three-dimensional structures of biological macromolecules. This introductory article explains what the PDB is for, who manages it, what a first-time visitor should examine on a structure page, how PDB identifiers work, and how experimental method, resolution, ligands, chains, biological assemblies, and validation affect interpretation. A beta-2 adrenergic receptor structure is used as a pharmacology-oriented example to show how a PDB entry connects molecular structure with drug binding and biological function.",
-    "readTime": "25 min",
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
     "type": "report",
     "template": "standard",
     "author": {
@@ -61,19 +61,123 @@ export const ARTICLE_MANIFEST = [
       "avatar": "https://github.com/RKPatel-1996.png",
       "affiliation": "Gujarat University"
     },
-    "modulePath": "./articles/rk-2026-021.ts"
+    "modulePath": "./articles/rk-2026-032.ts"
+  },
+  {
+    "id": "RK-2026-030",
+    "title": "eQTLS: gene expression & microarray",
+    "date": "2026-03-12",
+    "tags": [
+      "#Gene",
+      "#expression",
+      "#eQTLS"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-030.ts"
+  },
+  {
+    "id": "RK-2026-029",
+    "title": "Gene prediction",
+    "date": "2026-03-09",
+    "tags": [
+      "#Gene",
+      "#Prediction"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-029.ts"
+  },
+  {
+    "id": "RK-2026-028",
+    "title": "Protein-drug interactions",
+    "date": "2026-03-04",
+    "tags": [
+      "#Protein",
+      "#Drug",
+      "#Interactions"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-028.ts"
+  },
+  {
+    "id": "RK-2026-027",
+    "title": "DNA-drug interactions",
+    "date": "2026-03-03",
+    "tags": [
+      "#DNA",
+      "#Drug",
+      "#Natural-Products"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-027.ts"
+  },
+  {
+    "id": "RK-2026-026",
+    "title": "Pharmacognosy: From Traditional medicine to Modern Bioinformatics",
+    "date": "2026-02-27",
+    "tags": [
+      "#Pharmacognosy",
+      "#Drug",
+      "#Natural-Products"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-026.ts"
   },
   {
     "id": "RK-2026-022",
-    "title": "Anatomy of a PDB Structure File: From Atoms to PDBx/mmCIF",
-    "date": "2026-09-01",
+    "title": "Practical -1: Sequence Retrieval from NCBI and ExPasy Translation Analysis",
+    "date": "2026-02-26",
     "tags": [
-      "#PDB",
-      "#PDBxmmCIF",
-      "#ProteinStructure"
+      "#Practical",
+      "#Expasy",
+      "#bioinformatics"
     ],
-    "excerpt": "A structure file is the text representation behind the three-dimensional molecular model seen in a PDB viewer. This article introduces the biological anatomy of structure files using a small teaching example: chains contain residues, residues contain atoms, and each modeled atom is positioned using x, y, and z coordinates. It also explains why the modern PDBx/mmCIF format has replaced the legacy PDB format as the archive standard, while keeping the emphasis on biologically useful information such as ligands, water molecules, missing residues, experimental metadata, and biological assemblies.",
-    "readTime": "25 min",
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
     "type": "report",
     "template": "standard",
     "author": {
@@ -85,15 +189,15 @@ export const ARTICLE_MANIFEST = [
     "modulePath": "./articles/rk-2026-022.ts"
   },
   {
-    "id": "RK-2026-016",
-    "title": "Nucleic Acid and Protein Sequences in FASTA Format",
-    "date": "2026-08-31",
+    "id": "RK-2026-024",
+    "title": "Practical -3: Six-Frame Translation and Protein Prediction",
+    "date": "2026-02-26",
     "tags": [
-      "#FASTA",
-      "#SequenceFormats",
+      "#Practical",
+      "#Expasy",
       "#bioinformatics"
     ],
-    "excerpt": "FASTA is one of the simplest and most widely used text formats for representing DNA, RNA, and protein sequences in bioinformatics. This article explains how FASTA records are structured, how nucleotide and amino-acid alphabets are represented, how ambiguity and multi-FASTA records are handled, and why identifiers and metadata matter in real analysis workflows. It also distinguishes FASTA from richer annotation formats and from FASTQ, helping researchers choose and prepare sequence files correctly for downstream tools.",
+    "excerpt": "\n    \n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -103,19 +207,82 @@ export const ARTICLE_MANIFEST = [
       "avatar": "https://github.com/RKPatel-1996.png",
       "affiliation": "Gujarat University"
     },
-    "modulePath": "./articles/rk-2026-016.ts"
+    "modulePath": "./articles/rk-2026-024.ts"
+  },
+  {
+    "id": "RK-2026-021",
+    "title": "Protein-Protein Interactions",
+    "date": "2026-02-18",
+    "tags": [
+      "#Protein",
+      "#Interactions",
+      "#bioinformatics"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-021.ts"
+  },
+  {
+    "id": "RK-2026-020",
+    "title": "Bacterial genome comparison",
+    "date": "2026-02-15",
+    "tags": [
+      "#Genome",
+      "#comparison",
+      "#bioinformatics"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-020.ts"
+  },
+  {
+    "id": "RK-2026-019",
+    "title": "Protein Analysis and Proteomics",
+    "date": "2026-02-13",
+    "tags": [
+      "#Proteomics",
+      "#Protein",
+      "#bioinformatics"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-019.ts"
   },
   {
     "id": "RK-2026-017",
-    "title": "Introduction to Primary Nucleotide Databases: GenBank, ENA and DDBJ",
-    "date": "2026-08-31",
+    "title": "Protein structure prediction",
+    "date": "2026-02-10",
     "tags": [
-      "#GenBank",
-      "#NucleotideDatabases",
+      "#Protein",
+      "#Prediction",
       "#bioinformatics"
     ],
-    "excerpt": "Primary nucleotide databases are the archival layer of sequence bioinformatics: they preserve nucleotide sequences submitted by researchers and assign stable identifiers that allow those records to be found and cited. This introductory article uses GenBank as the main example, then shows how the European Nucleotide Archive (ENA) and DNA Data Bank of Japan (DDBJ) participate in the same international data-sharing system. The emphasis is on the few ideas a first-time user needs to understand before searching, opening, interpreting, and downloading a nucleotide record.",
-    "readTime": "25 min",
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
     "type": "report",
     "template": "standard",
     "author": {
@@ -128,15 +295,15 @@ export const ARTICLE_MANIFEST = [
   },
   {
     "id": "RK-2026-018",
-    "title": "Core Pharmacology Databases: Connecting Chemicals, Targets and Drug Response",
-    "date": "2026-08-31",
+    "title": "Composite Databases",
+    "date": "2026-02-08",
     "tags": [
-      "#Pharmacology",
-      "#DrugDatabases",
-      "#DrugDiscovery"
+      "#Composite",
+      "#Databases",
+      "#bioinformatics"
     ],
-    "excerpt": "Pharmacology sits at the interface between chemistry and biology: a chemical has a structure, interacts with biological targets, produces measurable activity, and may ultimately become a medicine whose effects vary between patients. This introductory article presents the small set of databases that are most useful for following that chain, including PubChem, ChEMBL, DrugBank, the IUPHAR/BPS Guide to PHARMACOLOGY, BindingDB, DrugCentral, and ClinPGx. The aim is not to memorize databases, but to learn which resource answers which pharmacological question.",
-    "readTime": "25 min",
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
     "type": "report",
     "template": "standard",
     "author": {
@@ -148,14 +315,35 @@ export const ARTICLE_MANIFEST = [
     "modulePath": "./articles/rk-2026-018.ts"
   },
   {
-    "id": "RK-2026-015",
-    "title": "Question Bank: short questions",
-    "date": "2026-08-11",
+    "id": "RK-2026-016",
+    "title": "Phylogenetic Tree construction using MEGA",
+    "date": "2026-02-05",
     "tags": [
-      "#Questions",
-      "#SQs"
+      "#PhylogeneticTree",
+      "#MEGA",
+      "#bioinformatics"
     ],
-    "excerpt": "\n",
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-016.ts"
+  },
+  {
+    "id": "RK-2026-015",
+    "title": "Phylogenetic Tree Reconstruction and Interpretation",
+    "date": "2026-02-04",
+    "tags": [
+      "#PhylogeneticTree",
+      "#bioinformatics"
+    ],
+    "excerpt": "\n    \n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -169,14 +357,13 @@ export const ARTICLE_MANIFEST = [
   },
   {
     "id": "RK-2026-014",
-    "title": "Python Syntax and IDEs",
-    "date": "2026-08-07",
+    "title": "Basics of Multiple Sequence Alignment",
+    "date": "2026-02-02",
     "tags": [
-      "#Python",
-      "#IDEs",
-      "#Jupyter"
+      "#MultipleSequenceAlignment",
+      "#bioinformatics"
     ],
-    "excerpt": "\nLearn the basic syntax of Python and understand how Python code can be written and executed using common development environments such as Visual Studio Code and Jupyter Notebook. The article focuses especially on Jupyter Notebook as an interactive environment for learning Python and performing biological data analysis.\n",
+    "excerpt": "\n    \n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -189,37 +376,13 @@ export const ARTICLE_MANIFEST = [
     "modulePath": "./articles/rk-2026-014.ts"
   },
   {
-    "id": "RK-2026-013",
-    "title": "Data Cleaning & Manipulation in Python",
-    "date": "2026-07-29",
-    "tags": [
-      "#Data",
-      "#Python",
-      "#manipulation",
-      "#pandas"
-    ],
-    "excerpt": "\nA beginner-friendly introduction to cleaning, validating, and restructuring biological datasets with pandas, followed by a guided practical exercise containing controlled data-quality problems.\n",
-    "readTime": "30 min",
-    "type": "report",
-    "template": "standard",
-    "author": {
-      "name": "RK Patel",
-      "role": "Microbiologist",
-      "avatar": "https://github.com/RKPatel-1996.png",
-      "affiliation": "Gujarat University"
-    },
-    "modulePath": "./articles/rk-2026-013.ts"
-  },
-  {
     "id": "RK-2026-012",
-    "title": "python basics",
-    "date": "2026-07-22",
+    "title": "NCBI Basic Local Alignment Search Tool (BLAST): Methodologies, Interface Dynamics, and Result Interpretation",
+    "date": "2026-01-14",
     "tags": [
-      "#Basics",
-      "#Pyhton",
-      "#Programming"
+      "#BLASTTool #bioinformatics"
     ],
-    "excerpt": "\n\n",
+    "excerpt": "\n    \n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -232,57 +395,15 @@ export const ARTICLE_MANIFEST = [
     "modulePath": "./articles/rk-2026-012.ts"
   },
   {
-    "id": "RK-2026-011",
-    "title": "Package and environment management in WSL",
-    "date": "2026-07-17",
-    "tags": [
-      "#Basics",
-      "#PackageManagement",
-      "#Programming"
-    ],
-    "excerpt": "\n\n",
-    "readTime": "30 min",
-    "type": "report",
-    "template": "standard",
-    "author": {
-      "name": "RK Patel",
-      "role": "Microbiologist",
-      "avatar": "https://github.com/RKPatel-1996.png",
-      "affiliation": "Gujarat University"
-    },
-    "modulePath": "./articles/rk-2026-011.ts"
-  },
-  {
-    "id": "RK-2026-010",
-    "title": "Advanced Data Entry",
-    "date": "2026-07-15",
-    "tags": [
-      "#Entry",
-      "#data",
-      "#"
-    ],
-    "excerpt": "\n\n",
-    "readTime": "30 min",
-    "type": "report",
-    "template": "standard",
-    "author": {
-      "name": "RK Patel",
-      "role": "Microbiologist",
-      "avatar": "https://github.com/RKPatel-1996.png",
-      "affiliation": "Gujarat University"
-    },
-    "modulePath": "./articles/rk-2026-010.ts"
-  },
-  {
     "id": "RK-2026-009",
-    "title": "Data and ELNs, LIMS",
-    "date": "2026-07-14",
+    "title": "Sequence Alignment: Pairwise Local, and Global Alignment Methodologies",
+    "date": "2026-01-11",
     "tags": [
-      "#LIMS",
-      "#data",
-      "#ELNs"
+      "#sequenceSimilarity",
+      "#LocalAlignment",
+      "#GlobalAlignment"
     ],
-    "excerpt": "\n\n",
+    "excerpt": "\n    This interactive page serves as aid for understanding the various sequence alignment methodologies. The application utilizes a dashboard layout to break complex bioinformatics concepts into digestible modules. Students can explore different alignment algorithms using interactive visualizations and compare their applications through dynamic charts. A direct comparison table clarifies distinct use cases—global versus local alignments—while the \"Practical Applications\" section maps out real-world scenarios where these tools are employed. This tool effectively bridges the gap between theoretical bioinformatics concepts and practical applications in genomics research.\n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -296,14 +417,14 @@ export const ARTICLE_MANIFEST = [
   },
   {
     "id": "RK-2026-008",
-    "title": "Data integrity and ALCOA+ principles",
-    "date": "2026-07-13",
+    "title": "Biological Sequence Comparison: Matrices and Foundational Concepts",
+    "date": "2026-01-09",
     "tags": [
-      "#data integrity",
-      "#data",
-      "#ALCOA+"
+      "#sequenceSimilarity",
+      "#alignment",
+      "#Matrices"
     ],
-    "excerpt": "\n\n",
+    "excerpt": "\n    This interactive page serves as a dynamic lecture aid for understanding the various sequence alignment tools and databases. The application utilizes a dashboard layout to break complex bioinformatics concepts into digestible modules. Students can explore different alignment algorithms using interactive visualizations and compare their applications through dynamic charts. A direct comparison table clarifies distinct use cases—global versus local alignments—while the \"Practical Applications\" section maps out real-world scenarios where these tools are employed. This tool effectively bridges the gap between theoretical bioinformatics concepts and practical applications in genomics research.\n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -317,13 +438,15 @@ export const ARTICLE_MANIFEST = [
   },
   {
     "id": "RK-2026-007",
-    "title": "Data and data types",
-    "date": "2026-07-09",
+    "title": "OMIM & HGMD: Secondary Mutation Databases",
+    "date": "2026-01-01",
     "tags": [
-      "#data",
-      "#datatypes"
+      "#HGMD",
+      "#OMIM",
+      "#SecondaryDatabase",
+      "#Genomics"
     ],
-    "excerpt": "\n\n",
+    "excerpt": "\n    This interactive page serves as a dynamic lecture aid for mastering OMIM and HGMD. The application utilizes a dashboard layout to break complex database structures into digestible modules. Students can explore OMIM’s entry types using an interactive prefix decoder and visualize the massive scale difference between gene discovery and mutation logging through dynamic growth charts. A direct comparison table clarifies distinct use cases—phenotypes versus variants—while the \"Clinical Workflow\" section maps out the real-world diagnostic logic used by geneticists. This tool effectively bridges the gap between theoretical database statistics and practical clinical application\n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -336,97 +459,15 @@ export const ARTICLE_MANIFEST = [
     "modulePath": "./articles/rk-2026-007.ts"
   },
   {
-    "id": "RK-2026-005",
-    "title": "Application of linux and its basic commands",
-    "date": "2026-07-08",
+    "id": "RK-2025-006",
+    "title": "Understand the Functional Genomics",
+    "date": "2025-12-17",
     "tags": [
-      "#Linux",
-      "#CommandLine",
-      "#Terminal"
-    ],
-    "excerpt": "\n\n",
-    "readTime": "30 min",
-    "type": "report",
-    "template": "standard",
-    "author": {
-      "name": "RK Patel",
-      "role": "Microbiologist",
-      "avatar": "https://github.com/RKPatel-1996.png",
-      "affiliation": "Gujarat University"
-    },
-    "modulePath": "./articles/rk-2026-005.ts"
-  },
-  {
-    "id": "RK-2026-006",
-    "title": "Linux and its basic commands",
-    "date": "2026-07-08",
-    "tags": [
-      "#Linux",
-      "#CommandLine",
-      "#Terminal"
-    ],
-    "excerpt": "\n\n",
-    "readTime": "30 min",
-    "type": "report",
-    "template": "standard",
-    "author": {
-      "name": "RK Patel",
-      "role": "Microbiologist",
-      "avatar": "https://github.com/RKPatel-1996.png",
-      "affiliation": "Gujarat University"
-    },
-    "modulePath": "./articles/rk-2026-006.ts"
-  },
-  {
-    "id": "RK-2026-004",
-    "title": "Operating systems: Windows, vs Linux",
-    "date": "2026-07-07",
-    "tags": [
-      "#OperatingSystems",
-      "#Windows",
-      "#Linux"
-    ],
-    "excerpt": "\n\n",
-    "readTime": "30 min",
-    "type": "report",
-    "template": "standard",
-    "author": {
-      "name": "RK Patel",
-      "role": "Microbiologist",
-      "avatar": "https://github.com/RKPatel-1996.png",
-      "affiliation": "Gujarat University"
-    },
-    "modulePath": "./articles/rk-2026-004.ts"
-  },
-  {
-    "id": "RK-2026-003",
-    "title": "Computer Hardware: CPU, RAM, and Storage",
-    "date": "2026-07-06",
-    "tags": [
-      "#Hardware, #CPU, #RAM, #Storage"
-    ],
-    "excerpt": "\n\n",
-    "readTime": "30 min",
-    "type": "report",
-    "template": "standard",
-    "author": {
-      "name": "RK Patel",
-      "role": "Microbiologist",
-      "avatar": "https://github.com/RKPatel-1996.png",
-      "affiliation": "Gujarat University"
-    },
-    "modulePath": "./articles/rk-2026-003.ts"
-  },
-  {
-    "id": "RK-2025-002",
-    "title": "Syllabus",
-    "date": "2026-07-05",
-    "tags": [
-      "#syllabus",
-      "#topics",
+      "#FunctionalGenomics",
+      "#Transcription",
       "#bioinformatics"
     ],
-    "excerpt": "A comprehensive course syllabus covering the foundational progression from computer operations to practical computational biology. The curriculum explores Linux basics, laboratory spreadsheet data handling, and introductory Python and R programming, before advancing into biological databases, sequence formats, pairwise alignment algorithms, and structural bioinformatics.",
+    "excerpt": "\n    Functional genomics acts as the vital bridge between the static genotype and the observable phenotype. Unlike traditional genetics, it operates on a genome-wide scale, integrating transcriptomics, proteomics, and metabolomics to understand dynamic biological processes. Techniques like RNA-Seq and ChIP-seq allow researchers to monitor gene expression and regulation in real-time, transforming raw sequence data into actionable insights. This discipline is essential for modern bioinformatics, driving discoveries in microbiology such as uncovering virulence factors in pathogens—and revolutionizing pharmaceutical research by validating drug targets and enabling precision medicine<.\n",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -436,7 +477,7 @@ export const ARTICLE_MANIFEST = [
       "avatar": "https://github.com/RKPatel-1996.png",
       "affiliation": "Gujarat University"
     },
-    "modulePath": "./articles/rk-2025-002.ts"
+    "modulePath": "./articles/rk-2025-006.ts"
   },
   {
     "id": "RK-2025-004",
@@ -447,7 +488,7 @@ export const ARTICLE_MANIFEST = [
       "#PrimaryDatabases",
       "#bioinformatics"
     ],
-    "excerpt": "Primary database are the archives—such as GenBank for DNA sequences, the Protein Data Bank (PDB) for 3D structures, and the Sequence Read Archive (SRA) for raw sequencing output—serve as the \"source of truth.\" Unlike secondary databases that interpret findings, primary repositories store raw experimental data directly from researchers, ensuring reproducibility and global access.",
+    "excerpt": "Primary database are the archives—such as GenBank for DNA sequences, the Protein Data Bank (PDB) for 3D structures, and the Sequence Read Archive (SRA) for raw sequencing output—serve as the \"source of truth.\" Unlike secondary databases that interpret findings, primary repositories store raw experimental data directly from researchers, ensuring reproducibility and global access. As technologies like cryo-EM and single-cell sequencing generate petabytes of data, these databases are evolving into cloud-based ecosystems, multi-omics discoveries that drive the future of life sciences.",
     "readTime": "30 min",
     "type": "report",
     "template": "standard",
@@ -458,6 +499,27 @@ export const ARTICLE_MANIFEST = [
       "affiliation": "Gujarat University"
     },
     "modulePath": "./articles/rk-2025-004.ts"
+  },
+  {
+    "id": "RK-2025-005",
+    "title": "Guide to Secondary Biological Databases",
+    "date": "2025-12-04",
+    "tags": [
+      "#Database",
+      "#SecondaryDatabases",
+      "#bioinformatics"
+    ],
+    "excerpt": "The shift from data scarcity to abundance in microbiology has made interpretation the primary research bottleneck. While primary databases (GenBank, ENA) serve as archival repositories for raw sequences, secondary databases (Pfam, CARD, VFDB) function as the essential \"engine of insight.\" By leveraging computational algorithms like Hidden Markov Models (HMMs) and AI-driven structure prediction, these tools transform cryptic nucleotide strings into functional hypotheses regarding virulence, antimicrobial resistance, and metabolism. For the modern microbiologist, mastering these interpretative layers—distinguishing between \"strict\" and \"loose\" hits, understanding domain architecture, and utilizing pathway reconstruction—is critical for converting the pan-genome's complexity into actionable biological discovery",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2025-005.ts"
   },
   {
     "id": "RK-2025-003",
@@ -478,5 +540,112 @@ export const ARTICLE_MANIFEST = [
       "affiliation": "Gujarat University"
     },
     "modulePath": "./articles/rk-2025-003.ts"
+  },
+  {
+    "id": "RK-2026-013",
+    "title": "React Dev -> Data-First Architecture: Defining Types for a Calculator App",
+    "date": "2025-01-12",
+    "tags": [
+      "#react-calculator",
+      "#typescript",
+      "#data-first"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-013.ts"
+  },
+  {
+    "id": "RK-2026-010",
+    "title": "Understanding the Core Files generated by \"npm create vite@latest\" a Vite + React + TypeScript Project",
+    "date": "2025-01-11",
+    "tags": [
+      "#react",
+      "#typescript",
+      "#vite",
+      "#tailwindcss"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-010.ts"
+  },
+  {
+    "id": "RK-2026-011",
+    "title": "Tailwind CSS integration, Folder Structure, Path Aliases and GitHub Deployment workflows",
+    "date": "2025-01-11",
+    "tags": [
+      "#react",
+      "#typescript",
+      "#vite",
+      "#tailwindcss"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-011.ts"
+  },
+  {
+    "id": "RK-2025-002",
+    "title": "Syllabus",
+    "date": "2025-01-01",
+    "tags": [
+      "#syllabus",
+      "#topics",
+      "#bioinformatics"
+    ],
+    "excerpt": "Bioinformatics might seem foreign to someone who has spent most of their life in a lab working with test tubes, flasks, and shakers...",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2025-002.ts"
+  },
+  {
+    "id": "RK-2026-025",
+    "title": "RDKit for structure design and sdf file creation",
+    "date": "2024-02-26",
+    "tags": [
+      "#RDkit",
+      "#SDF|mol2",
+      "#3D|2D-structures"
+    ],
+    "excerpt": "\n    \n",
+    "readTime": "30 min",
+    "type": "report",
+    "template": "standard",
+    "author": {
+      "name": "RK Patel",
+      "role": "Microbiologist",
+      "avatar": "https://github.com/RKPatel-1996.png",
+      "affiliation": "Gujarat University"
+    },
+    "modulePath": "./articles/rk-2026-025.ts"
   }
 ];
