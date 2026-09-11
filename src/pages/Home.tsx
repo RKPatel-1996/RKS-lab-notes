@@ -4,14 +4,11 @@ import { ARTICLES } from '../content/index';
 import { ArticleRow } from '../components/ui/ArticleRow';
 import { Search, X } from 'lucide-react';
 
-const KNOWN_SUBJECTS = ["Bioinformatics", "Pharmacology", "Microbiology", "Chemistry"];
-
 export const Home: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // URL state
   const queryParam = searchParams.get('q') || '';
-  const topicParam = searchParams.get('topic') || 'ALL';
 
   const [searchQuery, setSearchQuery] = useState(queryParam);
 
@@ -28,22 +25,16 @@ export const Home: React.FC = () => {
     }
   }, []);
 
-  // Update URL params
-  const updateParams = (newTopic: string, newQuery: string) => {
+  // Update URL search query
+  const updateParams = (newQuery: string) => {
     const params = new URLSearchParams();
-    if (newTopic && newTopic !== 'ALL') params.set('topic', newTopic);
     if (newQuery) params.set('q', newQuery);
     setSearchParams(params);
   };
-
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value;
     setSearchQuery(newQuery);
-    updateParams(topicParam, newQuery);
-  };
-
-  const handleTopicSelect = (topic: string) => {
-    updateParams(topic, searchQuery);
+    updateParams(newQuery);
   };
 
   const resetSearch = () => {
@@ -51,38 +42,17 @@ export const Home: React.FC = () => {
     setSearchParams(new URLSearchParams());
   };
 
-  // Determine which subjects have actual articles
-  const activeSubjects = KNOWN_SUBJECTS.filter(subject =>
-      ARTICLES.some(article =>
-          article.title.toLowerCase().includes(subject.toLowerCase()) ||
-          article.tags.some(tag => tag.toLowerCase().includes(subject.toLowerCase())) ||
-          (article.excerpt ? article.excerpt.toLowerCase().includes(subject.toLowerCase()) : false)
-      )
-  );
-
-  // Filter articles
+  // Filter articles by search query
   const filteredArticles = ARTICLES.filter(article => {
-    // 1. Topic Match
-    let matchesTopic = true;
-    if (topicParam !== 'ALL') {
-      matchesTopic =
-        article.title.toLowerCase().includes(topicParam.toLowerCase()) ||
-        article.tags.some(tag => tag.toLowerCase().includes(topicParam.toLowerCase())) ||
-        (article.excerpt ? article.excerpt.toLowerCase().includes(topicParam.toLowerCase()) : false);
-    }
+    if (!searchQuery) return true;
 
-    // 2. Query Match (Title, Tags, Excerpt, ID)
-    let matchesQuery = true;
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      matchesQuery =
-        article.title.toLowerCase().includes(q) ||
-        article.id.toLowerCase().includes(q) ||
-        article.tags.some(tag => tag.toLowerCase().includes(q)) ||
-        (article.excerpt ? article.excerpt.toLowerCase().includes(q) : false);
-    }
-
-    return matchesTopic && matchesQuery;
+    const q = searchQuery.toLowerCase();
+    return (
+      article.title.toLowerCase().includes(q) ||
+      article.id.toLowerCase().includes(q) ||
+      article.tags.some(tag => tag.toLowerCase().includes(q)) ||
+      (article.excerpt ? article.excerpt.toLowerCase().includes(q) : false)
+    );
   });
 
   return (
@@ -118,24 +88,6 @@ export const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Subjects */}
-        <div className="flex flex-wrap gap-4 font-mono text-sm">
-           <button
-             onClick={() => handleTopicSelect('ALL')}
-             className={`uppercase transition-colors focus:outline-none ${topicParam === 'ALL' ? 'font-bold text-ink dark:text-white border-b-2 border-ink dark:border-white' : 'text-pencil dark:text-gray-500 hover:text-ink dark:hover:text-white'}`}
-           >
-             [ ALL ]
-           </button>
-           {activeSubjects.map(subject => (
-             <button
-               key={subject}
-               onClick={() => handleTopicSelect(subject)}
-               className={`uppercase transition-colors focus:outline-none ${topicParam === subject ? 'font-bold text-ink dark:text-white border-b-2 border-ink dark:border-white' : 'text-pencil dark:text-gray-500 hover:text-ink dark:hover:text-white'}`}
-             >
-               [ {subject} ]
-             </button>
-           ))}
-        </div>
       </div>
 
       {/* Article List */}
@@ -153,7 +105,7 @@ export const Home: React.FC = () => {
                   onClick={resetSearch}
                   className="inline-flex items-center gap-2 text-xs uppercase border border-ink dark:border-white px-4 py-2 hover:bg-ink hover:text-paper dark:hover:bg-white dark:hover:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
                 >
-                  <X size={14} /> Reset Filters
+                  <X size={14} /> Reset Search
                 </button>
             </div>
         )}
